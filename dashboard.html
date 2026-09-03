@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Certification Command Center</title>
+  <title>AI Certification Command Center & Learning Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
@@ -12,13 +12,7 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#f5f7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-            },
-            darkbg: '#0B0F19',
+            darkbg: '#090D16',
             darkcard: '#111827',
             darkborder: '#1F2937'
           }
@@ -28,7 +22,7 @@
   </script>
   <style>
     body {
-      background-color: #0B0F19;
+      background-color: #090D16;
       color: #E2E8F0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
@@ -37,26 +31,29 @@
       border: 1px solid rgba(55, 65, 81, 0.6);
       backdrop-filter: blur(12px);
     }
-    .badge-active {
-      box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
     }
   </style>
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
-  <!-- Header & Navigation -->
+  <!-- Header -->
   <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-800 pb-6">
     <div>
       <div class="flex items-center gap-3">
         <span class="inline-block w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
         <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white">AI Certification Command Center</h1>
       </div>
-      <p class="text-sm text-gray-400 mt-1">Senior Architect & Certification Coach Track • CCDV-F, CCAR-F, CCAR-P</p>
+      <p class="text-xs md:text-sm text-gray-400 mt-1">
+        Certification Track (CCDV-F, CCAR-F, CCAR-P) • Udemy Learning Hub • Exam Vouchers
+      </p>
     </div>
 
     <div class="flex items-center gap-3">
-      <span id="sync-badge" class="text-xs px-3 py-1 rounded-full bg-gray-800 text-gray-400 border border-gray-700">
-        Standalone Mode (localStorage)
+      <span class="text-xs px-3 py-1 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-700/60">
+        AGY Coach Sync Active
       </span>
       <button onclick="exportData()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition">
         Export Backup
@@ -68,19 +65,44 @@
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto space-y-8">
+  <main class="max-w-7xl mx-auto space-y-10">
 
-    <!-- Countdown Clocks Section -->
+    <!-- KPI Top Bar -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black text-indigo-400" id="stat-active-certs">3</span>
+        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Active Pipeline</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black text-emerald-400" id="stat-udemy-total">0</span>
+        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Udemy Courses Tracked</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black text-amber-400" id="stat-vouchers-active">0</span>
+        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Voucher Plans Active</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black text-purple-400" id="stat-completed-certs">0</span>
+        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Completed Credentials</span>
+      </div>
+    </section>
+
+    <!-- 1. Active Certification Pipeline -->
     <section>
-      <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400 mb-4">Confirmed Test Targets</h2>
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400">1. Target Certification Pipeline</h2>
+          <p class="text-xs text-gray-400">Confirmed upcoming exam dates and countdown timers.</p>
+        </div>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- CCDV-F Card -->
-        <div class="glass-card rounded-xl p-6 relative overflow-hidden border-indigo-500/30">
+        <!-- CCDV-F -->
+        <div class="glass-card rounded-xl p-6 relative border-indigo-500/40">
           <div class="flex justify-between items-start mb-4">
             <div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">CCDV-F</span>
-              <h3 class="text-lg font-bold text-white mt-2">Claude Certified Developer</h3>
+              <span class="text-xs font-bold px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">CCDV-F</span>
+              <h3 class="text-lg font-bold text-white mt-2">Claude Developer</h3>
               <p class="text-xs text-gray-400">Foundations • Exam: Sep 29, 2026</p>
             </div>
             <div class="text-right">
@@ -88,21 +110,21 @@
               <span class="block text-[10px] uppercase text-gray-400 font-semibold">Days Left</span>
             </div>
           </div>
-          <div class="w-full bg-gray-800 rounded-full h-2 mb-3">
-            <div id="ccdv-progress-bar" class="bg-indigo-500 h-2 rounded-full transition-all duration-500" style="width: 25%"></div>
+          <div class="w-full bg-gray-800 rounded-full h-2 mb-2">
+            <div id="ccdv-progress-bar" class="bg-indigo-500 h-2 rounded-full transition-all duration-500" style="width: 30%"></div>
           </div>
           <div class="flex justify-between text-xs text-gray-400">
-            <span id="ccdv-tasks-completed">0 / 6 Modules Cleared</span>
-            <span id="ccdv-pct" class="font-bold text-indigo-300">0%</span>
+            <span id="ccdv-tasks-cleared">2 / 6 Milestones</span>
+            <span id="ccdv-pct" class="font-bold text-indigo-300">33%</span>
           </div>
         </div>
 
-        <!-- CCAR-F Card -->
-        <div class="glass-card rounded-xl p-6 relative overflow-hidden border-cyan-500/30">
+        <!-- CCAR-F -->
+        <div class="glass-card rounded-xl p-6 relative border-cyan-500/40">
           <div class="flex justify-between items-start mb-4">
             <div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">CCAR-F</span>
-              <h3 class="text-lg font-bold text-white mt-2">Claude Certified Architect</h3>
+              <span class="text-xs font-bold px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">CCAR-F</span>
+              <h3 class="text-lg font-bold text-white mt-2">Claude Architect</h3>
               <p class="text-xs text-gray-400">Foundations • Exam: Oct 19, 2026</p>
             </div>
             <div class="text-right">
@@ -110,21 +132,21 @@
               <span class="block text-[10px] uppercase text-gray-400 font-semibold">Days Left</span>
             </div>
           </div>
-          <div class="w-full bg-gray-800 rounded-full h-2 mb-3">
-            <div id="ccarf-progress-bar" class="bg-cyan-500 h-2 rounded-full transition-all duration-500" style="width: 10%"></div>
+          <div class="w-full bg-gray-800 rounded-full h-2 mb-2">
+            <div id="ccarf-progress-bar" class="bg-cyan-500 h-2 rounded-full transition-all duration-500" style="width: 15%"></div>
           </div>
           <div class="flex justify-between text-xs text-gray-400">
-            <span id="ccarf-tasks-completed">0 / 5 Modules Cleared</span>
+            <span id="ccarf-tasks-cleared">0 / 5 Milestones</span>
             <span id="ccarf-pct" class="font-bold text-cyan-300">0%</span>
           </div>
         </div>
 
-        <!-- CCAR-P Card -->
-        <div class="glass-card rounded-xl p-6 relative overflow-hidden border-purple-500/30">
+        <!-- CCAR-P -->
+        <div class="glass-card rounded-xl p-6 relative border-purple-500/40">
           <div class="flex justify-between items-start mb-4">
             <div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/40">CCAR-P</span>
-              <h3 class="text-lg font-bold text-white mt-2">Claude Certified Architect</h3>
+              <span class="text-xs font-bold px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40">CCAR-P</span>
+              <h3 class="text-lg font-bold text-white mt-2">Claude Architect</h3>
               <p class="text-xs text-gray-400">Professional • Exam: Oct 26, 2026</p>
             </div>
             <div class="text-right">
@@ -132,11 +154,11 @@
               <span class="block text-[10px] uppercase text-gray-400 font-semibold">Days Left</span>
             </div>
           </div>
-          <div class="w-full bg-gray-800 rounded-full h-2 mb-3">
-            <div id="ccarp-progress-bar" class="bg-purple-500 h-2 rounded-full transition-all duration-500" style="width: 5%"></div>
+          <div class="w-full bg-gray-800 rounded-full h-2 mb-2">
+            <div id="ccarp-progress-bar" class="bg-purple-500 h-2 rounded-full transition-all duration-500" style="width: 10%"></div>
           </div>
           <div class="flex justify-between text-xs text-gray-400">
-            <span id="ccarp-tasks-completed">0 / 5 Modules Cleared</span>
+            <span id="ccarp-tasks-cleared">0 / 5 Milestones</span>
             <span id="ccarp-pct" class="font-bold text-purple-300">0%</span>
           </div>
         </div>
@@ -144,138 +166,343 @@
       </div>
     </section>
 
-    <!-- Radar & Domain Preparedness -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-      <!-- Chart View -->
-      <div class="glass-card rounded-xl p-6 lg:col-span-1 flex flex-col justify-between">
+    <!-- 2. Udemy Courses Hub -->
+    <section class="glass-card rounded-xl p-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <h3 class="text-base font-bold text-white mb-1">Knowledge Radar</h3>
-          <p class="text-xs text-gray-400 mb-4">Readiness across core exam domains</p>
-          <div class="h-64 flex items-center justify-center">
-            <canvas id="domainChart"></canvas>
+          <div class="flex items-center gap-2">
+            <span class="text-red-500 font-black text-base">▶</span>
+            <h2 class="text-lg font-bold text-white">Udemy Learning & Practice Hub</h2>
           </div>
+          <p class="text-xs text-gray-400 mt-0.5">Track certification prep courses, general skill-learning, and mock test papers.</p>
         </div>
-        <div class="text-[11px] text-gray-400 text-center border-t border-gray-800 pt-3 mt-4">
-          Target: 85%+ readiness before booking final test slots.
+
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Filter Buttons -->
+          <div class="bg-gray-900 border border-gray-700 rounded-lg p-1 flex text-xs">
+            <button onclick="setUdemyFilter('all')" id="btn-filter-all" class="px-3 py-1 rounded font-medium bg-gray-700 text-white">All</button>
+            <button onclick="setUdemyFilter('cert')" id="btn-filter-cert" class="px-3 py-1 rounded text-gray-400 hover:text-white">🎯 Cert Prep</button>
+            <button onclick="setUdemyFilter('learning')" id="btn-filter-learning" class="px-3 py-1 rounded text-gray-400 hover:text-white">💡 Learning</button>
+            <button onclick="setUdemyFilter('mock')" id="btn-filter-mock" class="px-3 py-1 rounded text-gray-400 hover:text-white">📝 Mock Tests</button>
+          </div>
+          <button onclick="openAddCourseModal()" class="text-xs px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition">
+            + Add Udemy Course
+          </button>
         </div>
       </div>
 
-      <!-- Checklist & Daily Modules -->
-      <div class="glass-card rounded-xl p-6 lg:col-span-2">
-        <div class="flex justify-between items-center mb-4">
-          <div>
-            <h3 class="text-base font-bold text-white">Exam Milestones & Module Checklist</h3>
-            <p class="text-xs text-gray-400">Click to complete. Changes are instantly saved locally.</p>
-          </div>
-          <div class="flex gap-2">
-            <button onclick="filterChecklist('all')" class="text-xs px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300">All</button>
-            <button onclick="filterChecklist('CCDV-F')" class="text-xs px-2.5 py-1 rounded bg-indigo-900/50 hover:bg-indigo-800 text-indigo-300">CCDV-F</button>
-            <button onclick="filterChecklist('CCAR-F')" class="text-xs px-2.5 py-1 rounded bg-cyan-900/50 hover:bg-cyan-800 text-cyan-300">CCAR-F</button>
-          </div>
-        </div>
-
-        <div id="checklist-container" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
-          <!-- Dynamic Items Injected Here -->
-        </div>
-
-        <div class="mt-4 pt-4 border-t border-gray-800 flex gap-2">
-          <input id="new-item-title" type="text" placeholder="Add custom study item or drill..." class="flex-1 text-xs bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500" />
-          <select id="new-item-cert" class="text-xs bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
-            <option value="CCDV-F">CCDV-F</option>
-            <option value="CCAR-F">CCAR-F</option>
-            <option value="CCAR-P">CCAR-P</option>
-          </select>
-          <button onclick="addCustomItem()" class="text-xs px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition">Add</button>
-        </div>
+      <!-- Course Cards Grid -->
+      <div id="udemy-course-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Injected via JavaScript -->
       </div>
-
     </section>
 
-    <!-- Chat & Study Session Tracker -->
-    <section class="glass-card rounded-xl p-6">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-4">
+    <!-- 3. Exam Vouchers & Discount Hub -->
+    <section class="glass-card rounded-xl p-6 border-amber-500/30">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <h3 class="text-base font-bold text-white">Coaching & Study Sessions</h3>
-          <p class="text-xs text-gray-400">Rename sessions, record drill scores, and synchronize discussions.</p>
+          <div class="flex items-center gap-2">
+            <span class="text-amber-400 text-base">🎟️</span>
+            <h2 class="text-lg font-bold text-white">Upcoming Certification Vouchers & Discounts</h2>
+          </div>
+          <p class="text-xs text-gray-400 mt-0.5">Track free/discounted exam vouchers, promo opportunities, and step-by-step acquisition plans.</p>
         </div>
-        <button onclick="addSessionPrompt()" class="text-xs px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition">
-          + Log New Session
+        <button onclick="openAddVoucherModal()" class="text-xs px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-medium rounded-lg transition">
+          + Add Voucher Track
         </button>
       </div>
 
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs text-gray-300">
-          <thead class="bg-gray-800/60 text-gray-400 uppercase text-[10px]">
-            <tr>
-              <th class="py-2.5 px-4 rounded-l">Session Title</th>
-              <th class="py-2.5 px-4">Track</th>
-              <th class="py-2.5 px-4">Date</th>
-              <th class="py-2.5 px-4">Drill Score</th>
-              <th class="py-2.5 px-4">Key Takeaways</th>
-              <th class="py-2.5 px-4 text-right rounded-r">Action</th>
-            </tr>
-          </thead>
-          <tbody id="session-table-body" class="divide-y divide-gray-800">
-            <!-- Dynamic session rows -->
-          </tbody>
-        </table>
+      <div id="vouchers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 4. Completed Certifications & Courses (Hall of Fame) -->
+    <section class="glass-card rounded-xl p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-400 text-base">🏆</span>
+            <h2 class="text-lg font-bold text-white">Completed Certifications & Courses</h2>
+          </div>
+          <p class="text-xs text-gray-400 mt-0.5">Your permanent record of finished certificates, credentials, and completed bootcamps.</p>
+        </div>
+        <button onclick="openAddCompletedModal()" class="text-xs px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition">
+          + Log Completed
+        </button>
+      </div>
+
+      <div id="completed-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Injected via JavaScript -->
       </div>
     </section>
 
   </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Voucher Plan Modal (Popup Description Box) -->
+  <div id="plan-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-start mb-4 border-b border-gray-800 pb-3">
+        <div>
+          <span id="modal-voucher-badge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/60 text-amber-300 border border-amber-700/60">VOUCHER PLAN</span>
+          <h3 id="modal-voucher-title" class="text-lg font-bold text-white mt-1">Exam Name</h3>
+          <p id="modal-voucher-provider" class="text-xs text-gray-400">Provider & Target Value</p>
+        </div>
+        <button onclick="closePlanModal()" class="text-gray-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <h4 class="text-xs font-semibold uppercase text-indigo-400 mb-1">Acquisition Strategy & Steps Needed</h4>
+          <div id="modal-voucher-steps" class="text-xs text-gray-300 bg-gray-950 p-3.5 rounded-lg border border-gray-800 whitespace-pre-wrap leading-relaxed">
+            <!-- Steps go here -->
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="bg-gray-950 p-2.5 rounded-lg border border-gray-800">
+            <span class="text-gray-500 block text-[10px] uppercase">Status</span>
+            <span id="modal-voucher-status" class="font-bold text-amber-300">In Progress</span>
+          </div>
+          <div class="bg-gray-950 p-2.5 rounded-lg border border-gray-800">
+            <span class="text-gray-500 block text-[10px] uppercase">Deadline / Expiry</span>
+            <span id="modal-voucher-expiry" class="font-bold text-gray-300">None</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closePlanModal()" class="text-xs px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Udemy Course Modal -->
+  <div id="add-course-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Add Udemy Course</h3>
+        <button onclick="closeAddCourseModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Course Title</label>
+          <input id="input-course-title" type="text" placeholder="e.g., Anthropic Claude Masterclass" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Category / Type</label>
+          <select id="input-course-type" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
+            <option value="cert">🎯 Certification Prep (CCDV-F, CCAR-F, CCAR-P, AWS)</option>
+            <option value="learning">💡 Skill / Learning Only (Spring Boot, Design, etc.)</option>
+            <option value="mock">📝 Mock Papers / Practice Exams</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Target Exam (Optional)</label>
+          <input id="input-course-cert" type="text" placeholder="e.g., CCDV-F, AWS SAA, General" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Progress (% Completed)</label>
+          <input id="input-course-progress" type="number" min="0" max="100" value="0" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Course URL or Notes</label>
+          <input id="input-course-url" type="text" placeholder="e.g., udemy.com/course/..." class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddCourseModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewCourse()" class="text-xs px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-medium">Save Course</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Voucher Modal -->
+  <div id="add-voucher-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Add Exam Voucher Plan</h3>
+        <button onclick="closeAddVoucherModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Certification Exam</label>
+          <input id="input-voucher-cert" type="text" placeholder="e.g., AWS SAA-C03 or CCDV-F" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Provider / Program</label>
+          <input id="input-voucher-provider" type="text" placeholder="e.g., AWS Emerging Talent / Early Access" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Discount Value</label>
+          <input id="input-voucher-discount" type="text" placeholder="e.g., 50% Off ($75) or 100% Free" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Status</label>
+          <select id="input-voucher-status" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
+            <option value="Researching">Researching / Plan Formed</option>
+            <option value="Applied">Application Submitted</option>
+            <option value="Approved">Voucher Code Received</option>
+            <option value="Expired">Expired</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Action Plan: Steps Needed to Get It</label>
+          <textarea id="input-voucher-steps" rows="4" placeholder="1. Complete challenge on platform&#10;2. Submit badge by Sept 15&#10;3. Redeem promo code on PearsonVUE" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white"></textarea>
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddVoucherModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewVoucher()" class="text-xs px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded font-medium">Save Voucher</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Completed Modal -->
+  <div id="add-completed-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Log Completed Certification / Course</h3>
+        <button onclick="closeAddCompletedModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Title / Certification Name</label>
+          <input id="input-comp-title" type="text" placeholder="e.g., AWS Certified Cloud Practitioner" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Completion Date</label>
+          <input id="input-comp-date" type="date" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Score / Grade (Optional)</label>
+          <input id="input-comp-score" type="text" placeholder="e.g., 880/1000 or Completed with Honors" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Credential ID / Link</label>
+          <input id="input-comp-link" type="text" placeholder="e.g., credly.com/badges/..." class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddCompletedModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewCompleted()" class="text-xs px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-medium">Save Credential</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="max-w-7xl mx-auto mt-12 text-center text-xs text-gray-500 border-t border-gray-900 pt-6">
     AI Certification Platform • Powered by Antigravity Coach & Spring Boot 3
   </footer>
 
   <script>
-    const STORAGE_KEY = 'ai_cert_dashboard_data_v1';
+    const STORAGE_KEY = 'ai_cert_dashboard_v2';
 
-    const defaultData = {
-      items: [
-        { id: 1, cert: 'CCDV-F', title: 'Claude Tool Use: Schema definition & tool_use blocks', done: true },
-        { id: 2, cert: 'CCDV-F', title: 'Prompt Caching: Breakpoint rules, 1024-token min & TTL', done: true },
-        { id: 3, cert: 'CCDV-F', title: 'Vision & Multi-modal API inputs & pricing tiering', done: false },
-        { id: 4, cert: 'CCDV-F', title: 'System prompts vs user messages & prompt structuring', done: false },
-        { id: 5, cert: 'CCDV-F', title: 'Full Mock Exam 1 (CCDV-F 60 questions)', done: false },
-        { id: 6, cert: 'CCDV-F', title: 'Full Mock Exam 2 (CCDV-F review & speed drill)', done: false },
-        { id: 7, cert: 'CCAR-F', title: 'Context Window Architecture & RAG vs Long-Context tradeoffs', done: false },
-        { id: 8, cert: 'CCAR-F', title: 'Cost & Latency optimization with batch API & caching', done: false },
-        { id: 9, cert: 'CCAR-F', title: 'Multi-model routing (Haiku vs Sonnet vs Opus vs Gemini)', done: false },
-        { id: 10, cert: 'CCAR-P', title: 'Enterprise agent loops, safety guardrails & evaluation harness', done: false }
-      ],
-      sessions: [
+    const defaultHubData = {
+      udemyCourses: [
         {
           id: 1,
-          title: "Initial Repo Scaffolding & Architecture Drill",
-          track: "CCDV-F",
-          date: new Date().toISOString().split('T')[0],
-          score: "Pending Drill",
-          notes: "Spring Boot 3 setup, JPA milestones, and Claude/Gemini client stubs."
+          title: "Claude 3.5 & 3.7 Developer Bootcamp: Tool Use & API Integration",
+          category: "cert",
+          targetCert: "CCDV-F",
+          progress: 65,
+          instructor: "AI Architecture Institute",
+          url: "https://www.udemy.com"
+        },
+        {
+          id: 2,
+          title: "Prompt Caching & LLM Latency Optimization in Production",
+          category: "cert",
+          targetCert: "CCDV-F",
+          progress: 80,
+          instructor: "Prompt Engineering Academy",
+          url: "https://www.udemy.com"
+        },
+        {
+          id: 3,
+          title: "Spring Boot 3, Spring Security 6 & Microservices Architecture",
+          category: "learning",
+          targetCert: "General Skill",
+          progress: 90,
+          instructor: "Senior Cloud Architect",
+          url: "https://www.udemy.com"
+        },
+        {
+          id: 4,
+          title: "CCDV-F Practice Exams: 6 Full Realistic Mock Papers",
+          category: "mock",
+          targetCert: "CCDV-F",
+          progress: 25,
+          instructor: "Cert Prep Pro",
+          url: "https://www.udemy.com"
+        },
+        {
+          id: 5,
+          title: "LLM Agent Systems: Memory, Tool Calling & Multi-Agent Design",
+          category: "learning",
+          targetCert: "CCAR-P",
+          progress: 40,
+          instructor: "Autonomous Agents Lab",
+          url: "https://www.udemy.com"
         }
       ],
-      radarScores: [90, 85, 40, 60, 50] // Tool Use, Prompt Caching, Vision, Cost/Latency, Agent Loops
+      vouchers: [
+        {
+          id: 1,
+          certName: "AWS Certified Solutions Architect Associate (SAA-C03)",
+          provider: "AWS Emerging Talent Community / Cloud Quest",
+          discount: "50% Off ($75 savings)",
+          status: "Researching",
+          expiry: "2026-11-30",
+          steps: "1. Complete AWS Cloud Quest: Cloud Practitioner role.\n2. Earn the digital badge on Credly.\n3. Join AWS Emerging Talent Community and redeem 50% discount voucher code.\n4. Apply promo code at Pearson VUE checkout."
+        },
+        {
+          id: 2,
+          certName: "Claude Certified Developer - Foundations (CCDV-F)",
+          provider: "Anthropic Partner / Community Beta Access",
+          discount: "Early Access / Promo Credit",
+          status: "Applied",
+          expiry: "2026-09-29",
+          steps: "1. Review Anthropic Developer Console partner credits.\n2. Verify eligible email domain with certification intake form.\n3. Confirm exam voucher token and schedule Pearson / online proctor session."
+        }
+      ],
+      completed: [
+        {
+          id: 1,
+          title: "Java 21 Professional Developer Certification",
+          date: "2025-11-15",
+          score: "92%",
+          link: "https://example.com/cert/java21"
+        },
+        {
+          id: 2,
+          title: "Spring Boot 3 Enterprise Microservices Masterclass",
+          date: "2026-02-10",
+          score: "Completed",
+          link: "https://www.udemy.com"
+        }
+      ]
     };
 
-    let appData = loadData();
-    let currentFilter = 'all';
-    let chartInstance = null;
+    let hubData = loadHubData();
+    let currentUdemyFilter = 'all';
 
-    function loadData() {
+    function loadHubData() {
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
-        return stored ? JSON.parse(stored) : defaultData;
+        return stored ? JSON.parse(stored) : defaultHubData;
       } catch (e) {
-        return defaultData;
+        return defaultHubData;
       }
     }
 
-    function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
-      render();
+    function saveHubData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(hubData));
+      renderAll();
     }
 
+    // Countdowns
     function updateCountdowns() {
       const exams = [
         { id: 'ccdv-days', date: new Date('2026-09-29T09:00:00') },
@@ -292,186 +519,280 @@
       });
     }
 
-    function renderChecklist() {
-      const container = document.getElementById('checklist-container');
-      container.innerHTML = '';
+    // Render Udemy Courses
+    function renderUdemyCourses() {
+      const grid = document.getElementById('udemy-course-grid');
+      grid.innerHTML = '';
 
-      const filtered = appData.items.filter(item => currentFilter === 'all' || item.cert === currentFilter);
+      const filtered = hubData.udemyCourses.filter(c => {
+        if (currentUdemyFilter === 'all') return true;
+        return c.category === currentUdemyFilter;
+      });
 
-      filtered.forEach(item => {
-        const div = document.createElement('div');
-        div.className = `flex items-center justify-between p-3 rounded-lg border transition ${
-          item.done ? 'bg-gray-900/60 border-gray-800 text-gray-500' : 'bg-gray-800/40 border-gray-700/60 text-gray-200 hover:border-gray-600'
-        }`;
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-8 text-center text-gray-500 text-xs">No courses found in this category. Click "+ Add Udemy Course" to create one.</div>`;
+        return;
+      }
 
-        div.innerHTML = `
-          <div class="flex items-center gap-3">
-            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleItem(${item.id})" class="w-4 h-4 rounded text-indigo-600 bg-gray-800 border-gray-600 focus:ring-indigo-500 cursor-pointer" />
-            <span class="text-xs px-2 py-0.5 rounded font-mono ${
-              item.cert === 'CCDV-F' ? 'bg-indigo-900/40 text-indigo-300' :
-              item.cert === 'CCAR-F' ? 'bg-cyan-900/40 text-cyan-300' : 'bg-purple-900/40 text-purple-300'
-            }">${item.cert}</span>
-            <span class="text-xs ${item.done ? 'line-through' : 'font-medium'}">${item.title}</span>
+      filtered.forEach(course => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-xl p-4 flex flex-col justify-between border-gray-800 hover:border-gray-700 transition';
+
+        let badge = '';
+        if (course.category === 'cert') {
+          badge = '<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-900/50 text-indigo-300 border border-indigo-700/60">🎯 Cert Prep</span>';
+        } else if (course.category === 'learning') {
+          badge = '<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-900/50 text-blue-300 border border-blue-700/60">💡 Skill Learning</span>';
+        } else {
+          badge = '<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/50 text-amber-300 border border-amber-700/60">📝 Mock Tests</span>';
+        }
+
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              ${badge}
+              <span class="text-[11px] font-mono text-gray-400">${course.targetCert}</span>
+            </div>
+            <h4 class="text-sm font-bold text-white mb-1 leading-snug">${course.title}</h4>
+            <p class="text-[11px] text-gray-400 mb-3">${course.instructor || 'Udemy Instructor'}</p>
           </div>
-          <button onclick="deleteItem(${item.id})" class="text-gray-500 hover:text-red-400 text-xs px-2">✕</button>
+
+          <div>
+            <div class="flex justify-between text-[11px] text-gray-400 mb-1">
+              <span>Progress</span>
+              <span class="font-bold text-white">${course.progress}%</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-1.5 mb-3">
+              <div class="bg-indigo-500 h-1.5 rounded-full" style="width: ${course.progress}%"></div>
+            </div>
+
+            <div class="flex justify-between items-center pt-2 border-t border-gray-800/80">
+              <button onclick="quickUpdateProgress(${course.id})" class="text-[11px] text-indigo-400 hover:text-indigo-300">
+                Update %
+              </button>
+              <div class="flex gap-2">
+                ${course.url ? `<a href="${course.url}" target="_blank" class="text-[11px] text-gray-400 hover:text-white">Open ↗</a>` : ''}
+                <button onclick="deleteCourse(${course.id})" class="text-[11px] text-gray-500 hover:text-red-400">✕</button>
+              </div>
+            </div>
+          </div>
         `;
-        container.appendChild(div);
-      });
-
-      // Update progress percentages
-      updateProgressStats('CCDV-F', 'ccdv-progress-bar', 'ccdv-tasks-completed', 'ccdv-pct');
-      updateProgressStats('CCAR-F', 'ccarf-progress-bar', 'ccarf-tasks-completed', 'ccarf-pct');
-      updateProgressStats('CCAR-P', 'ccarp-progress-bar', 'ccarp-tasks-completed', 'ccarp-pct');
-    }
-
-    function updateProgressStats(certCode, barId, countId, pctId) {
-      const items = appData.items.filter(i => i.cert === certCode);
-      const done = items.filter(i => i.done).length;
-      const total = items.length;
-      const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-
-      const bar = document.getElementById(barId);
-      const count = document.getElementById(countId);
-      const pctElem = document.getElementById(pctId);
-
-      if (bar) bar.style.width = pct + '%';
-      if (count) count.textContent = `${done} / ${total} Tasks Cleared`;
-      if (pctElem) pctElem.textContent = `${pct}%`;
-    }
-
-    function toggleItem(id) {
-      const item = appData.items.find(i => i.id === id);
-      if (item) {
-        item.done = !item.done;
-        saveData();
-      }
-    }
-
-    function deleteItem(id) {
-      appData.items = appData.items.filter(i => i.id !== id);
-      saveData();
-    }
-
-    function addCustomItem() {
-      const titleInput = document.getElementById('new-item-title');
-      const certInput = document.getElementById('new-item-cert');
-      const title = titleInput.value.trim();
-      if (!title) return;
-
-      appData.items.push({
-        id: Date.now(),
-        cert: certInput.value,
-        title: title,
-        done: false
-      });
-      titleInput.value = '';
-      saveData();
-    }
-
-    function filterChecklist(cert) {
-      currentFilter = cert;
-      renderChecklist();
-    }
-
-    function renderSessions() {
-      const tbody = document.getElementById('session-table-body');
-      tbody.innerHTML = '';
-
-      appData.sessions.forEach(sess => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-gray-800/30';
-        tr.innerHTML = `
-          <td class="py-3 px-4 font-semibold text-white cursor-pointer hover:text-indigo-300" onclick="renameSession(${sess.id})">
-            ${sess.title} <span class="text-[10px] text-gray-500 ml-1">✏️</span>
-          </td>
-          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">${sess.track}</span></td>
-          <td class="py-3 px-4 text-gray-400">${sess.date}</td>
-          <td class="py-3 px-4"><span class="text-indigo-400 font-bold">${sess.score}</span></td>
-          <td class="py-3 px-4 text-gray-400 max-w-xs truncate">${sess.notes}</td>
-          <td class="py-3 px-4 text-right">
-            <button onclick="deleteSession(${sess.id})" class="text-gray-500 hover:text-red-400">✕</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
+        grid.appendChild(card);
       });
     }
 
-    function renameSession(id) {
-      const session = appData.sessions.find(s => s.id === id);
-      if (!session) return;
-      const newTitle = prompt('Rename coaching session:', session.title);
-      if (newTitle && newTitle.trim()) {
-        session.title = newTitle.trim();
-        saveData();
-      }
-    }
-
-    function addSessionPrompt() {
-      const title = prompt('Enter session title (e.g., CCDV-F Tool Use Drill):');
-      if (!title) return;
-      const track = prompt('Certification Track (CCDV-F, CCAR-F, CCAR-P):', 'CCDV-F') || 'CCDV-F';
-      const score = prompt('Score or status (e.g. 2/2 or In Progress):', '2/2') || 'In Progress';
-      const notes = prompt('Notes / key takeaways:', 'Tool Use flow & Prompt Caching breakpoints') || '';
-
-      appData.sessions.unshift({
-        id: Date.now(),
-        title: title.trim(),
-        track: track.trim(),
-        date: new Date().toISOString().split('T')[0],
-        score: score.trim(),
-        notes: notes.trim()
-      });
-      saveData();
-    }
-
-    function deleteSession(id) {
-      appData.sessions = appData.sessions.filter(s => s.id !== id);
-      saveData();
-    }
-
-    function initRadarChart() {
-      const ctx = document.getElementById('domainChart').getContext('2d');
-      if (chartInstance) chartInstance.destroy();
-
-      chartInstance = new Chart(ctx, {
-        type: 'radar',
-        data: {
-          labels: ['Tool Use', 'Prompt Caching', 'Vision API', 'Cost/Latency', 'Agent Loops'],
-          datasets: [{
-            label: 'Readiness %',
-            data: appData.radarScores || [80, 85, 45, 60, 50],
-            backgroundColor: 'rgba(99, 102, 241, 0.25)',
-            borderColor: 'rgba(99, 102, 241, 0.9)',
-            pointBackgroundColor: '#818CF8',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: '#818CF8'
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            r: {
-              angleLines: { color: 'rgba(75, 85, 99, 0.4)' },
-              grid: { color: 'rgba(75, 85, 99, 0.4)' },
-              pointLabels: { color: '#9CA3AF', font: { size: 11 } },
-              ticks: { display: false, min: 0, max: 100 }
-            }
-          },
-          plugins: {
-            legend: { display: false }
+    function setUdemyFilter(filter) {
+      currentUdemyFilter = filter;
+      ['all', 'cert', 'learning', 'mock'].forEach(f => {
+        const btn = document.getElementById('btn-filter-' + f);
+        if (btn) {
+          if (f === filter) {
+            btn.className = 'px-3 py-1 rounded font-medium bg-gray-700 text-white';
+          } else {
+            btn.className = 'px-3 py-1 rounded text-gray-400 hover:text-white';
           }
         }
       });
+      renderUdemyCourses();
+    }
+
+    function quickUpdateProgress(id) {
+      const course = hubData.udemyCourses.find(c => c.id === id);
+      if (!course) return;
+      const newProg = prompt(`Enter progress percentage for "${course.title}":`, course.progress);
+      if (newProg !== null && !isNaN(newProg)) {
+        course.progress = Math.min(100, Math.max(0, parseInt(newProg)));
+        saveHubData();
+      }
+    }
+
+    function deleteCourse(id) {
+      hubData.udemyCourses = hubData.udemyCourses.filter(c => c.id !== id);
+      saveHubData();
+    }
+
+    // Render Vouchers
+    function renderVouchers() {
+      const grid = document.getElementById('vouchers-grid');
+      grid.innerHTML = '';
+
+      if (hubData.vouchers.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-8 text-center text-gray-500 text-xs">No vouchers added yet. Click "+ Add Voucher Track" to configure one.</div>`;
+        return;
+      }
+
+      hubData.vouchers.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-xl p-4 flex flex-col justify-between border-gray-800 hover:border-amber-500/40 transition';
+
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/40 text-amber-300 border border-amber-700/50">${v.discount}</span>
+              <span class="text-[11px] font-medium px-2 py-0.5 rounded bg-gray-800 text-gray-300">${v.status}</span>
+            </div>
+            <h4 class="text-sm font-bold text-white mb-1">${v.certName}</h4>
+            <p class="text-[11px] text-gray-400 mb-3">${v.provider}</p>
+          </div>
+
+          <div class="pt-3 border-t border-gray-800 flex justify-between items-center">
+            <button onclick="openPlanModal(${v.id})" class="text-xs px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-lg font-medium transition flex items-center gap-1.5">
+              <span>📋</span> View Plan
+            </button>
+            <button onclick="deleteVoucher(${v.id})" class="text-xs text-gray-500 hover:text-red-400">✕</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openPlanModal(voucherId) {
+      const v = hubData.vouchers.find(item => item.id === voucherId);
+      if (!v) return;
+
+      document.getElementById('modal-voucher-title').textContent = v.certName;
+      document.getElementById('modal-voucher-provider').textContent = `${v.provider} • ${v.discount}`;
+      document.getElementById('modal-voucher-steps').textContent = v.steps || 'No steps outlined yet.';
+      document.getElementById('modal-voucher-status').textContent = v.status;
+      document.getElementById('modal-voucher-expiry').textContent = v.expiry || 'Open';
+
+      document.getElementById('plan-modal').classList.remove('hidden');
+    }
+
+    function closePlanModal() {
+      document.getElementById('plan-modal').classList.add('hidden');
+    }
+
+    function deleteVoucher(id) {
+      hubData.vouchers = hubData.vouchers.filter(v => v.id !== id);
+      saveHubData();
+    }
+
+    // Render Completed Credentials
+    function renderCompleted() {
+      const grid = document.getElementById('completed-grid');
+      grid.innerHTML = '';
+
+      if (hubData.completed.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-8 text-center text-gray-500 text-xs">No completed certifications logged yet.</div>`;
+        return;
+      }
+
+      hubData.completed.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-xl p-4 flex flex-col justify-between border-emerald-900/40';
+
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">COMPLETED</span>
+              <span class="text-[11px] text-gray-400">${item.date}</span>
+            </div>
+            <h4 class="text-sm font-bold text-white mb-1">${item.title}</h4>
+            <p class="text-xs text-emerald-400 font-semibold mb-2">Score: ${item.score || 'Pass'}</p>
+          </div>
+          <div class="flex justify-between items-center pt-2 border-t border-gray-800">
+            ${item.link ? `<a href="${item.link}" target="_blank" class="text-[11px] text-indigo-400 hover:underline">View Credential ↗</a>` : '<span></span>'}
+            <button onclick="deleteCompleted(${item.id})" class="text-xs text-gray-500 hover:text-red-400">✕</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function deleteCompleted(id) {
+      hubData.completed = hubData.completed.filter(c => c.id !== id);
+      saveHubData();
+    }
+
+    // Modal Triggers
+    function openAddCourseModal() { document.getElementById('add-course-modal').classList.remove('hidden'); }
+    function closeAddCourseModal() { document.getElementById('add-course-modal').classList.add('hidden'); }
+
+    function saveNewCourse() {
+      const title = document.getElementById('input-course-title').value.trim();
+      if (!title) return alert('Please enter a course title');
+      const category = document.getElementById('input-course-type').value;
+      const targetCert = document.getElementById('input-course-cert').value.trim() || 'General';
+      const progress = parseInt(document.getElementById('input-course-progress').value) || 0;
+      const url = document.getElementById('input-course-url').value.trim();
+
+      hubData.udemyCourses.push({
+        id: Date.now(),
+        title,
+        category,
+        targetCert,
+        progress,
+        instructor: 'Udemy Course',
+        url
+      });
+
+      closeAddCourseModal();
+      document.getElementById('input-course-title').value = '';
+      saveHubData();
+    }
+
+    function openAddVoucherModal() { document.getElementById('add-voucher-modal').classList.remove('hidden'); }
+    function closeAddVoucherModal() { document.getElementById('add-voucher-modal').classList.add('hidden'); }
+
+    function saveNewVoucher() {
+      const certName = document.getElementById('input-voucher-cert').value.trim();
+      if (!certName) return alert('Please specify certification name');
+      const provider = document.getElementById('input-voucher-provider').value.trim();
+      const discount = document.getElementById('input-voucher-discount').value.trim();
+      const status = document.getElementById('input-voucher-status').value;
+      const steps = document.getElementById('input-voucher-steps').value.trim();
+
+      hubData.vouchers.push({
+        id: Date.now(),
+        certName,
+        provider,
+        discount,
+        status,
+        steps
+      });
+
+      closeAddVoucherModal();
+      document.getElementById('input-voucher-cert').value = '';
+      document.getElementById('input-voucher-steps').value = '';
+      saveHubData();
+    }
+
+    function openAddCompletedModal() { document.getElementById('add-completed-modal').classList.remove('hidden'); }
+    function closeAddCompletedModal() { document.getElementById('add-completed-modal').classList.add('hidden'); }
+
+    function saveNewCompleted() {
+      const title = document.getElementById('input-comp-title').value.trim();
+      if (!title) return alert('Please enter credential title');
+      const date = document.getElementById('input-comp-date').value || new Date().toISOString().split('T')[0];
+      const score = document.getElementById('input-comp-score').value.trim();
+      const link = document.getElementById('input-comp-link').value.trim();
+
+      hubData.completed.push({
+        id: Date.now(),
+        title,
+        date,
+        score,
+        link
+      });
+
+      closeAddCompletedModal();
+      document.getElementById('input-comp-title').value = '';
+      saveHubData();
+    }
+
+    function updateKPIs() {
+      document.getElementById('stat-udemy-total').textContent = hubData.udemyCourses.length;
+      document.getElementById('stat-vouchers-active').textContent = hubData.vouchers.length;
+      document.getElementById('stat-completed-certs').textContent = hubData.completed.length;
     }
 
     function exportData() {
-      const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(hubData, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `ai-cert-command-center-${new Date().toISOString().split('T')[0]}.json`;
+      a.download = `ai-cert-hub-backup-${new Date().toISOString().split('T')[0]}.json`;
       a.click();
       URL.revokeObjectURL(url);
     }
@@ -482,10 +803,9 @@
       const reader = new FileReader();
       reader.onload = function(evt) {
         try {
-          appData = JSON.parse(evt.target.result);
-          saveData();
-          initRadarChart();
-          alert('Data imported successfully!');
+          hubData = JSON.parse(evt.target.result);
+          saveHubData();
+          alert('Data restored successfully!');
         } catch (err) {
           alert('Invalid JSON file format.');
         }
@@ -493,30 +813,16 @@
       reader.readAsText(file);
     }
 
-    // Optional Spring Boot ping
-    async function checkBackendSync() {
-      try {
-        const res = await fetch('http://localhost:8080/api/v1/milestones', { method: 'GET', mode: 'cors' });
-        if (res.ok) {
-          const badge = document.getElementById('sync-badge');
-          badge.textContent = 'Spring Boot Connected';
-          badge.className = 'text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-700';
-        }
-      } catch (err) {
-        // Backend not running, remain in local storage mode
-      }
-    }
-
-    function render() {
+    function renderAll() {
       updateCountdowns();
-      renderChecklist();
-      renderSessions();
+      renderUdemyCourses();
+      renderVouchers();
+      renderCompleted();
+      updateKPIs();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      render();
-      initRadarChart();
-      checkBackendSync();
+      renderAll();
       setInterval(updateCountdowns, 60000);
     });
   </script>
