@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Certification Command Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            darkbg: '#0B0F19',
+            darkcard: '#111827',
+            darkborder: '#1F2937'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #0B0F19;
+      color: #E2E8F0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid rgba(55, 65, 81, 0.6);
+      backdrop-filter: blur(12px);
+    }
+    .badge-active {
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+  <!-- Header & Navigation -->
+  <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-800 pb-6">
+    <div>
+      <div class="flex items-center gap-3">
+        <span class="inline-block w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white">AI Certification Command Center</h1>
+      </div>
+      <p class="text-sm text-gray-400 mt-1">Senior Architect & Certification Coach Track • CCDV-F, CCAR-F, CCAR-P</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span id="sync-badge" class="text-xs px-3 py-1 rounded-full bg-gray-800 text-gray-400 border border-gray-700">
+        Standalone Mode (localStorage)
+      </span>
+      <button onclick="exportData()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition">
+        Export Backup
+      </button>
+      <button onclick="document.getElementById('import-file').click()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition">
+        Import
+      </button>
+      <input type="file" id="import-file" class="hidden" onchange="importData(event)" accept=".json" />
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto space-y-8">
+
+    <!-- Countdown Clocks Section -->
+    <section>
+      <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400 mb-4">Confirmed Test Targets</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- CCDV-F Card -->
+        <div class="glass-card rounded-xl p-6 relative overflow-hidden border-indigo-500/30">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">CCDV-F</span>
+              <h3 class="text-lg font-bold text-white mt-2">Claude Certified Developer</h3>
+              <p class="text-xs text-gray-400">Foundations • Exam: Sep 29, 2026</p>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-extrabold text-indigo-400" id="ccdv-days">--</span>
+              <span class="block text-[10px] uppercase text-gray-400 font-semibold">Days Left</span>
+            </div>
+          </div>
+          <div class="w-full bg-gray-800 rounded-full h-2 mb-3">
+            <div id="ccdv-progress-bar" class="bg-indigo-500 h-2 rounded-full transition-all duration-500" style="width: 25%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-400">
+            <span id="ccdv-tasks-completed">0 / 6 Modules Cleared</span>
+            <span id="ccdv-pct" class="font-bold text-indigo-300">0%</span>
+          </div>
+        </div>
+
+        <!-- CCAR-F Card -->
+        <div class="glass-card rounded-xl p-6 relative overflow-hidden border-cyan-500/30">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">CCAR-F</span>
+              <h3 class="text-lg font-bold text-white mt-2">Claude Certified Architect</h3>
+              <p class="text-xs text-gray-400">Foundations • Exam: Oct 19, 2026</p>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-extrabold text-cyan-400" id="ccarf-days">--</span>
+              <span class="block text-[10px] uppercase text-gray-400 font-semibold">Days Left</span>
+            </div>
+          </div>
+          <div class="w-full bg-gray-800 rounded-full h-2 mb-3">
+            <div id="ccarf-progress-bar" class="bg-cyan-500 h-2 rounded-full transition-all duration-500" style="width: 10%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-400">
+            <span id="ccarf-tasks-completed">0 / 5 Modules Cleared</span>
+            <span id="ccarf-pct" class="font-bold text-cyan-300">0%</span>
+          </div>
+        </div>
+
+        <!-- CCAR-P Card -->
+        <div class="glass-card rounded-xl p-6 relative overflow-hidden border-purple-500/30">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/40">CCAR-P</span>
+              <h3 class="text-lg font-bold text-white mt-2">Claude Certified Architect</h3>
+              <p class="text-xs text-gray-400">Professional • Exam: Oct 26, 2026</p>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-extrabold text-purple-400" id="ccarp-days">--</span>
+              <span class="block text-[10px] uppercase text-gray-400 font-semibold">Days Left</span>
+            </div>
+          </div>
+          <div class="w-full bg-gray-800 rounded-full h-2 mb-3">
+            <div id="ccarp-progress-bar" class="bg-purple-500 h-2 rounded-full transition-all duration-500" style="width: 5%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-400">
+            <span id="ccarp-tasks-completed">0 / 5 Modules Cleared</span>
+            <span id="ccarp-pct" class="font-bold text-purple-300">0%</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Radar & Domain Preparedness -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Chart View -->
+      <div class="glass-card rounded-xl p-6 lg:col-span-1 flex flex-col justify-between">
+        <div>
+          <h3 class="text-base font-bold text-white mb-1">Knowledge Radar</h3>
+          <p class="text-xs text-gray-400 mb-4">Readiness across core exam domains</p>
+          <div class="h-64 flex items-center justify-center">
+            <canvas id="domainChart"></canvas>
+          </div>
+        </div>
+        <div class="text-[11px] text-gray-400 text-center border-t border-gray-800 pt-3 mt-4">
+          Target: 85%+ readiness before booking final test slots.
+        </div>
+      </div>
+
+      <!-- Checklist & Daily Modules -->
+      <div class="glass-card rounded-xl p-6 lg:col-span-2">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <h3 class="text-base font-bold text-white">Exam Milestones & Module Checklist</h3>
+            <p class="text-xs text-gray-400">Click to complete. Changes are instantly saved locally.</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="filterChecklist('all')" class="text-xs px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300">All</button>
+            <button onclick="filterChecklist('CCDV-F')" class="text-xs px-2.5 py-1 rounded bg-indigo-900/50 hover:bg-indigo-800 text-indigo-300">CCDV-F</button>
+            <button onclick="filterChecklist('CCAR-F')" class="text-xs px-2.5 py-1 rounded bg-cyan-900/50 hover:bg-cyan-800 text-cyan-300">CCAR-F</button>
+          </div>
+        </div>
+
+        <div id="checklist-container" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
+          <!-- Dynamic Items Injected Here -->
+        </div>
+
+        <div class="mt-4 pt-4 border-t border-gray-800 flex gap-2">
+          <input id="new-item-title" type="text" placeholder="Add custom study item or drill..." class="flex-1 text-xs bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500" />
+          <select id="new-item-cert" class="text-xs bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+            <option value="CCDV-F">CCDV-F</option>
+            <option value="CCAR-F">CCAR-F</option>
+            <option value="CCAR-P">CCAR-P</option>
+          </select>
+          <button onclick="addCustomItem()" class="text-xs px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg transition">Add</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Chat & Study Session Tracker -->
+    <section class="glass-card rounded-xl p-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-4">
+        <div>
+          <h3 class="text-base font-bold text-white">Coaching & Study Sessions</h3>
+          <p class="text-xs text-gray-400">Rename sessions, record drill scores, and synchronize discussions.</p>
+        </div>
+        <button onclick="addSessionPrompt()" class="text-xs px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition">
+          + Log New Session
+        </button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-gray-300">
+          <thead class="bg-gray-800/60 text-gray-400 uppercase text-[10px]">
+            <tr>
+              <th class="py-2.5 px-4 rounded-l">Session Title</th>
+              <th class="py-2.5 px-4">Track</th>
+              <th class="py-2.5 px-4">Date</th>
+              <th class="py-2.5 px-4">Drill Score</th>
+              <th class="py-2.5 px-4">Key Takeaways</th>
+              <th class="py-2.5 px-4 text-right rounded-r">Action</th>
+            </tr>
+          </thead>
+          <tbody id="session-table-body" class="divide-y divide-gray-800">
+            <!-- Dynamic session rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto mt-12 text-center text-xs text-gray-500 border-t border-gray-900 pt-6">
+    AI Certification Platform • Powered by Antigravity Coach & Spring Boot 3
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'ai_cert_dashboard_data_v1';
+
+    const defaultData = {
+      items: [
+        { id: 1, cert: 'CCDV-F', title: 'Claude Tool Use: Schema definition & tool_use blocks', done: true },
+        { id: 2, cert: 'CCDV-F', title: 'Prompt Caching: Breakpoint rules, 1024-token min & TTL', done: true },
+        { id: 3, cert: 'CCDV-F', title: 'Vision & Multi-modal API inputs & pricing tiering', done: false },
+        { id: 4, cert: 'CCDV-F', title: 'System prompts vs user messages & prompt structuring', done: false },
+        { id: 5, cert: 'CCDV-F', title: 'Full Mock Exam 1 (CCDV-F 60 questions)', done: false },
+        { id: 6, cert: 'CCDV-F', title: 'Full Mock Exam 2 (CCDV-F review & speed drill)', done: false },
+        { id: 7, cert: 'CCAR-F', title: 'Context Window Architecture & RAG vs Long-Context tradeoffs', done: false },
+        { id: 8, cert: 'CCAR-F', title: 'Cost & Latency optimization with batch API & caching', done: false },
+        { id: 9, cert: 'CCAR-F', title: 'Multi-model routing (Haiku vs Sonnet vs Opus vs Gemini)', done: false },
+        { id: 10, cert: 'CCAR-P', title: 'Enterprise agent loops, safety guardrails & evaluation harness', done: false }
+      ],
+      sessions: [
+        {
+          id: 1,
+          title: "Initial Repo Scaffolding & Architecture Drill",
+          track: "CCDV-F",
+          date: new Date().toISOString().split('T')[0],
+          score: "Pending Drill",
+          notes: "Spring Boot 3 setup, JPA milestones, and Claude/Gemini client stubs."
+        }
+      ],
+      radarScores: [90, 85, 40, 60, 50] // Tool Use, Prompt Caching, Vision, Cost/Latency, Agent Loops
+    };
+
+    let appData = loadData();
+    let currentFilter = 'all';
+    let chartInstance = null;
+
+    function loadData() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? JSON.parse(stored) : defaultData;
+      } catch (e) {
+        return defaultData;
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+      render();
+    }
+
+    function updateCountdowns() {
+      const exams = [
+        { id: 'ccdv-days', date: new Date('2026-09-29T09:00:00') },
+        { id: 'ccarf-days', date: new Date('2026-10-19T09:00:00') },
+        { id: 'ccarp-days', date: new Date('2026-10-26T09:00:00') }
+      ];
+
+      const now = new Date();
+      exams.forEach(exam => {
+        const diffTime = exam.date - now;
+        const diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+        const elem = document.getElementById(exam.id);
+        if (elem) elem.textContent = diffDays;
+      });
+    }
+
+    function renderChecklist() {
+      const container = document.getElementById('checklist-container');
+      container.innerHTML = '';
+
+      const filtered = appData.items.filter(item => currentFilter === 'all' || item.cert === currentFilter);
+
+      filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = `flex items-center justify-between p-3 rounded-lg border transition ${
+          item.done ? 'bg-gray-900/60 border-gray-800 text-gray-500' : 'bg-gray-800/40 border-gray-700/60 text-gray-200 hover:border-gray-600'
+        }`;
+
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleItem(${item.id})" class="w-4 h-4 rounded text-indigo-600 bg-gray-800 border-gray-600 focus:ring-indigo-500 cursor-pointer" />
+            <span class="text-xs px-2 py-0.5 rounded font-mono ${
+              item.cert === 'CCDV-F' ? 'bg-indigo-900/40 text-indigo-300' :
+              item.cert === 'CCAR-F' ? 'bg-cyan-900/40 text-cyan-300' : 'bg-purple-900/40 text-purple-300'
+            }">${item.cert}</span>
+            <span class="text-xs ${item.done ? 'line-through' : 'font-medium'}">${item.title}</span>
+          </div>
+          <button onclick="deleteItem(${item.id})" class="text-gray-500 hover:text-red-400 text-xs px-2">✕</button>
+        `;
+        container.appendChild(div);
+      });
+
+      // Update progress percentages
+      updateProgressStats('CCDV-F', 'ccdv-progress-bar', 'ccdv-tasks-completed', 'ccdv-pct');
+      updateProgressStats('CCAR-F', 'ccarf-progress-bar', 'ccarf-tasks-completed', 'ccarf-pct');
+      updateProgressStats('CCAR-P', 'ccarp-progress-bar', 'ccarp-tasks-completed', 'ccarp-pct');
+    }
+
+    function updateProgressStats(certCode, barId, countId, pctId) {
+      const items = appData.items.filter(i => i.cert === certCode);
+      const done = items.filter(i => i.done).length;
+      const total = items.length;
+      const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+
+      const bar = document.getElementById(barId);
+      const count = document.getElementById(countId);
+      const pctElem = document.getElementById(pctId);
+
+      if (bar) bar.style.width = pct + '%';
+      if (count) count.textContent = `${done} / ${total} Tasks Cleared`;
+      if (pctElem) pctElem.textContent = `${pct}%`;
+    }
+
+    function toggleItem(id) {
+      const item = appData.items.find(i => i.id === id);
+      if (item) {
+        item.done = !item.done;
+        saveData();
+      }
+    }
+
+    function deleteItem(id) {
+      appData.items = appData.items.filter(i => i.id !== id);
+      saveData();
+    }
+
+    function addCustomItem() {
+      const titleInput = document.getElementById('new-item-title');
+      const certInput = document.getElementById('new-item-cert');
+      const title = titleInput.value.trim();
+      if (!title) return;
+
+      appData.items.push({
+        id: Date.now(),
+        cert: certInput.value,
+        title: title,
+        done: false
+      });
+      titleInput.value = '';
+      saveData();
+    }
+
+    function filterChecklist(cert) {
+      currentFilter = cert;
+      renderChecklist();
+    }
+
+    function renderSessions() {
+      const tbody = document.getElementById('session-table-body');
+      tbody.innerHTML = '';
+
+      appData.sessions.forEach(sess => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-gray-800/30';
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-semibold text-white cursor-pointer hover:text-indigo-300" onclick="renameSession(${sess.id})">
+            ${sess.title} <span class="text-[10px] text-gray-500 ml-1">✏️</span>
+          </td>
+          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">${sess.track}</span></td>
+          <td class="py-3 px-4 text-gray-400">${sess.date}</td>
+          <td class="py-3 px-4"><span class="text-indigo-400 font-bold">${sess.score}</span></td>
+          <td class="py-3 px-4 text-gray-400 max-w-xs truncate">${sess.notes}</td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="deleteSession(${sess.id})" class="text-gray-500 hover:text-red-400">✕</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renameSession(id) {
+      const session = appData.sessions.find(s => s.id === id);
+      if (!session) return;
+      const newTitle = prompt('Rename coaching session:', session.title);
+      if (newTitle && newTitle.trim()) {
+        session.title = newTitle.trim();
+        saveData();
+      }
+    }
+
+    function addSessionPrompt() {
+      const title = prompt('Enter session title (e.g., CCDV-F Tool Use Drill):');
+      if (!title) return;
+      const track = prompt('Certification Track (CCDV-F, CCAR-F, CCAR-P):', 'CCDV-F') || 'CCDV-F';
+      const score = prompt('Score or status (e.g. 2/2 or In Progress):', '2/2') || 'In Progress';
+      const notes = prompt('Notes / key takeaways:', 'Tool Use flow & Prompt Caching breakpoints') || '';
+
+      appData.sessions.unshift({
+        id: Date.now(),
+        title: title.trim(),
+        track: track.trim(),
+        date: new Date().toISOString().split('T')[0],
+        score: score.trim(),
+        notes: notes.trim()
+      });
+      saveData();
+    }
+
+    function deleteSession(id) {
+      appData.sessions = appData.sessions.filter(s => s.id !== id);
+      saveData();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('domainChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Tool Use', 'Prompt Caching', 'Vision API', 'Cost/Latency', 'Agent Loops'],
+          datasets: [{
+            label: 'Readiness %',
+            data: appData.radarScores || [80, 85, 45, 60, 50],
+            backgroundColor: 'rgba(99, 102, 241, 0.25)',
+            borderColor: 'rgba(99, 102, 241, 0.9)',
+            pointBackgroundColor: '#818CF8',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: '#818CF8'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: { color: 'rgba(75, 85, 99, 0.4)' },
+              grid: { color: 'rgba(75, 85, 99, 0.4)' },
+              pointLabels: { color: '#9CA3AF', font: { size: 11 } },
+              ticks: { display: false, min: 0, max: 100 }
+            }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `ai-cert-command-center-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importData(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          appData = JSON.parse(evt.target.result);
+          saveData();
+          initRadarChart();
+          alert('Data imported successfully!');
+        } catch (err) {
+          alert('Invalid JSON file format.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // Optional Spring Boot ping
+    async function checkBackendSync() {
+      try {
+        const res = await fetch('http://localhost:8080/api/v1/milestones', { method: 'GET', mode: 'cors' });
+        if (res.ok) {
+          const badge = document.getElementById('sync-badge');
+          badge.textContent = 'Spring Boot Connected';
+          badge.className = 'text-xs px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-700';
+        }
+      } catch (err) {
+        // Backend not running, remain in local storage mode
+      }
+    }
+
+    function render() {
+      updateCountdowns();
+      renderChecklist();
+      renderSessions();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      render();
+      initRadarChart();
+      checkBackendSync();
+      setInterval(updateCountdowns, 60000);
+    });
+  </script>
+</body>
+</html>
