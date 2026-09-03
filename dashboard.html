@@ -42,50 +42,70 @@
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
-  <!-- Header -->
-  <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-800 pb-6">
-    <div>
-      <div class="flex items-center gap-3">
-        <span class="inline-block w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
-        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white">AI Certification Command Center</h1>
+  <!-- Minimalist Executive Header -->
+  <header class="max-w-7xl mx-auto mb-6 border-b border-gray-800 pb-5">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <h1 class="text-2xl font-bold tracking-tight text-white">AI Certification Command Center</h1>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">
+          CCDV-F, CCAR-F, CCAR-P Track • Udemy Hub • Voucher Strategy
+        </p>
       </div>
-      <p class="text-xs md:text-sm text-gray-400 mt-1">
-        Local Workspace Sync • CCDV-F, CCAR-F, CCAR-P • Udemy Hub • Voucher Strategy
-      </p>
+
+      <!-- Clean Header Action Buttons -->
+      <div class="flex items-center gap-2">
+        <button id="btn-edit-toggle" onclick="toggleEditMode()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow">
+          <span id="edit-icon">✏️</span> <span id="edit-text">Edit Mode</span>
+        </button>
+
+        <button onclick="toggleToolbox()" class="text-xs px-3.5 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-medium transition flex items-center gap-1.5">
+          <span>🛠️</span> <span>Toolbox</span> <span id="toolbox-chevron" class="text-[10px] text-gray-400">▾</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Global Actions & Edit Mode Toggle -->
-    <div class="flex flex-wrap items-center gap-2">
-      <!-- Edit Mode Toggle Button -->
-      <button id="btn-edit-toggle" onclick="toggleEditMode()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow-lg">
-        <span id="edit-icon">✏️</span> <span id="edit-text">Edit Mode</span>
-      </button>
+    <!-- Expandable Toolbox Panel (Hidden by default) -->
+    <div id="toolbox-panel" class="hidden mt-4 p-4 rounded-xl bg-gray-900/95 border border-gray-700/80 shadow-xl transition-all">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div class="flex items-center gap-2 text-xs text-gray-300">
+          <span class="px-2 py-0.5 rounded bg-gray-800 border border-gray-700 text-indigo-300 font-mono text-[11px]">
+            data/cert_dashboard_data.json
+          </span>
+          <span class="text-gray-400">Workspace data persistence</span>
+        </div>
 
-      <!-- Local File Save & Load -->
-      <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-indigo-300 font-medium transition flex items-center gap-1">
-        <span>💾</span> Save Local File
-      </button>
-      <button onclick="document.getElementById('import-file').click()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 transition flex items-center gap-1">
-        <span>📥</span> Load Local JSON
-      </button>
-      <input type="file" id="import-file" class="hidden" onchange="importLocalJSON(event)" accept=".json" />
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition flex items-center gap-1">
+            <span>💾</span> Save Local File
+          </button>
+          <button onclick="document.getElementById('import-file').click()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
+            <span>📥</span> Load Local JSON
+          </button>
+          <button onclick="exportData()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
+            <span>📤</span> Export Backup
+          </button>
+          <button onclick="resetToDefault()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-red-950/60 border border-gray-700 text-red-400 hover:text-red-300 transition">
+            Reset Default
+          </button>
+          <input type="file" id="import-file" class="hidden" onchange="importLocalJSON(event)" accept=".json" />
+        </div>
+      </div>
+    </div>
 
-      <span id="status-indicator" class="text-xs px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">
-        Synced: data/cert_dashboard_data.json
-      </span>
+    <!-- Edit Mode Active Notification Banner -->
+    <div id="edit-mode-banner" class="hidden mt-4 p-3 rounded-lg bg-amber-950/40 border border-amber-500/50 text-amber-300 text-xs flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-base">⚠️</span>
+        <span><b>Edit Mode Active:</b> You can modify cards, edit milestones, and remove items. Click <b>Done Editing</b> when finished.</span>
+      </div>
+      <button onclick="toggleEditMode()" class="px-3 py-1 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs">
+        Done Editing
+      </button>
     </div>
   </header>
-
-  <!-- Edit Mode Banner (Visible only in edit state) -->
-  <div id="edit-mode-banner" class="max-w-7xl mx-auto mb-6 p-3 rounded-xl bg-amber-950/40 border border-amber-500/50 text-amber-300 text-xs flex justify-between items-center hidden">
-    <div class="flex items-center gap-2">
-      <span class="text-base">⚠️</span>
-      <span class="font-semibold">Edit Mode Active:</span> You can edit or delete any certification, Udemy course, voucher plan, or completed credential.
-    </div>
-    <button onclick="toggleEditMode()" class="px-3 py-1 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold">
-      Done Editing
-    </button>
-  </div>
 
   <main class="max-w-7xl mx-auto space-y-10">
 
@@ -109,12 +129,12 @@
       </div>
     </section>
 
-    <!-- 1. Active Certification Pipeline -->
+    <!-- 1. Target Certification Pipeline (With Interactive Milestones) -->
     <section>
       <div class="flex justify-between items-center mb-4">
         <div>
           <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400">1. Target Certification Pipeline</h2>
-          <p class="text-xs text-gray-400">Confirmed upcoming exam dates and countdown timers.</p>
+          <p class="text-xs text-gray-400">Click "Milestones" on any card to view and check off exam requirements.</p>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="certs-pipeline-grid">
@@ -130,7 +150,7 @@
             <span class="text-red-500 font-black text-base">▶</span>
             <h2 class="text-lg font-bold text-white">Udemy Learning & Practice Hub</h2>
           </div>
-          <p class="text-xs text-gray-400 mt-0.5">Track progress by completed lectures/sections. Filter by type.</p>
+          <p class="text-xs text-gray-400 mt-0.5">Track progress by completed units (lectures/sections). Filter by type.</p>
         </div>
 
         <div class="flex flex-wrap items-center gap-2">
@@ -147,7 +167,6 @@
         </div>
       </div>
 
-      <!-- Course Cards Grid -->
       <div id="udemy-course-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Injected via JavaScript -->
       </div>
@@ -161,7 +180,7 @@
             <span class="text-amber-400 text-base">🎟️</span>
             <h2 class="text-lg font-bold text-white">Upcoming Certification Vouchers & Discounts</h2>
           </div>
-          <p class="text-xs text-gray-400 mt-0.5">Track free/discounted exam vouchers and popup action plans.</p>
+          <p class="text-xs text-gray-400 mt-0.5">Track voucher opportunities and step-by-step acquisition plans.</p>
         </div>
         <button onclick="openVoucherModal()" class="text-xs px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-medium rounded-lg transition">
           + Add Voucher Plan
@@ -197,14 +216,14 @@
 
   <!-- ==================== MODALS ==================== -->
 
-  <!-- Voucher Plan Popup Modal (Description Box) -->
+  <!-- Voucher Plan Popup Modal -->
   <div id="plan-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
       <div class="flex justify-between items-start mb-4 border-b border-gray-800 pb-3">
         <div>
           <span id="modal-voucher-badge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/60 text-amber-300 border border-amber-700/60">VOUCHER PLAN</span>
           <h3 id="modal-voucher-title" class="text-lg font-bold text-white mt-1">Exam Name</h3>
-          <p id="modal-voucher-provider" class="text-xs text-gray-400">Provider & Target Value</p>
+          <p id="modal-voucher-provider" class="text-xs text-gray-400">Provider & Value</p>
         </div>
         <button onclick="closePlanModal()" class="text-gray-400 hover:text-white text-lg">✕</button>
       </div>
@@ -228,9 +247,10 @@
           </div>
         </div>
 
-        <div id="modal-voucher-link-container" class="hidden text-xs">
-          <a id="modal-voucher-link" href="#" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline font-medium">
-            Open Official Voucher Portal ↗
+        <div id="modal-voucher-link-container" class="hidden text-xs pt-1">
+          <a id="modal-voucher-link" href="#" target="_blank" class="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 underline font-medium">
+            <span>Open Voucher Portal</span>
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </a>
         </div>
       </div>
@@ -252,22 +272,22 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block text-gray-400 mb-1">Course Title</label>
-          <input id="input-course-title" type="text" placeholder="e.g. Anthropic Claude Masterclass" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+          <input id="input-course-title" type="text" placeholder="e.g. Claude Masterclass" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
         <div>
           <label class="block text-gray-400 mb-1">Category</label>
           <select id="input-course-type" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
-            <option value="cert">🎯 Certification Prep (CCDV-F, CCAR-F, CCAR-P, AWS)</option>
-            <option value="learning">💡 Skill / Learning Only (Spring Boot, Design, etc.)</option>
+            <option value="cert">🎯 Certification Prep</option>
+            <option value="learning">💡 Skill / Learning Only</option>
             <option value="mock">📝 Mock Papers / Practice Exams</option>
           </select>
         </div>
         <div>
           <label class="block text-gray-400 mb-1">Target Exam (Optional)</label>
-          <input id="input-course-cert" type="text" placeholder="e.g. CCDV-F, AWS SAA, General" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+          <input id="input-course-cert" type="text" placeholder="e.g. CCDV-F, AWS SAA" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
         <div>
-          <label class="block text-gray-400 mb-1">Unit Type (Sections or Lectures)</label>
+          <label class="block text-gray-400 mb-1">Unit Type</label>
           <select id="input-course-unit-type" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
             <option value="Lectures">Lectures</option>
             <option value="Sections">Sections</option>
@@ -286,7 +306,7 @@
         </div>
         <div>
           <label class="block text-gray-400 mb-1">Course Link (Optional)</label>
-          <input id="input-course-url" type="text" placeholder="https://www.udemy.com/course/... (leave blank if none)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+          <input id="input-course-url" type="text" placeholder="https://... (leave blank if none)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
       </div>
       <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
@@ -328,7 +348,7 @@
         </div>
         <div>
           <label class="block text-gray-400 mb-1">Action Plan: Steps Needed to Get It</label>
-          <textarea id="input-voucher-steps" rows="4" placeholder="1. Complete challenge on platform&#10;2. Submit badge&#10;3. Redeem promo code" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white"></textarea>
+          <textarea id="input-voucher-steps" rows="4" placeholder="1. Complete challenge&#10;2. Submit badge&#10;3. Redeem promo code" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white"></textarea>
         </div>
         <div>
           <label class="block text-gray-400 mb-1">Voucher Portal Link (Optional)</label>
@@ -352,8 +372,8 @@
       <input type="hidden" id="input-comp-id" />
       <div class="space-y-3 text-xs">
         <div>
-          <label class="block text-gray-400 mb-1">Certification or Course Title</label>
-          <input id="input-comp-title" type="text" placeholder="e.g. AWS Solutions Architect Associate" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+          <label class="block text-gray-400 mb-1">Title</label>
+          <input id="input-comp-title" type="text" placeholder="e.g. AWS Solutions Architect" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
         <div>
           <label class="block text-gray-400 mb-1">Completion Date</label>
@@ -361,10 +381,10 @@
         </div>
         <div>
           <label class="block text-gray-400 mb-1">Score / Result (Optional)</label>
-          <input id="input-comp-score" type="text" placeholder="e.g. 890/1000 or Completed with Honors" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+          <input id="input-comp-score" type="text" placeholder="e.g. 890/1000 or Pass" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
         <div>
-          <label class="block text-gray-400 mb-1">Credential / Badge Link (Optional)</label>
+          <label class="block text-gray-400 mb-1">Credential Link (Optional)</label>
           <input id="input-comp-url" type="text" placeholder="https://credly.com/... (leave blank if none)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
       </div>
@@ -376,25 +396,68 @@
   </div>
 
   <footer class="max-w-7xl mx-auto mt-12 text-center text-xs text-gray-500 border-t border-gray-900 pt-6">
-    AI Certification Platform • Synced to <code class="text-indigo-400">data/cert_dashboard_data.json</code> • Antigravity Coach
+    AI Certification Platform • Powered by Antigravity Coach
   </footer>
 
   <script>
-    const STORAGE_KEY = 'ai_cert_dashboard_v3';
+    const STORAGE_KEY = 'ai_cert_dashboard_v4';
 
-    // Default Seed Data
-    const initialData = {
+    // Seed Data with Interactive Milestones Array
+    const defaultData = {
       activeCerts: [
-        { id: "ccdv-f", code: "CCDV-F", name: "Claude Developer", level: "Foundations", examDate: "2026-09-29", totalMilestones: 6, clearedMilestones: 2 },
-        { id: "ccar-f", code: "CCAR-F", name: "Claude Architect", level: "Foundations", examDate: "2026-10-19", totalMilestones: 5, clearedMilestones: 0 },
-        { id: "ccar-p", code: "CCAR-P", name: "Claude Architect", level: "Professional", examDate: "2026-10-26", totalMilestones: 5, clearedMilestones: 0 }
+        {
+          id: "ccdv-f",
+          code: "CCDV-F",
+          name: "Claude Developer",
+          level: "Foundations",
+          examDate: "2026-09-29",
+          notes: "Tool Use, Prompt Caching & SDK integration",
+          milestones: [
+            { id: "ccdv-1", title: "Tool Use: JSON schema & tool_use/tool_result flow", done: true },
+            { id: "ccdv-2", title: "Prompt Caching: 1024-token threshold, breakpoints & 5m TTL", done: true },
+            { id: "ccdv-3", title: "Vision & Multi-modal image API inputs", done: false },
+            { id: "ccdv-4", title: "System prompt structuring & context management", done: false },
+            { id: "ccdv-5", title: "CCDV-F Full Mock Exam 1 (60 questions)", done: false },
+            { id: "ccdv-6", title: "CCDV-F Speed Drill & Mock Exam 2", done: false }
+          ]
+        },
+        {
+          id: "ccar-f",
+          code: "CCAR-F",
+          name: "Claude Architect",
+          level: "Foundations",
+          examDate: "2026-10-19",
+          notes: "Context Window Architecture and Cost Optimization",
+          milestones: [
+            { id: "ccarf-1", title: "200K Context Window architecture & RAG tradeoffs", done: false },
+            { id: "ccarf-2", title: "Batch API vs Streaming latency architectures", done: false },
+            { id: "ccarf-3", title: "Cost optimization with Prompt Caching at scale", done: false },
+            { id: "ccarf-4", title: "Multi-model routing (Haiku vs Sonnet vs Opus)", done: false },
+            { id: "ccarf-5", title: "CCAR-F Full Mock Architecture Exam", done: false }
+          ]
+        },
+        {
+          id: "ccar-p",
+          code: "CCAR-P",
+          name: "Claude Architect",
+          level: "Professional",
+          examDate: "2026-10-26",
+          notes: "Autonomous Agent Loops, Guardrails & Evaluation",
+          milestones: [
+            { id: "ccarp-1", title: "Autonomous Agent loops & Human-in-the-Loop policies", done: false },
+            { id: "ccarp-2", title: "Safety guardrails & prompt injection mitigation", done: false },
+            { id: "ccarp-3", title: "Enterprise Evaluation harness & LLM-as-a-judge", done: false },
+            { id: "ccarp-4", title: "Production rate limiters & resilient failover design", done: false },
+            { id: "ccarp-5", title: "CCAR-P Comprehensive Mock Architecture Review", done: false }
+          ]
+        }
       ],
       udemyCourses: [
-        { id: 1, title: "Claude 3.5 & 3.7 Developer Bootcamp: Tool Use & API Integration", category: "cert", targetCert: "CCDV-F", unitType: "Lectures", totalUnits: 68, completedUnits: 24, instructor: "AI Architecture Institute", url: "https://www.udemy.com" },
-        { id: 2, title: "Prompt Caching & LLM Latency Optimization in Production", category: "cert", targetCert: "CCDV-F", unitType: "Sections", totalUnits: 12, completedUnits: 8, instructor: "Prompt Engineering Academy", url: "" },
-        { id: 3, title: "Spring Boot 3, Spring Security 6 & Microservices Architecture", category: "learning", targetCert: "Skill Mastery", unitType: "Lectures", totalUnits: 140, completedUnits: 115, instructor: "Senior Cloud Architect", url: "https://www.udemy.com" },
-        { id: 4, title: "CCDV-F Practice Exams: 6 Full Realistic Mock Papers", category: "mock", targetCert: "CCDV-F", unitType: "Papers", totalUnits: 6, completedUnits: 2, instructor: "Cert Prep Pro", url: "" },
-        { id: 5, title: "LLM Agent Systems: Memory, Tool Calling & Multi-Agent Design", category: "learning", targetCert: "CCAR-P", unitType: "Lectures", totalUnits: 55, completedUnits: 18, instructor: "Autonomous Agents Lab", url: "" }
+        { id: 1, title: "Claude 3.5 & 3.7 Developer Bootcamp: Tool Use & API Integration", category: "cert", targetCert: "CCDV-F", unitType: "Lectures", totalUnits: 68, completedUnits: 24, url: "https://www.udemy.com" },
+        { id: 2, title: "Prompt Caching & LLM Latency Optimization in Production", category: "cert", targetCert: "CCDV-F", unitType: "Sections", totalUnits: 12, completedUnits: 8, url: "" },
+        { id: 3, title: "Spring Boot 3, Spring Security 6 & Microservices Architecture", category: "learning", targetCert: "Skill Mastery", unitType: "Lectures", totalUnits: 140, completedUnits: 115, url: "https://www.udemy.com" },
+        { id: 4, title: "CCDV-F Practice Exams: 6 Full Realistic Mock Papers", category: "mock", targetCert: "CCDV-F", unitType: "Papers", totalUnits: 6, completedUnits: 2, url: "" },
+        { id: 5, title: "LLM Agent Systems: Memory, Tool Calling & Multi-Agent Design", category: "learning", targetCert: "CCAR-P", unitType: "Lectures", totalUnits: 55, completedUnits: 18, url: "" }
       ],
       vouchers: [
         {
@@ -426,14 +489,16 @@
 
     let hubData = loadData();
     let isEditMode = false;
+    let isToolboxOpen = false;
+    let openMilestoneDrawers = { 'ccdv-f': true }; // Keep CCDV-F open by default
     let currentUdemyFilter = 'all';
 
     function loadData() {
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
-        return stored ? JSON.parse(stored) : initialData;
+        return stored ? JSON.parse(stored) : defaultData;
       } catch (e) {
-        return initialData;
+        return defaultData;
       }
     }
 
@@ -442,7 +507,19 @@
       renderAll();
     }
 
-    // Toggle Global Edit Mode
+    function toggleToolbox() {
+      isToolboxOpen = !isToolboxOpen;
+      const panel = document.getElementById('toolbox-panel');
+      const chevron = document.getElementById('toolbox-chevron');
+      if (isToolboxOpen) {
+        panel.classList.remove('hidden');
+        chevron.textContent = '▴';
+      } else {
+        panel.classList.add('hidden');
+        chevron.textContent = '▾';
+      }
+    }
+
     function toggleEditMode() {
       isEditMode = !isEditMode;
       const btn = document.getElementById('btn-edit-toggle');
@@ -451,12 +528,12 @@
       const banner = document.getElementById('edit-mode-banner');
 
       if (isEditMode) {
-        btn.className = 'text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1.5 shadow-lg animate-pulse';
+        btn.className = 'text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1.5 shadow animate-pulse';
         text.textContent = 'Done Editing';
         icon.textContent = '✅';
         banner.classList.remove('hidden');
       } else {
-        btn.className = 'text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow-lg';
+        btn.className = 'text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow';
         text.textContent = 'Edit Mode';
         icon.textContent = '✏️';
         banner.classList.add('hidden');
@@ -465,7 +542,7 @@
       renderAll();
     }
 
-    // Countdown Clocks & Active Pipeline Cards
+    // Pipeline & Interactive Milestones
     function renderActivePipeline() {
       const container = document.getElementById('certs-pipeline-grid');
       container.innerHTML = '';
@@ -475,51 +552,116 @@
       hubData.activeCerts.forEach(cert => {
         const examDate = new Date(cert.examDate + 'T09:00:00');
         const diffDays = Math.max(0, Math.ceil((examDate - now) / (1000 * 60 * 60 * 24)));
-        const pct = cert.totalMilestones ? Math.round((cert.clearedMilestones / cert.totalMilestones) * 100) : 0;
+
+        const milestones = cert.milestones || [];
+        const clearedCount = milestones.filter(m => m.done).length;
+        const totalCount = milestones.length;
+        const pct = totalCount ? Math.round((clearedCount / totalCount) * 100) : 0;
+        const isDrawerOpen = openMilestoneDrawers[cert.id] || false;
 
         const card = document.createElement('div');
-        card.className = `glass-card rounded-xl p-6 relative ${isEditMode ? 'edit-mode-active' : ''} border-indigo-500/40`;
+        card.className = `glass-card rounded-xl p-5 flex flex-col justify-between border-indigo-500/40 transition ${isEditMode ? 'edit-mode-active' : ''}`;
+
+        let milestonesListHtml = '';
+        milestones.forEach((m, idx) => {
+          milestonesListHtml += `
+            <div class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-gray-800/40 text-xs transition">
+              <label class="flex items-center gap-2 cursor-pointer flex-1">
+                <input type="checkbox" ${m.done ? 'checked' : ''} onchange="toggleMilestoneCheck('${cert.id}', '${m.id}')" class="w-3.5 h-3.5 rounded text-indigo-600 bg-gray-800 border-gray-600 focus:ring-indigo-500 cursor-pointer" />
+                <span class="${m.done ? 'line-through text-gray-500' : 'text-gray-200'}">${m.title}</span>
+              </label>
+              ${isEditMode ? `
+                <button onclick="deleteMilestoneItem('${cert.id}', '${m.id}')" class="text-red-400 hover:text-red-300 text-[10px] ml-2">✕</button>
+              ` : ''}
+            </div>
+          `;
+        });
 
         card.innerHTML = `
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">${cert.code}</span>
-              <h3 class="text-lg font-bold text-white mt-2">${cert.name}</h3>
-              <p class="text-xs text-gray-400">${cert.level} • Exam: ${cert.examDate}</p>
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">${cert.code}</span>
+                <h3 class="text-base font-bold text-white mt-1.5">${cert.name}</h3>
+                <p class="text-[11px] text-gray-400">${cert.level} • Exam: ${cert.examDate}</p>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-black text-indigo-400">${diffDays}</span>
+                <span class="block text-[9px] uppercase text-gray-400 font-bold">Days Left</span>
+              </div>
             </div>
-            <div class="text-right">
-              <span class="text-3xl font-extrabold text-indigo-400">${diffDays}</span>
-              <span class="block text-[10px] uppercase text-gray-400 font-semibold">Days Left</span>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-800 rounded-full h-1.5 mb-2">
+              <div class="bg-indigo-500 h-1.5 rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+            </div>
+
+            <div class="flex justify-between items-center text-xs text-gray-400 mb-3">
+              <span><b>${clearedCount} / ${totalCount}</b> Milestones Cleared</span>
+              <span class="font-bold text-indigo-300">${pct}%</span>
             </div>
           </div>
-          <div class="w-full bg-gray-800 rounded-full h-2 mb-2">
-            <div class="bg-indigo-500 h-2 rounded-full transition-all duration-500" style="width: ${pct}%"></div>
-          </div>
-          <div class="flex justify-between text-xs text-gray-400">
-            <span>${cert.clearedMilestones} / ${cert.totalMilestones} Milestones Cleared</span>
-            <span class="font-bold text-indigo-300">${pct}%</span>
-          </div>
-          ${isEditMode ? `
-            <div class="mt-4 pt-3 border-t border-gray-800 flex justify-end gap-2">
-              <button onclick="editCertMilestone('${cert.id}')" class="text-xs text-amber-400 hover:underline">Edit Milestones</button>
+
+          <!-- Milestones Toggle & Drawer -->
+          <div class="border-t border-gray-800 pt-2.5">
+            <button onclick="toggleMilestonesDrawer('${cert.id}')" class="w-full flex justify-between items-center text-[11px] font-medium text-indigo-400 hover:text-indigo-300 py-1">
+              <span>${isDrawerOpen ? 'Hide Milestones' : 'View Milestones (' + clearedCount + '/' + totalCount + ')'}</span>
+              <span>${isDrawerOpen ? '▴' : '▾'}</span>
+            </button>
+
+            <div id="drawer-${cert.id}" class="${isDrawerOpen ? '' : 'hidden'} mt-2 space-y-1 bg-gray-950/60 p-2.5 rounded-lg border border-gray-800">
+              ${milestonesListHtml}
+              ${isEditMode ? `
+                <div class="pt-2 mt-1 border-t border-gray-800/80 flex gap-1">
+                  <input id="new-milestone-${cert.id}" type="text" placeholder="New milestone..." class="flex-1 text-[11px] bg-gray-900 border border-gray-700 rounded px-2 py-1 text-white" />
+                  <button onclick="addMilestoneItem('${cert.id}')" class="text-[11px] px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-medium">Add</button>
+                </div>
+              ` : ''}
             </div>
-          ` : ''}
+          </div>
         `;
         container.appendChild(card);
       });
     }
 
-    function editCertMilestone(certId) {
+    function toggleMilestonesDrawer(certId) {
+      openMilestoneDrawers[certId] = !openMilestoneDrawers[certId];
+      renderActivePipeline();
+    }
+
+    function toggleMilestoneCheck(certId, milestoneId) {
       const cert = hubData.activeCerts.find(c => c.id === certId);
       if (!cert) return;
-      const cleared = prompt(`Enter cleared milestones for ${cert.code} (max ${cert.totalMilestones}):`, cert.clearedMilestones);
-      if (cleared !== null && !isNaN(cleared)) {
-        cert.clearedMilestones = Math.min(cert.totalMilestones, Math.max(0, parseInt(cleared)));
+      const m = cert.milestones.find(item => item.id === milestoneId);
+      if (m) {
+        m.done = !m.done;
         persistData();
       }
     }
 
-    // Render Udemy Courses Hub
+    function addMilestoneItem(certId) {
+      const input = document.getElementById(`new-milestone-${certId}`);
+      if (!input || !input.value.trim()) return;
+      const cert = hubData.activeCerts.find(c => c.id === certId);
+      if (!cert) return;
+
+      cert.milestones.push({
+        id: `m-${Date.now()}`,
+        title: input.value.trim(),
+        done: false
+      });
+      input.value = '';
+      persistData();
+    }
+
+    function deleteMilestoneItem(certId, milestoneId) {
+      const cert = hubData.activeCerts.find(c => c.id === certId);
+      if (!cert) return;
+      cert.milestones = cert.milestones.filter(m => m.id !== milestoneId);
+      persistData();
+    }
+
+    // Render Udemy Courses with Icon Link
     function renderUdemyCourses() {
       const grid = document.getElementById('udemy-course-grid');
       grid.innerHTML = '';
@@ -549,47 +691,52 @@
         const unit = course.unitType || 'Lectures';
         const pct = Math.round((completed / total) * 100);
 
+        // Icon SVG for link
+        const linkIconHtml = (course.url && course.url.trim() !== '') ? `
+          <a href="${course.url}" target="_blank" title="Open Udemy Course" class="p-1.5 rounded-lg bg-gray-800/80 hover:bg-gray-700 text-gray-400 hover:text-white transition flex items-center justify-center">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        ` : '';
+
         card.innerHTML = `
           <div>
             <div class="flex justify-between items-start mb-2">
               ${badge}
-              <span class="text-[11px] font-mono text-gray-400">${course.targetCert}</span>
+              <div class="flex items-center gap-1.5">
+                <span class="text-[11px] font-mono text-gray-400">${course.targetCert}</span>
+                ${linkIconHtml}
+              </div>
             </div>
             <h4 class="text-sm font-bold text-white mb-2 leading-snug">${course.title}</h4>
           </div>
 
           <div>
-            <!-- Unit Progress without section numbers -->
-            <div class="flex justify-between text-xs text-gray-300 mb-1.5 font-medium">
+            <div class="flex justify-between text-xs text-gray-300 mb-1 font-medium">
               <span>${completed} / ${total} ${unit}</span>
               <span class="text-indigo-400 font-bold">${pct}%</span>
             </div>
-            <div class="w-full bg-gray-800 rounded-full h-2 mb-3">
-              <div class="bg-indigo-500 h-2 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            <div class="w-full bg-gray-800 rounded-full h-1.5 mb-3">
+              <div class="bg-indigo-500 h-1.5 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
             </div>
 
-            <div class="flex justify-between items-center pt-2.5 border-t border-gray-800/80 text-xs">
+            <div class="flex justify-between items-center pt-2 border-t border-gray-800/80 text-xs">
               <div class="flex items-center gap-1.5">
-                <button onclick="quickIncrementUnit(${course.id}, 1)" title="Mark 1 ${unit} completed" class="px-2 py-1 rounded bg-gray-800 hover:bg-gray-700 text-emerald-400 font-bold">
+                <button onclick="quickIncrementUnit(${course.id}, 1)" title="Mark 1 ${unit} completed" class="px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-emerald-400 font-bold text-[11px]">
                   +1 ${unit}
                 </button>
-                <button onclick="promptUpdateUnits(${course.id})" class="text-gray-400 hover:text-white underline">
+                <button onclick="promptUpdateUnits(${course.id})" class="text-gray-400 hover:text-white text-[11px] underline">
                   Update
                 </button>
               </div>
 
-              <div class="flex items-center gap-2">
-                ${course.url && course.url.trim() !== '' ? `
-                  <a href="${course.url}" target="_blank" class="px-2.5 py-1 rounded bg-indigo-950 hover:bg-indigo-900 border border-indigo-700/50 text-indigo-300 font-medium text-[11px] flex items-center gap-1">
-                    <span>🔗</span> Link ↗
-                  </a>
-                ` : ''}
-
-                ${isEditMode ? `
-                  <button onclick="openCourseModal(${course.id})" class="text-amber-400 hover:text-amber-300 px-1 font-medium">✏️</button>
-                  <button onclick="deleteCourse(${course.id})" class="text-red-400 hover:text-red-300 px-1 font-bold">✕</button>
-                ` : ''}
-              </div>
+              ${isEditMode ? `
+                <div class="flex items-center gap-1.5">
+                  <button onclick="openCourseModal(${course.id})" class="text-amber-400 hover:text-amber-300 text-xs">✏️</button>
+                  <button onclick="deleteCourse(${course.id})" class="text-red-400 hover:text-red-300 text-xs font-bold">✕</button>
+                </div>
+              ` : '<span></span>'}
             </div>
           </div>
         `;
@@ -626,13 +773,13 @@
     }
 
     function deleteCourse(id) {
-      if (confirm('Delete this Udemy course?')) {
+      if (confirm('Delete this course?')) {
         hubData.udemyCourses = hubData.udemyCourses.filter(c => c.id !== id);
         persistData();
       }
     }
 
-    // Render Vouchers Hub
+    // Render Vouchers Hub with Icon Link
     function renderVouchers() {
       const grid = document.getElementById('vouchers-grid');
       grid.innerHTML = '';
@@ -646,11 +793,22 @@
         const card = document.createElement('div');
         card.className = `glass-card rounded-xl p-4 flex flex-col justify-between border-gray-800 transition ${isEditMode ? 'edit-mode-active' : 'hover:border-amber-500/40'}`;
 
+        const linkIconHtml = (v.url && v.url.trim() !== '') ? `
+          <a href="${v.url}" target="_blank" title="Open Portal" class="p-1.5 rounded-lg bg-gray-800/80 hover:bg-gray-700 text-gray-400 hover:text-white transition flex items-center justify-center">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        ` : '';
+
         card.innerHTML = `
           <div>
             <div class="flex justify-between items-start mb-2">
               <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/40 text-amber-300 border border-amber-700/50">${v.discount}</span>
-              <span class="text-[11px] font-medium px-2 py-0.5 rounded bg-gray-800 text-gray-300">${v.status}</span>
+              <div class="flex items-center gap-1.5">
+                <span class="text-[11px] font-medium px-2 py-0.5 rounded bg-gray-800 text-gray-300">${v.status}</span>
+                ${linkIconHtml}
+              </div>
             </div>
             <h4 class="text-sm font-bold text-white mb-1">${v.certName}</h4>
             <p class="text-[11px] text-gray-400 mb-3">${v.provider}</p>
@@ -661,18 +819,12 @@
               <span>📋</span> View Plan
             </button>
 
-            <div class="flex items-center gap-2">
-              ${v.url && v.url.trim() !== '' ? `
-                <a href="${v.url}" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-[11px] underline">
-                  Portal ↗
-                </a>
-              ` : ''}
-
-              ${isEditMode ? `
-                <button onclick="openVoucherModal(${v.id})" class="text-amber-400 hover:text-amber-300 px-1">✏️</button>
-                <button onclick="deleteVoucher(${v.id})" class="text-red-400 hover:text-red-300 px-1 font-bold">✕</button>
-              ` : ''}
-            </div>
+            ${isEditMode ? `
+              <div class="flex items-center gap-1.5">
+                <button onclick="openVoucherModal(${v.id})" class="text-amber-400 hover:text-amber-300 text-xs">✏️</button>
+                <button onclick="deleteVoucher(${v.id})" class="text-red-400 hover:text-red-300 text-xs font-bold">✕</button>
+              </div>
+            ` : '<span></span>'}
           </div>
         `;
         grid.appendChild(card);
@@ -701,9 +853,7 @@
       document.getElementById('plan-modal').classList.remove('hidden');
     }
 
-    function closePlanModal() {
-      document.getElementById('plan-modal').classList.add('hidden');
-    }
+    function closePlanModal() { document.getElementById('plan-modal').classList.add('hidden'); }
 
     function deleteVoucher(id) {
       if (confirm('Delete this voucher plan?')) {
@@ -712,7 +862,7 @@
       }
     }
 
-    // Render Completed Credentials
+    // Render Completed Credentials with Icon Link
     function renderCompleted() {
       const grid = document.getElementById('completed-grid');
       grid.innerHTML = '';
@@ -726,26 +876,33 @@
         const card = document.createElement('div');
         card.className = `glass-card rounded-xl p-4 flex flex-col justify-between border-emerald-900/40 ${isEditMode ? 'edit-mode-active' : ''}`;
 
+        const linkIconHtml = (item.url && item.url.trim() !== '') ? `
+          <a href="${item.url}" target="_blank" title="View Credential" class="p-1.5 rounded-lg bg-gray-800/80 hover:bg-gray-700 text-emerald-400 hover:text-emerald-300 transition flex items-center justify-center">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        ` : '';
+
         card.innerHTML = `
           <div>
             <div class="flex justify-between items-start mb-2">
               <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">COMPLETED</span>
-              <span class="text-[11px] text-gray-400">${item.date}</span>
+              <div class="flex items-center gap-1.5">
+                <span class="text-[11px] text-gray-400">${item.date}</span>
+                ${linkIconHtml}
+              </div>
             </div>
             <h4 class="text-sm font-bold text-white mb-1">${item.title}</h4>
             <p class="text-xs text-emerald-400 font-semibold mb-2">Score: ${item.score || 'Passed'}</p>
           </div>
-          <div class="flex justify-between items-center pt-2 border-t border-gray-800 text-xs">
-            ${item.url && item.url.trim() !== '' ? `
-              <a href="${item.url}" target="_blank" class="text-indigo-400 hover:underline">View Credential ↗</a>
-            ` : '<span></span>'}
-
+          <div class="flex justify-end items-center pt-2 border-t border-gray-800 text-xs">
             ${isEditMode ? `
               <div class="flex gap-1.5">
                 <button onclick="openCompletedModal(${item.id})" class="text-amber-400 hover:text-amber-300">✏️</button>
                 <button onclick="deleteCompleted(${item.id})" class="text-red-400 hover:text-red-300 font-bold">✕</button>
               </div>
-            ` : ''}
+            ` : '<span></span>'}
           </div>
         `;
         grid.appendChild(card);
@@ -759,7 +916,7 @@
       }
     }
 
-    // Modal Operations: Course
+    // Modal Course Handlers
     function openCourseModal(id = null) {
       const heading = document.getElementById('course-modal-heading');
       const inputId = document.getElementById('input-course-id');
@@ -802,7 +959,7 @@
     function saveCourseData() {
       const id = document.getElementById('input-course-id').value;
       const title = document.getElementById('input-course-title').value.trim();
-      if (!title) return alert('Please provide a course title');
+      if (!title) return alert('Please enter a course title');
 
       const category = document.getElementById('input-course-type').value;
       const targetCert = document.getElementById('input-course-cert').value.trim() || 'General';
@@ -831,7 +988,6 @@
           unitType,
           completedUnits,
           totalUnits,
-          instructor: 'Udemy Course',
           url
         });
       }
@@ -840,7 +996,7 @@
       persistData();
     }
 
-    // Modal Operations: Voucher
+    // Modal Voucher Handlers
     function openVoucherModal(id = null) {
       const heading = document.getElementById('voucher-modal-heading');
       const inputId = document.getElementById('input-voucher-id');
@@ -914,7 +1070,7 @@
       persistData();
     }
 
-    // Modal Operations: Completed
+    // Modal Completed Handlers
     function openCompletedModal(id = null) {
       const heading = document.getElementById('completed-modal-heading');
       const inputId = document.getElementById('input-comp-id');
@@ -976,11 +1132,10 @@
       persistData();
     }
 
-    // Local JSON File Sync (Direct workspace file save)
+    // Local JSON File Sync
     async function saveToLocalFile() {
       const jsonStr = JSON.stringify(hubData, null, 2);
 
-      // Check if modern File System Access API is supported
       if ('showSaveFilePicker' in window) {
         try {
           const handle = await window.showSaveFilePicker({
@@ -990,14 +1145,13 @@
           const writable = await handle.createWritable();
           await writable.write(jsonStr);
           await writable.close();
-          alert('Successfully saved directly to local file!');
+          alert('Saved directly to data/cert_dashboard_data.json!');
           return;
         } catch (err) {
           if (err.name === 'AbortError') return;
         }
       }
 
-      // Standard download fallback
       const blob = new Blob([jsonStr], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -1005,7 +1159,7 @@
       a.download = 'cert_dashboard_data.json';
       a.click();
       URL.revokeObjectURL(url);
-      alert('Downloaded cert_dashboard_data.json! Replace data/cert_dashboard_data.json in your workspace to persist in git.');
+      alert('Downloaded cert_dashboard_data.json. Save it in data/cert_dashboard_data.json to persist to git.');
     }
 
     function importLocalJSON(e) {
@@ -1018,10 +1172,27 @@
           persistData();
           alert('Local JSON loaded successfully!');
         } catch (err) {
-          alert('Error parsing JSON file.');
+          alert('Error reading JSON file.');
         }
       };
       reader.readAsText(file);
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(hubData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `ai-cert-hub-backup-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function resetToDefault() {
+      if (confirm('Reset dashboard data to initial defaults?')) {
+        hubData = JSON.parse(JSON.stringify(defaultData));
+        persistData();
+      }
     }
 
     function updateKPIs() {

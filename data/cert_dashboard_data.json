@@ -6,9 +6,15 @@
       "name": "Claude Certified Developer",
       "level": "Foundations",
       "examDate": "2026-09-29",
-      "totalMilestones": 6,
-      "clearedMilestones": 2,
-      "notes": "Focus on Tool Use and Prompt Caching"
+      "notes": "Focus on Tool Use, Prompt Caching, and SDK integration",
+      "milestones": [
+        { "id": "ccdv-1", "title": "Tool Use: JSON schema & tool_use/tool_result flow", "done": true },
+        { "id": "ccdv-2", "title": "Prompt Caching: 1024-token threshold, breakpoints & 5m TTL", "done": true },
+        { "id": "ccdv-3", "title": "Vision & Multi-modal image API inputs", "done": false },
+        { "id": "ccdv-4", "title": "System prompt structuring & context management", "done": false },
+        { "id": "ccdv-5", "title": "CCDV-F Full Mock Exam 1 (60 questions)", "done": false },
+        { "id": "ccdv-6", "title": "CCDV-F Speed Drill & Mock Exam 2", "done": false }
+      ]
     },
     {
       "id": "ccar-f",
@@ -16,9 +22,14 @@
       "name": "Claude Certified Architect",
       "level": "Foundations",
       "examDate": "2026-10-19",
-      "totalMilestones": 5,
-      "clearedMilestones": 0,
-      "notes": "Context Window and Cost Optimization"
+      "notes": "Context Window Architecture and Cost Optimization",
+      "milestones": [
+        { "id": "ccarf-1", "title": "200K Context Window architecture & RAG tradeoffs", "done": false },
+        { "id": "ccarf-2", "title": "Batch API vs Streaming latency architectures", "done": false },
+        { "id": "ccarf-3", "title": "Cost optimization with Prompt Caching at scale", "done": false },
+        { "id": "ccarf-4", "title": "Multi-model routing (Haiku vs Sonnet vs Opus)", "done": false },
+        { "id": "ccarf-5", "title": "CCAR-F Full Mock Architecture Exam", "done": false }
+      ]
     },
     {
       "id": "ccar-p",
@@ -26,9 +37,14 @@
       "name": "Claude Certified Architect",
       "level": "Professional",
       "examDate": "2026-10-26",
-      "totalMilestones": 5,
-      "clearedMilestones": 0,
-      "notes": "Multi-Agent Systems and Safety"
+      "notes": "Autonomous Agent Loops, Guardrails & Evaluation Harness",
+      "milestones": [
+        { "id": "ccarp-1", "title": "Autonomous Agent loops & Human-in-the-Loop policies", "done": false },
+        { "id": "ccarp-2", "title": "Safety guardrails & prompt injection mitigation", "done": false },
+        { "id": "ccarp-3", "title": "Enterprise Evaluation harness & LLM-as-a-judge", "done": false },
+        { "id": "ccarp-4", "title": "Production rate limiters & resilient failover design", "done": false },
+        { "id": "ccarp-5", "title": "CCAR-P Comprehensive Mock Architecture Review", "done": false }
+      ]
     }
   ],
   "udemyCourses": [
