@@ -7,6 +7,12 @@
     "proteinGrams": 85,
     "proteinTargetGrams": 140
   },
+  "dailyTasks": [
+    { "id": "dt-1", "title": "Pick up dry cleaning / festive Kurta", "priority": "Urgent", "done": false },
+    { "id": "dt-2", "title": "Call Apollo clinic to confirm morning blood work slot", "priority": "Normal", "done": true },
+    { "id": "dt-3", "title": "Pay home broadband & electricity bills", "priority": "Normal", "done": false },
+    { "id": "dt-4", "title": "Order replacement Dandiya grip tape online", "priority": "Low", "done": false }
+  ],
   "gym": {
     "todayFocus": "Push Day: Chest, Shoulders & Triceps",
     "scheduledTime": "07:00 AM - 08:30 AM",
@@ -25,16 +31,16 @@
     "practiceTime": "08:30 PM - 10:30 PM",
     "countdownEventDate": "2026-10-10",
     "stepsMastery": [
-      { "id": "gb-1", "title": "2-Taali (Classic 2-clap rhythm & footwork)", "done": true },
-      { "id": "gb-2", "title": "3-Taali (Traditional 3-clap spin sequence)", "done": true },
-      { "id": "gb-3", "title": "Dodhiya (12-step advanced continuous loop)", "done": false },
-      { "id": "gb-4", "title": "Sanedo & Hinch speed transition", "done": false },
-      { "id": "gb-5", "title": "Dandiya Raas double-strike pairing sequence", "done": false }
+      { "id": "gb-1", title: "2-Taali (Classic 2-clap rhythm & footwork)", "done": true },
+      { "id": "gb-2", title: "3-Taali (Traditional 3-clap spin sequence)", "done": true },
+      { "id": "gb-3", title: "Dodhiya (12-step advanced continuous loop)", "done": false },
+      { "id": "gb-4", title: "Sanedo & Hinch speed transition", "done": false },
+      { "id": "gb-5", title: "Dandiya Raas double-strike pairing sequence", "done": false }
     ],
     "prepItems": [
-      { "id": "gp-1", "item": "Kurta / Traditional Attire & Dupatta", "done": true },
+      { "id": "gp-1", "item": "Traditional Kurta & Dupatta set", "done": true },
       { "id": "gp-2", "item": "Wooden Dandiya pair with grip tape", "done": false },
-      { "id": "gp-3", "item": "Garba playlist sync for practice session", "done": true }
+      { "id": "gp-3", "item": "Garba practice music playlist synced", "done": true }
     ]
   },
   "health": {
@@ -45,7 +51,7 @@
         "doctor": "Dr. A. Verma (Apollo Clinic)",
         "date": "2026-09-12",
         "time": "09:30 AM",
-        "location": "Apollo Diagnostic Center",
+        "location": "Apollo Diagnostic Center, Indiranagar",
         "status": "Confirmed"
       },
       {

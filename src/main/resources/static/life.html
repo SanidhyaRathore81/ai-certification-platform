@@ -6,9 +6,7 @@
   <title>Daily Life & Wellness Command Center • Fitness, Garba, Health & Errands</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ==========================================================================
-       THEME 1: DHARMAYUDDHA (यतो धर्मस्ततो जयः • ROYAL KESARI & AGNI)
-       ========================================================================== */
+    /* THEME 1: DHARMAYUDDHA */
     body.theme-mahabharat {
       --bg: radial-gradient(circle at 50% -10%, #451A07 0%, #240C04 40%, #0D0401 90%, #050201 100%);
       --card-bg: rgba(28, 14, 7, 0.94);
@@ -45,9 +43,7 @@
       font-weight: 900;
     }
 
-    /* ==========================================================================
-       THEME 2: AVENGERS ASSEMBLE (STARK HUD & S.H.I.E.L.D. TACTICAL)
-       ========================================================================== */
+    /* THEME 2: AVENGERS HUD */
     body.theme-avengers {
       --bg: radial-gradient(circle at 50% 0%, #0F172A 0%, #060913 60%, #020408 100%);
       --card-bg: rgba(10, 16, 30, 0.92);
@@ -84,9 +80,7 @@
       font-weight: 900;
     }
 
-    /* ==========================================================================
-       THEME 3: QUANTUM NEBULA / SYNTHWAVE
-       ========================================================================== */
+    /* THEME 3: QUANTUM NEBULA */
     body.theme-nebula {
       --bg: radial-gradient(circle at 80% 10%, #1e1035 0%, #090514 60%, #030206 100%);
       --card-bg: rgba(21, 13, 37, 0.9);
@@ -115,9 +109,7 @@
       font-weight: 900;
     }
 
-    /* ==========================================================================
-       THEME 4: STEALTH DARK (MINIMALIST)
-       ========================================================================== */
+    /* THEME 4: STEALTH DARK */
     body.theme-default {
       --bg: #090D16;
       --card-bg: rgba(17, 24, 39, 0.88);
@@ -254,7 +246,7 @@
           </h1>
         </div>
         <p class="text-xs text-gray-400 mt-1" id="header-subtitle">
-          Gym & Fitness Routine • Garba & Dandiya Practice • Health & Doctor Checkups • Shopping & Errands
+          Daily Quick Tasks • Gym Routine • Garba Practice • Medical Checkups • Shopping & Errands
         </p>
       </div>
 
@@ -270,37 +262,85 @@
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto space-y-10">
+  <main class="max-w-7xl mx-auto space-y-8">
 
     <!-- KPI Pulse Bar -->
     <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-gym-streak">6 Days</span>
-        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-gym">Gym Streak 🏋️‍♂️</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold">Gym Streak 🏋️‍♂️</span>
       </div>
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-garba-countdown">36 Days</span>
-        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-garba">Navratri Countdown 💃</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold">Navratri Countdown 💃</span>
       </div>
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-health-checkup">Sep 12</span>
-        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-health">Next Checkup 🩺</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold">Next Checkup 🩺</span>
       </div>
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-shopping-pending">3 Items</span>
-        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-shopping">Shopping Pending 🛒</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold">Shopping Pending 🛒</span>
+      </div>
+    </section>
+
+    <!-- NEW: Today's Dynamic Quick Tasks & Ad-hoc To-Dos (Add, Remove & Edit Anytime) -->
+    <section class="glass-card rounded-2xl p-6 border-amber-500/40">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-amber-400 text-lg">📝</span>
+            <h2 class="text-lg font-bold text-white">Today's Quick Tasks & Daily To-Dos</h2>
+          </div>
+          <p class="text-xs text-gray-400 mt-0.5">Ad-hoc small daily chores (laundry, calls, bills, quick errands). Add and remove easily.</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-amber-300" id="daily-tasks-progress">1 / 4 Done</span>
+          <button onclick="clearCompletedDailyTasks()" class="text-xs px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white transition">
+            Clear Finished
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Add Task Input Box -->
+      <div class="flex flex-col sm:flex-row gap-2 mb-4">
+        <input 
+          id="input-quick-task-text" 
+          type="text" 
+          placeholder="Add a new daily task (e.g. Pick up dry cleaning, Call bank, Pay bill)..." 
+          onkeydown="if(event.key==='Enter') addDailyTaskFast()"
+          class="flex-1 text-xs bg-gray-950 border border-gray-700 rounded-lg px-3.5 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500" 
+        />
+        <select id="input-quick-task-priority" class="text-xs bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white">
+          <option value="Normal">Normal</option>
+          <option value="Urgent">🔥 Urgent</option>
+          <option value="Low">Low</option>
+        </select>
+        <button onclick="addDailyTaskFast()" class="text-xs px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-lg transition flex items-center justify-center gap-1 shadow">
+          <span>+</span> Add Task
+        </button>
+      </div>
+
+      <!-- Daily Tasks List -->
+      <div id="daily-tasks-list" class="space-y-2">
+        <!-- Injected via JS -->
       </div>
     </section>
 
     <!-- 1. Fitness & Gym Command (Iron Sanctuary) -->
     <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
-      <!-- Visual Hero Header -->
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/gym.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
           <div>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-600/80 text-white uppercase tracking-wider">FITNESS COMMAND</span>
-            <h2 class="text-xl md:text-2xl font-black text-white mt-1" id="gym-focus-title">Push Day: Chest, Shoulders & Triceps</h2>
-            <p class="text-xs text-gray-300 font-mono mt-0.5">⏰ 07:00 AM - 08:30 AM • Iron Sanctuary</p>
+            <div class="flex items-center gap-2 mt-1">
+              <h2 class="text-xl md:text-2xl font-black text-white" id="gym-focus-title">Push Day: Chest, Shoulders & Triceps</h2>
+              <button onclick="openEditGymFocusModal()" title="Edit Today's Workout Focus & Timing" class="text-xs text-amber-300 hover:text-white p-1 rounded bg-black/40 border border-amber-500/40">
+                ✏️ Edit Focus
+              </button>
+            </div>
+            <p class="text-xs text-gray-300 font-mono mt-0.5" id="gym-focus-time">⏰ 07:00 AM - 08:30 AM • Iron Sanctuary</p>
           </div>
           <button onclick="openAddExerciseModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold transition flex items-center gap-1 shadow">
             + Add Exercise
@@ -308,7 +348,6 @@
         </div>
       </div>
 
-      <!-- Exercise Checklist Grid -->
       <div class="p-6">
         <div class="flex justify-between items-center mb-3">
           <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Today's Workout Protocol</span>
@@ -326,21 +365,24 @@
 
     <!-- 2. Garba & Cultural Dance Practice (Dandiya Raas Hub) -->
     <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
-      <!-- Visual Hero Header -->
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/garba.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
           <div>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-600 text-white uppercase tracking-wider">CULTURAL REHEARSAL</span>
-            <h2 class="text-xl md:text-2xl font-black text-white mt-1">Navratri Mahotsav & Dandiya Practice</h2>
-            <p class="text-xs text-amber-200/90 font-mono mt-0.5">🥁 Rehearsal: 08:30 PM - 10:30 PM • Community Grounds</p>
+            <div class="flex items-center gap-2 mt-1">
+              <h2 class="text-xl md:text-2xl font-black text-white" id="garba-event-title">Navratri Mahotsav & Dandiya Practice</h2>
+              <button onclick="openEditGarbaModal()" title="Edit Rehearsal Timing & Venue" class="text-xs text-amber-300 hover:text-white p-1 rounded bg-black/40 border border-amber-500/40">
+                ✏️ Edit Practice
+              </button>
+            </div>
+            <p class="text-xs text-amber-200/90 font-mono mt-0.5" id="garba-practice-info">🥁 Rehearsal: 08:30 PM - 10:30 PM • Community Grounds</p>
           </div>
           <button onclick="openAddGarbaStepModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition flex items-center gap-1 shadow">
-            + Add Step / Move
+            + Add Step / Prep
           </button>
         </div>
       </div>
 
-      <!-- Garba Steps & Dandiya Prep Grid -->
       <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
@@ -364,7 +406,6 @@
 
     <!-- 3. Health, Vitals & Medical Checkups (Aarogya Hub) -->
     <section class="glass-card rounded-2xl overflow-hidden border-emerald-500/30">
-      <!-- Visual Hero Header -->
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/health.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
           <div>
@@ -378,7 +419,6 @@
         </div>
       </div>
 
-      <!-- Health Appointments & Habits Grid -->
       <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
@@ -401,8 +441,7 @@
     </section>
 
     <!-- 4. Shopping & Daily Errands Command -->
-    <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
-      <!-- Visual Hero Header -->
+    <section class="glass-card rounded-2xl overflow-hidden border-purple-500/30">
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/shopping.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
           <div>
@@ -416,7 +455,6 @@
         </div>
       </div>
 
-      <!-- Shopping Filter & Items Grid -->
       <div class="p-6">
         <div class="flex flex-wrap items-center gap-2 mb-4">
           <button onclick="filterShopping('All')" id="btn-shop-all" class="text-xs px-3 py-1 rounded-lg bg-gray-700 text-white font-medium">All</button>
@@ -436,27 +474,80 @@
 
   <!-- ==================== MODALS ==================== -->
 
-  <!-- Modal: Add Exercise -->
-  <div id="exercise-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+  <!-- Modal: Edit Gym Focus & Time -->
+  <div id="edit-gym-focus-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-        <h3 class="text-base font-bold text-white">Add Gym Exercise</h3>
-        <button onclick="closeAddExerciseModal()" class="text-gray-400 hover:text-white">✕</button>
+        <h3 class="text-base font-bold text-white">Edit Today's Workout Focus</h3>
+        <button onclick="closeEditGymFocusModal()" class="text-gray-400 hover:text-white">✕</button>
       </div>
       <div class="space-y-3 text-xs">
         <div>
-          <label class="block text-gray-400 mb-1">Exercise Name & Target</label>
+          <label class="block text-gray-400 mb-1">Today's Split / Muscle Group Focus</label>
+          <input id="input-edit-gym-focus" type="text" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Workout Timing</label>
+          <input id="input-edit-gym-time" type="text" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeEditGymFocusModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveGymFocusData()" class="text-xs px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded font-medium">Save Split</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Garba Practice Venue & Time -->
+  <div id="edit-garba-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Edit Garba Rehearsal Details</h3>
+        <button onclick="closeEditGarbaModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Event Name</label>
+          <input id="input-edit-garba-title" type="text" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Practice Time</label>
+          <input id="input-edit-garba-time" type="text" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Practice Venue / Ground Location</label>
+          <input id="input-edit-garba-venue" type="text" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeEditGarbaModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveGarbaDetails()" class="text-xs px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded font-medium">Save Rehearsal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Exercise -->
+  <div id="exercise-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 id="exercise-modal-heading" class="text-base font-bold text-white">Add Gym Exercise</h3>
+        <button onclick="closeAddExerciseModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <input type="hidden" id="input-exercise-id" />
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Exercise Name & Target Sets/Reps</label>
           <input id="input-exercise-name" type="text" placeholder="e.g. Incline Dumbbell Press (3x12)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
       </div>
       <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
         <button onclick="closeAddExerciseModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
-        <button onclick="saveNewExercise()" class="text-xs px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded font-medium">Add Exercise</button>
+        <button onclick="saveNewExercise()" class="text-xs px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded font-medium">Save Exercise</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal: Add Garba Step -->
+  <!-- Modal: Add Garba Step / Prep -->
   <div id="garba-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
@@ -483,16 +574,17 @@
     </div>
   </div>
 
-  <!-- Modal: Add Medical Checkup Appointment -->
+  <!-- Modal: Schedule / Edit Medical Checkup Appointment -->
   <div id="appointment-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-        <h3 class="text-base font-bold text-white">Schedule Medical Checkup</h3>
+        <h3 id="app-modal-heading" class="text-base font-bold text-white">Schedule Medical Checkup</h3>
         <button onclick="closeAddAppointmentModal()" class="text-gray-400 hover:text-white">✕</button>
       </div>
+      <input type="hidden" id="input-app-id" />
       <div class="space-y-3 text-xs">
         <div>
-          <label class="block text-gray-400 mb-1">Checkup Purpose</label>
+          <label class="block text-gray-400 mb-1">Checkup Purpose / Test Name</label>
           <input id="input-app-title" type="text" placeholder="e.g. Annual Blood Work & Lipid Panel" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
         <div>
@@ -521,13 +613,14 @@
     </div>
   </div>
 
-  <!-- Modal: Add Shopping Item -->
+  <!-- Modal: Add / Edit Shopping Item -->
   <div id="shopping-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-        <h3 class="text-base font-bold text-white">Add Shopping Item</h3>
+        <h3 id="shop-modal-heading" class="text-base font-bold text-white">Add Shopping Item</h3>
         <button onclick="closeAddShoppingModal()" class="text-gray-400 hover:text-white">✕</button>
       </div>
+      <input type="hidden" id="input-shop-id" />
       <div class="space-y-3 text-xs">
         <div>
           <label class="block text-gray-400 mb-1">Item Name</label>
@@ -546,7 +639,7 @@
       </div>
       <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
         <button onclick="closeAddShoppingModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
-        <button onclick="saveNewShoppingItem()" class="text-xs px-4 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded font-medium">Add to Cart</button>
+        <button onclick="saveNewShoppingItem()" class="text-xs px-4 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded font-medium">Save Item</button>
       </div>
     </div>
   </div>
@@ -556,7 +649,7 @@
   </footer>
 
   <script>
-    const STORAGE_KEY = 'ai_daily_life_hub_v1';
+    const STORAGE_KEY = 'ai_daily_life_hub_v2';
     const THEME_KEY = 'ai_cert_theme_choice';
 
     const defaultData = {
@@ -567,6 +660,12 @@
         proteinGrams: 85,
         proteinTargetGrams: 140
       },
+      dailyTasks: [
+        { id: "dt-1", title: "Pick up dry cleaning / festive Kurta", priority: "Urgent", done: false },
+        { id: "dt-2", title: "Call Apollo clinic to confirm morning blood work slot", priority: "Normal", done: true },
+        { id: "dt-3", title: "Pay home broadband & electricity bills", priority: "Normal", done: false },
+        { id: "dt-4", title: "Order replacement Dandiya grip tape online", priority: "Low", done: false }
+      ],
       gym: {
         todayFocus: "Push Day: Chest, Shoulders & Triceps",
         scheduledTime: "07:00 AM - 08:30 AM",
@@ -736,7 +835,6 @@
       }
     }
 
-    // Quick Tap: Water & Protein
     function incrementWater() {
       lifeData.profile.waterIntakeGlasses = (lifeData.profile.waterIntakeGlasses || 0) + 1;
       persistData();
@@ -747,7 +845,92 @@
       persistData();
     }
 
-    // Render 1: Gym
+    // ==========================================
+    // RENDER 0: DAILY QUICK AD-HOC TASKS (NEW!)
+    // ==========================================
+    function renderDailyTasks() {
+      const container = document.getElementById('daily-tasks-list');
+      container.innerHTML = '';
+
+      const tasks = lifeData.dailyTasks || [];
+      const doneCount = tasks.filter(t => t.done).length;
+      const totalCount = tasks.length;
+      document.getElementById('daily-tasks-progress').textContent = `${doneCount} / ${totalCount} Done`;
+
+      if (tasks.length === 0) {
+        container.innerHTML = `<div class="py-4 text-center text-gray-500 text-xs">No pending daily tasks! Type a task above to add one.</div>`;
+        return;
+      }
+
+      tasks.forEach(task => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2.5 rounded-xl bg-gray-950/70 border border-gray-800 text-xs hover:border-gray-700 transition';
+
+        let badgeClass = 'bg-gray-800 text-gray-300';
+        if (task.priority === 'Urgent') badgeClass = 'bg-red-950 text-red-300 border border-red-800';
+        else if (task.priority === 'Low') badgeClass = 'bg-blue-950 text-blue-300 border border-blue-800';
+
+        item.innerHTML = `
+          <div class="flex items-center gap-2.5 flex-1">
+            <input type="checkbox" ${task.done ? 'checked' : ''} onchange="toggleDailyTask('${task.id}')" class="w-4 h-4 rounded text-amber-500 bg-gray-800 border-gray-700 cursor-pointer" />
+            <span class="${task.done ? 'line-through text-gray-500' : 'text-gray-200 font-medium'} flex-1">${task.title}</span>
+            <span class="text-[9px] font-bold px-1.5 py-0.5 rounded ${badgeClass}">${task.priority || 'Normal'}</span>
+          </div>
+          <div class="flex items-center gap-2 ml-3">
+            <button onclick="promptEditDailyTask('${task.id}')" title="Edit Task" class="text-gray-400 hover:text-amber-300">✏️</button>
+            <button onclick="deleteDailyTask('${task.id}')" title="Remove Task" class="text-red-400 hover:text-red-300 font-bold">✕</button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function addDailyTaskFast() {
+      const input = document.getElementById('input-quick-task-text');
+      const priority = document.getElementById('input-quick-task-priority').value;
+      const title = input.value.trim();
+      if (!title) return;
+
+      if (!lifeData.dailyTasks) lifeData.dailyTasks = [];
+      lifeData.dailyTasks.push({
+        id: `dt-${Date.now()}`,
+        title,
+        priority,
+        done: false
+      });
+      input.value = '';
+      persistData();
+    }
+
+    function toggleDailyTask(id) {
+      const task = lifeData.dailyTasks.find(t => t.id === id);
+      if (task) { task.done = !task.done; persistData(); }
+    }
+
+    function promptEditDailyTask(id) {
+      const task = lifeData.dailyTasks.find(t => t.id === id);
+      if (!task) return;
+      const newTitle = prompt('Edit daily task:', task.title);
+      if (newTitle && newTitle.trim()) {
+        task.title = newTitle.trim();
+        persistData();
+      }
+    }
+
+    function deleteDailyTask(id) {
+      lifeData.dailyTasks = lifeData.dailyTasks.filter(t => t.id !== id);
+      persistData();
+    }
+
+    function clearCompletedDailyTasks() {
+      if (!lifeData.dailyTasks) return;
+      lifeData.dailyTasks = lifeData.dailyTasks.filter(t => !t.done);
+      persistData();
+    }
+
+    // ==========================================
+    // RENDER 1: GYM COMMAND
+    // ==========================================
     function renderGym() {
       const container = document.getElementById('gym-exercises-list');
       container.innerHTML = '';
@@ -757,7 +940,8 @@
       const totalCount = exercises.length;
       const pct = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
 
-      document.getElementById('gym-focus-title').textContent = lifeData.gym.todayFocus || 'Full Body Workout';
+      document.getElementById('gym-focus-title').textContent = lifeData.gym.todayFocus || 'Push Day: Chest, Shoulders & Triceps';
+      document.getElementById('gym-focus-time').textContent = `⏰ ${lifeData.gym.scheduledTime || '07:00 AM - 08:30 AM'} • Iron Sanctuary`;
       document.getElementById('gym-progress-text').textContent = `${doneCount} / ${totalCount} Completed (${pct}%)`;
       document.getElementById('gym-progress-bar').style.width = `${pct}%`;
 
@@ -769,7 +953,10 @@
             <input type="checkbox" ${ex.done ? 'checked' : ''} onchange="toggleExercise('${ex.id}')" class="w-4 h-4 rounded text-red-600 bg-gray-800 border-gray-700 focus:ring-red-500 cursor-pointer" />
             <span class="${ex.done ? 'line-through text-gray-500' : 'text-gray-200 font-medium'}">${ex.name}</span>
           </label>
-          ${isEditMode ? `<button onclick="deleteExercise('${ex.id}')" class="text-red-400 hover:text-red-300 text-xs ml-2 font-bold">✕</button>` : ''}
+          <div class="flex items-center gap-1.5 ml-2">
+            <button onclick="openAddExerciseModal('${ex.id}')" class="text-amber-400 hover:text-amber-300">✏️</button>
+            <button onclick="deleteExercise('${ex.id}')" class="text-red-400 hover:text-red-300 font-bold">✕</button>
+          </div>
         `;
         container.appendChild(item);
       });
@@ -785,28 +972,67 @@
       persistData();
     }
 
-    // Modal Gym
-    function openAddExerciseModal() {
-      document.getElementById('input-exercise-name').value = '';
+    function openEditGymFocusModal() {
+      document.getElementById('input-edit-gym-focus').value = lifeData.gym.todayFocus || '';
+      document.getElementById('input-edit-gym-time').value = lifeData.gym.scheduledTime || '07:00 AM - 08:30 AM';
+      document.getElementById('edit-gym-focus-modal').classList.remove('hidden');
+    }
+    function closeEditGymFocusModal() { document.getElementById('edit-gym-focus-modal').classList.add('hidden'); }
+    function saveGymFocusData() {
+      const focus = document.getElementById('input-edit-gym-focus').value.trim();
+      const time = document.getElementById('input-edit-gym-time').value.trim();
+      if (focus) lifeData.gym.todayFocus = focus;
+      if (time) lifeData.gym.scheduledTime = time;
+      closeEditGymFocusModal();
+      persistData();
+    }
+
+    function openAddExerciseModal(id = null) {
+      const heading = document.getElementById('exercise-modal-heading');
+      const inputId = document.getElementById('input-exercise-id');
+      const inputName = document.getElementById('input-exercise-name');
+
+      if (id) {
+        const ex = lifeData.gym.exercises.find(e => e.id === id);
+        if (!ex) return;
+        heading.textContent = 'Edit Exercise';
+        inputId.value = ex.id;
+        inputName.value = ex.name;
+      } else {
+        heading.textContent = 'Add Gym Exercise';
+        inputId.value = '';
+        inputName.value = '';
+      }
       document.getElementById('exercise-modal').classList.remove('hidden');
     }
     function closeAddExerciseModal() { document.getElementById('exercise-modal').classList.add('hidden'); }
     function saveNewExercise() {
+      const id = document.getElementById('input-exercise-id').value;
       const name = document.getElementById('input-exercise-name').value.trim();
       if (!name) return;
-      lifeData.gym.exercises.push({ id: `g-${Date.now()}`, name, done: false });
+
+      if (id) {
+        const ex = lifeData.gym.exercises.find(e => e.id === id);
+        if (ex) ex.name = name;
+      } else {
+        lifeData.gym.exercises.push({ id: `g-${Date.now()}`, name, done: false });
+      }
       closeAddExerciseModal();
       persistData();
     }
 
-    // Render 2: Garba
+    // ==========================================
+    // RENDER 2: GARBA PRACTICE
+    // ==========================================
     function renderGarba() {
       const stepsList = document.getElementById('garba-steps-list');
       const prepList = document.getElementById('garba-prep-list');
       stepsList.innerHTML = '';
       prepList.innerHTML = '';
 
-      // Steps
+      document.getElementById('garba-event-title').textContent = lifeData.garba.eventName || 'Navratri Mahotsav & Dandiya Practice';
+      document.getElementById('garba-practice-info').textContent = `🥁 Rehearsal: ${lifeData.garba.practiceTime || '08:30 PM - 10:30 PM'} • ${lifeData.garba.practiceVenue || 'Community Grounds'}`;
+
       (lifeData.garba.stepsMastery || []).forEach(step => {
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-950/70 border border-gray-800 text-xs';
@@ -815,12 +1041,11 @@
             <input type="checkbox" ${step.done ? 'checked' : ''} onchange="toggleGarbaStep('${step.id}')" class="w-3.5 h-3.5 rounded text-amber-500 bg-gray-800 border-gray-700 cursor-pointer" />
             <span class="${step.done ? 'line-through text-gray-500' : 'text-gray-200'}">${step.title}</span>
           </label>
-          ${isEditMode ? `<button onclick="deleteGarbaStep('${step.id}')" class="text-red-400 hover:text-red-300 text-xs">✕</button>` : ''}
+          <button onclick="deleteGarbaStep('${step.id}')" class="text-red-400 hover:text-red-300 text-xs ml-2">✕</button>
         `;
         stepsList.appendChild(item);
       });
 
-      // Prep Items
       (lifeData.garba.prepItems || []).forEach(prep => {
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-950/70 border border-gray-800 text-xs';
@@ -829,7 +1054,7 @@
             <input type="checkbox" ${prep.done ? 'checked' : ''} onchange="toggleGarbaPrep('${prep.id}')" class="w-3.5 h-3.5 rounded text-amber-500 bg-gray-800 border-gray-700 cursor-pointer" />
             <span class="${prep.done ? 'line-through text-gray-500' : 'text-gray-200'}">${prep.item}</span>
           </label>
-          ${isEditMode ? `<button onclick="deleteGarbaPrep('${prep.id}')" class="text-red-400 hover:text-red-300 text-xs">✕</button>` : ''}
+          <button onclick="deleteGarbaPrep('${prep.id}')" class="text-red-400 hover:text-red-300 text-xs ml-2">✕</button>
         `;
         prepList.appendChild(item);
       });
@@ -852,7 +1077,24 @@
       persistData();
     }
 
-    // Modal Garba
+    function openEditGarbaModal() {
+      document.getElementById('input-edit-garba-title').value = lifeData.garba.eventName || '';
+      document.getElementById('input-edit-garba-time').value = lifeData.garba.practiceTime || '08:30 PM - 10:30 PM';
+      document.getElementById('input-edit-garba-venue').value = lifeData.garba.practiceVenue || 'Community Grounds';
+      document.getElementById('edit-garba-modal').classList.remove('hidden');
+    }
+    function closeEditGarbaModal() { document.getElementById('edit-garba-modal').classList.add('hidden'); }
+    function saveGarbaDetails() {
+      const title = document.getElementById('input-edit-garba-title').value.trim();
+      const time = document.getElementById('input-edit-garba-time').value.trim();
+      const venue = document.getElementById('input-edit-garba-venue').value.trim();
+      if (title) lifeData.garba.eventName = title;
+      if (time) lifeData.garba.practiceTime = time;
+      if (venue) lifeData.garba.practiceVenue = venue;
+      closeEditGarbaModal();
+      persistData();
+    }
+
     function openAddGarbaStepModal() {
       document.getElementById('input-garba-title').value = '';
       document.getElementById('garba-modal').classList.remove('hidden');
@@ -872,7 +1114,9 @@
       persistData();
     }
 
-    // Render 3: Health
+    // ==========================================
+    // RENDER 3: HEALTH COMMAND
+    // ==========================================
     function renderHealth() {
       const appList = document.getElementById('health-appointments-list');
       const habitsList = document.getElementById('health-habits-list');
@@ -881,7 +1125,7 @@
 
       (lifeData.health.appointments || []).forEach(app => {
         const item = document.createElement('div');
-        item.className = 'p-3 rounded-xl bg-gray-950/80 border border-gray-800 text-xs flex flex-col justify-between';
+        item.className = 'p-3 rounded-xl bg-gray-950/80 border border-gray-800 text-xs flex flex-col justify-between hover:border-gray-700 transition';
         item.innerHTML = `
           <div>
             <div class="flex justify-between items-start mb-1">
@@ -892,11 +1136,10 @@
             <p class="text-gray-400 text-[11px] mt-0.5">${app.doctor}</p>
             <p class="text-emerald-400 text-[11px] mt-1 font-mono">📍 ${app.location}</p>
           </div>
-          ${isEditMode ? `
-            <div class="mt-2 pt-2 border-t border-gray-800 flex justify-end">
-              <button onclick="deleteAppointment('${app.id}')" class="text-red-400 text-[11px]">✕ Remove</button>
-            </div>
-          ` : ''}
+          <div class="mt-2.5 pt-2 border-t border-gray-800/80 flex justify-end gap-2">
+            <button onclick="openAddAppointmentModal('${app.id}')" class="text-amber-400 hover:text-amber-300 text-[11px]">✏️ Edit</button>
+            <button onclick="deleteAppointment('${app.id}')" class="text-red-400 hover:text-red-300 text-[11px] font-bold">✕ Delete</button>
+          </div>
         `;
         appList.appendChild(item);
       });
@@ -919,21 +1162,45 @@
       if (h) { h.done = !h.done; persistData(); }
     }
     function deleteAppointment(id) {
-      lifeData.health.appointments = lifeData.health.appointments.filter(item => item.id !== id);
-      persistData();
+      if (confirm('Delete this health appointment?')) {
+        lifeData.health.appointments = lifeData.health.appointments.filter(item => item.id !== id);
+        persistData();
+      }
     }
 
-    // Modal Health
-    function openAddAppointmentModal() {
-      document.getElementById('input-app-title').value = '';
-      document.getElementById('input-app-doctor').value = '';
-      document.getElementById('input-app-date').value = '';
-      document.getElementById('input-app-time').value = '10:00 AM';
-      document.getElementById('input-app-location').value = '';
+    function openAddAppointmentModal(id = null) {
+      const heading = document.getElementById('app-modal-heading');
+      const inputId = document.getElementById('input-app-id');
+      const title = document.getElementById('input-app-title');
+      const doctor = document.getElementById('input-app-doctor');
+      const date = document.getElementById('input-app-date');
+      const time = document.getElementById('input-app-time');
+      const location = document.getElementById('input-app-location');
+
+      if (id) {
+        const app = lifeData.health.appointments.find(a => a.id === id);
+        if (!app) return;
+        heading.textContent = 'Edit Checkup Appointment';
+        inputId.value = app.id;
+        title.value = app.title;
+        doctor.value = app.doctor;
+        date.value = app.date;
+        time.value = app.time;
+        location.value = app.location;
+      } else {
+        heading.textContent = 'Schedule Medical Checkup';
+        inputId.value = '';
+        title.value = '';
+        doctor.value = '';
+        date.value = '';
+        time.value = '10:00 AM';
+        location.value = '';
+      }
       document.getElementById('appointment-modal').classList.remove('hidden');
     }
     function closeAddAppointmentModal() { document.getElementById('appointment-modal').classList.add('hidden'); }
     function saveNewAppointment() {
+      const id = document.getElementById('input-app-id').value;
       const title = document.getElementById('input-app-title').value.trim();
       const doctor = document.getElementById('input-app-doctor').value.trim();
       const date = document.getElementById('input-app-date').value;
@@ -942,20 +1209,33 @@
 
       if (!title || !date) return alert('Please enter checkup purpose and date.');
 
-      lifeData.health.appointments.push({
-        id: `h-${Date.now()}`,
-        title,
-        doctor,
-        date,
-        time,
-        location,
-        status: "Confirmed"
-      });
+      if (id) {
+        const app = lifeData.health.appointments.find(a => a.id === id);
+        if (app) {
+          app.title = title;
+          app.doctor = doctor;
+          app.date = date;
+          app.time = time;
+          app.location = location;
+        }
+      } else {
+        lifeData.health.appointments.push({
+          id: `h-${Date.now()}`,
+          title,
+          doctor,
+          date,
+          time,
+          location,
+          status: "Confirmed"
+        });
+      }
       closeAddAppointmentModal();
       persistData();
     }
 
-    // Render 4: Shopping
+    // ==========================================
+    // RENDER 4: SHOPPING COMMAND
+    // ==========================================
     function renderShopping() {
       const grid = document.getElementById('shopping-items-grid');
       grid.innerHTML = '';
@@ -978,7 +1258,10 @@
               <span class="block text-[9px] text-gray-500 uppercase font-mono mt-0.5">${item.category}</span>
             </div>
           </div>
-          ${isEditMode ? `<button onclick="deleteShoppingItem('${item.id}')" class="text-red-400 hover:text-red-300 text-xs ml-2 font-bold">✕</button>` : ''}
+          <div class="flex items-center gap-1.5 ml-2">
+            <button onclick="openAddShoppingModal('${item.id}')" class="text-amber-400 hover:text-amber-300">✏️</button>
+            <button onclick="deleteShoppingItem('${item.id}')" class="text-red-400 hover:text-red-300 font-bold">✕</button>
+          </div>
         `;
         grid.appendChild(card);
       });
@@ -1004,53 +1287,72 @@
       renderShopping();
     }
 
-    // Modal Shopping
-    function openAddShoppingModal() {
-      document.getElementById('input-shop-item').value = '';
+    function openAddShoppingModal(id = null) {
+      const heading = document.getElementById('shop-modal-heading');
+      const inputId = document.getElementById('input-shop-id');
+      const inputItem = document.getElementById('input-shop-item');
+      const inputCat = document.getElementById('input-shop-cat');
+
+      if (id) {
+        const s = lifeData.shopping.find(i => i.id === id);
+        if (!s) return;
+        heading.textContent = 'Edit Shopping Item';
+        inputId.value = s.id;
+        inputItem.value = s.item;
+        inputCat.value = s.category;
+      } else {
+        heading.textContent = 'Add Shopping Item';
+        inputId.value = '';
+        inputItem.value = '';
+        inputCat.value = 'Gym';
+      }
       document.getElementById('shopping-modal').classList.remove('hidden');
     }
     function closeAddShoppingModal() { document.getElementById('shopping-modal').classList.add('hidden'); }
     function saveNewShoppingItem() {
+      const id = document.getElementById('input-shop-id').value;
       const item = document.getElementById('input-shop-item').value.trim();
       const category = document.getElementById('input-shop-cat').value;
       if (!item) return;
 
-      lifeData.shopping.push({
-        id: `s-${Date.now()}`,
-        item,
-        category,
-        done: false
-      });
+      if (id) {
+        const s = lifeData.shopping.find(i => i.id === id);
+        if (s) {
+          s.item = item;
+          s.category = category;
+        }
+      } else {
+        lifeData.shopping.push({
+          id: `s-${Date.now()}`,
+          item,
+          category,
+          done: false
+        });
+      }
       closeAddShoppingModal();
       persistData();
     }
 
-    // Update Pulse Bar
     function updateKPIs() {
       document.getElementById('water-display').textContent = `${lifeData.profile.waterIntakeGlasses || 0}/8 Glasses`;
       document.getElementById('protein-display').textContent = `${lifeData.profile.proteinGrams || 0}/140g Protein`;
-
       document.getElementById('stat-gym-streak').textContent = `${lifeData.profile.gymStreakDays || 6} Days`;
 
-      // Garba Countdown
       const targetDate = new Date(lifeData.garba.countdownEventDate + 'T19:00:00');
       const now = new Date();
       const days = Math.max(0, Math.ceil((targetDate - now) / (1000 * 60 * 60 * 24)));
       document.getElementById('stat-garba-countdown').textContent = `${days} Days`;
 
-      // Next Checkup
       if (lifeData.health.appointments && lifeData.health.appointments.length > 0) {
         document.getElementById('stat-health-checkup').textContent = lifeData.health.appointments[0].date.substring(5);
       } else {
         document.getElementById('stat-health-checkup').textContent = "None";
       }
 
-      // Pending Shopping
       const pendingCount = (lifeData.shopping || []).filter(i => !i.done).length;
       document.getElementById('stat-shopping-pending').textContent = `${pendingCount} Items`;
     }
 
-    // File Persistence
     async function saveToLocalFile() {
       const jsonStr = JSON.stringify(lifeData, null, 2);
 
@@ -1114,6 +1416,7 @@
     }
 
     function renderAll() {
+      renderDailyTasks();
       renderGym();
       renderGarba();
       renderHealth();
