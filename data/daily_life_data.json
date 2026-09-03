@@ -1,0 +1,76 @@
+{
+  "profile": {
+    "name": "Sanidhya",
+    "gymStreakDays": 6,
+    "waterIntakeGlasses": 5,
+    "waterTargetGlasses": 8,
+    "proteinGrams": 85,
+    "proteinTargetGrams": 140
+  },
+  "gym": {
+    "todayFocus": "Push Day: Chest, Shoulders & Triceps",
+    "scheduledTime": "07:00 AM - 08:30 AM",
+    "status": "Scheduled",
+    "exercises": [
+      { "id": "g-1", "name": "Flat Barbell Bench Press (4 sets x 8-10 reps)", "done": true },
+      { "id": "g-2", "name": "Incline Dumbbell Press (3 sets x 12 reps)", "done": true },
+      { "id": "g-3", "name": "Seated Dumbbell Overhead Shoulder Press (3 sets x 10 reps)", "done": false },
+      { "id": "g-4", "name": "Lateral Dumbbell Raises (4 sets x 15 reps)", "done": false },
+      { "id": "g-5", "name": "Triceps Rope Pushdowns + Overhead Extensions (4 sets)", "done": false }
+    ]
+  },
+  "garba": {
+    "eventName": "Navratri Mahotsav & Weekend Dandiya Practice",
+    "practiceVenue": "Community Cultural Grounds / Dance Hall",
+    "practiceTime": "08:30 PM - 10:30 PM",
+    "countdownEventDate": "2026-10-10",
+    "stepsMastery": [
+      { "id": "gb-1", "title": "2-Taali (Classic 2-clap rhythm & footwork)", "done": true },
+      { "id": "gb-2", "title": "3-Taali (Traditional 3-clap spin sequence)", "done": true },
+      { "id": "gb-3", "title": "Dodhiya (12-step advanced continuous loop)", "done": false },
+      { "id": "gb-4", "title": "Sanedo & Hinch speed transition", "done": false },
+      { "id": "gb-5", "title": "Dandiya Raas double-strike pairing sequence", "done": false }
+    ],
+    "prepItems": [
+      { "id": "gp-1", "item": "Kurta / Traditional Attire & Dupatta", "done": true },
+      { "id": "gp-2", "item": "Wooden Dandiya pair with grip tape", "done": false },
+      { "id": "gp-3", "item": "Garba playlist sync for practice session", "done": true }
+    ]
+  },
+  "health": {
+    "appointments": [
+      {
+        "id": "h-1",
+        "title": "Comprehensive Health & Routine Blood Checkup",
+        "doctor": "Dr. A. Verma (Apollo Clinic)",
+        "date": "2026-09-12",
+        "time": "09:30 AM",
+        "location": "Apollo Diagnostic Center",
+        "status": "Confirmed"
+      },
+      {
+        "id": "h-2",
+        "title": "Dental Cleaning & Routine Checkup",
+        "doctor": "Dr. R. Mehta (DentCare)",
+        "date": "2026-09-22",
+        "time": "05:00 PM",
+        "location": "City Dental Clinic",
+        "status": "Target Date"
+      }
+    ],
+    "dailyHabits": [
+      { "id": "dh-1", "title": "Morning Vitamin D3 + Omega-3", "done": true },
+      { "id": "dh-2", "title": "Post-workout Whey Protein + Creatine", "done": true },
+      { "id": "dh-3", "title": "Electrolytes & Hydration (3L target)", "done": false },
+      { "id": "dh-4", "title": "15 min night posture & spine stretching", "done": false }
+    ]
+  },
+  "shopping": [
+    { "id": "s-1", "item": "Whey Protein Isolate (Chocolate 2kg)", "category": "Gym", "done": true },
+    { "id": "s-2", "item": "Dandiya Sticks (Carved Sheesham pair)", "category": "Garba", "done": false },
+    { "id": "s-3", "item": "Multivitamins & Omega-3 Softgels", "category": "Health", "done": false },
+    { "id": "s-4", "item": "Almonds, Chia Seeds & Greek Yogurt", "category": "Groceries", "done": true },
+    { "id": "s-5", "item": "Gym Grip Straps & Shaker Bottle", "category": "Gym", "done": false },
+    { "id": "s-6", "item": "Traditional Mojari / Footwear for Navratri", "category": "Garba", "done": false }
+  ]
+}

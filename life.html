@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Life & Wellness Command Center • Fitness, Garba, Health & Errands</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ==========================================================================
+       THEME 1: DHARMAYUDDHA (यतो धर्मस्ततो जयः • ROYAL KESARI & AGNI)
+       ========================================================================== */
+    body.theme-mahabharat {
+      --bg: radial-gradient(circle at 50% -10%, #451A07 0%, #240C04 40%, #0D0401 90%, #050201 100%);
+      --card-bg: rgba(28, 14, 7, 0.94);
+      --card-border: rgba(245, 158, 11, 0.55);
+      --card-glow: 0 0 30px rgba(217, 119, 6, 0.25), inset 0 0 15px rgba(234, 88, 12, 0.12);
+      --accent: #F59E0B;
+      --accent-glow: 0 0 16px rgba(245, 158, 11, 0.85);
+      --countdown-color: #FEF08A;
+      --countdown-shadow: 0 0 18px rgba(245, 158, 11, 0.8), 0 0 35px rgba(234, 88, 12, 0.5);
+      --btn-bg: linear-gradient(135deg, #B45309 0%, #D97706 50%, #DC2626 100%);
+      --btn-hover: linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #EF4444 100%);
+      --brand-pill-bg: rgba(245, 158, 11, 0.22);
+      --brand-pill-text: #FDE68A;
+      --brand-pill-border: rgba(245, 158, 11, 0.65);
+      background-attachment: fixed;
+    }
+
+    body.theme-mahabharat .glass-card {
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-glow);
+    }
+
+    body.theme-mahabharat .countdown-number {
+      color: var(--countdown-color);
+      text-shadow: var(--countdown-shadow);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 900;
+    }
+
+    body.theme-mahabharat .header-brand-badge {
+      background: linear-gradient(90deg, #F59E0B 0%, #F87171 40%, #FDE047 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+    }
+
+    /* ==========================================================================
+       THEME 2: AVENGERS ASSEMBLE (STARK HUD & S.H.I.E.L.D. TACTICAL)
+       ========================================================================== */
+    body.theme-avengers {
+      --bg: radial-gradient(circle at 50% 0%, #0F172A 0%, #060913 60%, #020408 100%);
+      --card-bg: rgba(10, 16, 30, 0.92);
+      --card-border: rgba(56, 189, 248, 0.45);
+      --card-glow: 0 0 20px rgba(14, 165, 233, 0.18), inset 0 0 15px rgba(220, 38, 38, 0.08);
+      --accent: #38BDF8;
+      --accent-glow: 0 0 12px rgba(56, 189, 248, 0.8);
+      --countdown-color: #00F0FF;
+      --countdown-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+      --btn-bg: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+      --btn-hover: linear-gradient(135deg, #EF4444 0%, #B91C1C 100%);
+      --brand-pill-bg: rgba(220, 38, 38, 0.25);
+      --brand-pill-text: #FCA5A5;
+      --brand-pill-border: rgba(220, 38, 38, 0.6);
+      background-attachment: fixed;
+    }
+
+    body.theme-avengers .glass-card {
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-glow);
+    }
+
+    body.theme-avengers .countdown-number {
+      color: var(--countdown-color);
+      text-shadow: var(--countdown-shadow);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 900;
+    }
+
+    body.theme-avengers .header-brand-badge {
+      background: linear-gradient(90deg, #DC2626, #0284C7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+    }
+
+    /* ==========================================================================
+       THEME 3: QUANTUM NEBULA / SYNTHWAVE
+       ========================================================================== */
+    body.theme-nebula {
+      --bg: radial-gradient(circle at 80% 10%, #1e1035 0%, #090514 60%, #030206 100%);
+      --card-bg: rgba(21, 13, 37, 0.9);
+      --card-border: rgba(192, 132, 252, 0.35);
+      --card-glow: 0 8px 25px rgba(168, 85, 247, 0.18), inset 0 0 10px rgba(244, 63, 94, 0.08);
+      --accent: #F43F5E;
+      --accent-glow: 0 0 12px rgba(244, 63, 94, 0.6);
+      --countdown-color: #F472B6;
+      --countdown-shadow: 0 0 14px rgba(244, 114, 182, 0.65);
+      --btn-bg: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+      --btn-hover: linear-gradient(135deg, #C084FC 0%, #F43F5E 100%);
+      --brand-pill-bg: rgba(168, 85, 247, 0.2);
+      --brand-pill-text: #E9D5FF;
+      --brand-pill-border: rgba(168, 85, 247, 0.5);
+      background-attachment: fixed;
+    }
+
+    body.theme-nebula .glass-card {
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-glow);
+    }
+
+    body.theme-nebula .countdown-number {
+      color: var(--countdown-color);
+      text-shadow: var(--countdown-shadow);
+      font-weight: 900;
+    }
+
+    /* ==========================================================================
+       THEME 4: STEALTH DARK (MINIMALIST)
+       ========================================================================== */
+    body.theme-default {
+      --bg: #090D16;
+      --card-bg: rgba(17, 24, 39, 0.88);
+      --card-border: rgba(55, 65, 81, 0.6);
+      --card-glow: none;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.4);
+      --countdown-color: #818cf8;
+      --countdown-shadow: none;
+      --btn-bg: #4f46e5;
+      --btn-hover: #4338ca;
+      --brand-pill-bg: rgba(99, 102, 241, 0.15);
+      --brand-pill-text: #a5b4fc;
+      --brand-pill-border: rgba(99, 102, 241, 0.4);
+    }
+
+    body {
+      background: var(--bg);
+      color: #E2E8F0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      transition: all 0.25s ease;
+    }
+
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .edit-mode-active {
+      outline: 2px dashed rgba(245, 158, 11, 0.7);
+      outline-offset: 4px;
+    }
+
+    .hero-banner {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(10,10,15,0.92) 100%);
+      border-radius: 0.75rem;
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8 theme-mahabharat" id="body-root">
+
+  <!-- Top Global App Switcher Navigation Bar -->
+  <nav class="max-w-7xl mx-auto mb-5 flex flex-wrap justify-between items-center gap-3 bg-gray-950/80 p-2 rounded-xl border border-gray-800/80 shadow-lg">
+    <div class="flex items-center gap-2">
+      <a href="dashboard.html" class="text-xs px-3.5 py-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition flex items-center gap-2">
+        <span>🎯</span> <span class="font-medium">AI Certifications Hub</span>
+      </a>
+      <a href="life.html" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600/30 text-amber-300 border border-amber-500/50 font-bold flex items-center gap-2 shadow-[0_0_10px_rgba(245,158,11,0.3)]">
+        <span>⚡</span> <span>Daily Life & Wellness OS</span>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="btn-edit-toggle" onclick="toggleEditMode()" class="text-xs px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow">
+        <span id="edit-icon">✏️</span> <span id="edit-text">Edit Mode</span>
+      </button>
+
+      <button onclick="toggleToolbox()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-medium transition flex items-center gap-1.5">
+        <span>🛠️</span> <span>Toolbox</span> <span id="toolbox-chevron" class="text-[10px] text-gray-400">▾</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Expandable Toolbox Panel (Themes + File Sync) -->
+  <div id="toolbox-panel" class="hidden max-w-7xl mx-auto mb-6 p-4 rounded-xl bg-gray-900/95 border border-gray-700/80 shadow-2xl transition-all">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+      <!-- Theme Selector -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-xs">
+        <span class="text-gray-300 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+          <span>🎨</span> Themes:
+        </span>
+        <div class="flex flex-wrap gap-1.5 bg-gray-950 p-1.5 rounded-lg border border-gray-800">
+          <button onclick="applyTheme('mahabharat')" id="btn-theme-mahabharat" class="px-3 py-1 rounded text-xs font-bold bg-amber-600 text-white shadow flex items-center gap-1.5">
+            <span>🏹</span> Dharmayuddha
+          </button>
+          <button onclick="applyTheme('avengers')" id="btn-theme-avengers" class="px-3 py-1 rounded text-xs font-semibold text-gray-300 hover:text-cyan-300 transition flex items-center gap-1.5">
+            <span>🛡️</span> Avengers HUD
+          </button>
+          <button onclick="applyTheme('nebula')" id="btn-theme-nebula" class="px-3 py-1 rounded text-xs font-semibold text-gray-300 hover:text-pink-300 transition flex items-center gap-1.5">
+            <span>🌌</span> Quantum Nebula
+          </button>
+          <button onclick="applyTheme('default')" id="btn-theme-default" class="px-3 py-1 rounded text-xs font-semibold text-gray-400 hover:text-white transition">
+            Stealth Dark
+          </button>
+        </div>
+      </div>
+
+      <!-- File Persistence Actions -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition flex items-center gap-1 shadow">
+          <span>💾</span> Save Local File
+        </button>
+        <button onclick="document.getElementById('import-file').click()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
+          <span>📥</span> Load Local JSON
+        </button>
+        <button onclick="exportData()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
+          <span>📤</span> Export Backup
+        </button>
+        <button onclick="resetToDefault()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-red-950/60 border border-gray-700 text-red-400 hover:text-red-300 transition">
+          Reset
+        </button>
+        <input type="file" id="import-file" class="hidden" onchange="importLocalJSON(event)" accept=".json" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Banner -->
+  <header class="max-w-7xl mx-auto mb-8 border-b border-gray-800 pb-5">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <span id="header-symbol" class="text-2xl text-amber-400 animate-pulse">⚡</span>
+          <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white flex items-center gap-2.5">
+            <span id="header-title-text" class="header-brand-badge">Daily Life & Wellness Command</span>
+            <span id="theme-tag" class="text-[10px] font-mono font-black px-2.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/60 shadow-[0_0_15px_rgba(245,158,11,0.4)]">
+              LIFESTYLE OS
+            </span>
+          </h1>
+        </div>
+        <p class="text-xs text-gray-400 mt-1" id="header-subtitle">
+          Gym & Fitness Routine • Garba & Dandiya Practice • Health & Doctor Checkups • Shopping & Errands
+        </p>
+      </div>
+
+      <!-- Quick Quick Log Pills: Water & Protein -->
+      <div class="flex flex-wrap items-center gap-2 bg-gray-950/90 p-2 rounded-xl border border-gray-800">
+        <button onclick="incrementWater()" class="px-3 py-1.5 rounded-lg bg-blue-900/40 hover:bg-blue-900/60 border border-blue-700/60 text-blue-300 text-xs font-semibold flex items-center gap-1.5 transition">
+          <span>💧</span> <span id="water-display">5/8 Glasses</span> <span class="text-[10px] bg-blue-600 text-white px-1 rounded font-bold">+1</span>
+        </button>
+        <button onclick="incrementProtein()" class="px-3 py-1.5 rounded-lg bg-orange-900/40 hover:bg-orange-900/60 border border-orange-700/60 text-orange-300 text-xs font-semibold flex items-center gap-1.5 transition">
+          <span>🥩</span> <span id="protein-display">85/140g Protein</span> <span class="text-[10px] bg-orange-600 text-white px-1 rounded font-bold">+25g</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto space-y-10">
+
+    <!-- KPI Pulse Bar -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black countdown-number" id="stat-gym-streak">6 Days</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-gym">Gym Streak 🏋️‍♂️</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black countdown-number" id="stat-garba-countdown">36 Days</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-garba">Navratri Countdown 💃</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black countdown-number" id="stat-health-checkup">Sep 12</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-health">Next Checkup 🩺</span>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <span class="block text-2xl font-black countdown-number" id="stat-shopping-pending">3 Items</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-shopping">Shopping Pending 🛒</span>
+      </div>
+    </section>
+
+    <!-- 1. Fitness & Gym Command (Iron Sanctuary) -->
+    <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
+      <!-- Visual Hero Header -->
+      <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/gym.jpg');">
+        <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
+          <div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-600/80 text-white uppercase tracking-wider">FITNESS COMMAND</span>
+            <h2 class="text-xl md:text-2xl font-black text-white mt-1" id="gym-focus-title">Push Day: Chest, Shoulders & Triceps</h2>
+            <p class="text-xs text-gray-300 font-mono mt-0.5">⏰ 07:00 AM - 08:30 AM • Iron Sanctuary</p>
+          </div>
+          <button onclick="openAddExerciseModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold transition flex items-center gap-1 shadow">
+            + Add Exercise
+          </button>
+        </div>
+      </div>
+
+      <!-- Exercise Checklist Grid -->
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Today's Workout Protocol</span>
+          <span class="text-xs font-bold text-amber-400" id="gym-progress-text">2 / 5 Completed (40%)</span>
+        </div>
+        <div class="w-full bg-gray-800 rounded-full h-1.5 mb-4">
+          <div id="gym-progress-bar" class="h-1.5 rounded-full transition-all duration-300" style="width: 40%; background: var(--accent);"></div>
+        </div>
+
+        <div id="gym-exercises-list" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Garba & Cultural Dance Practice (Dandiya Raas Hub) -->
+    <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
+      <!-- Visual Hero Header -->
+      <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/garba.jpg');">
+        <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
+          <div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-600 text-white uppercase tracking-wider">CULTURAL REHEARSAL</span>
+            <h2 class="text-xl md:text-2xl font-black text-white mt-1">Navratri Mahotsav & Dandiya Practice</h2>
+            <p class="text-xs text-amber-200/90 font-mono mt-0.5">🥁 Rehearsal: 08:30 PM - 10:30 PM • Community Grounds</p>
+          </div>
+          <button onclick="openAddGarbaStepModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition flex items-center gap-1 shadow">
+            + Add Step / Move
+          </button>
+        </div>
+      </div>
+
+      <!-- Garba Steps & Dandiya Prep Grid -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <span>💃</span> <span>Step & Choreography Mastery</span>
+          </h3>
+          <div id="garba-steps-list" class="space-y-2">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <span>✨</span> <span>Attire & Dandiya Preparation</span>
+          </h3>
+          <div id="garba-prep-list" class="space-y-2">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Health, Vitals & Medical Checkups (Aarogya Hub) -->
+    <section class="glass-card rounded-2xl overflow-hidden border-emerald-500/30">
+      <!-- Visual Hero Header -->
+      <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/health.jpg');">
+        <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
+          <div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-600 text-white uppercase tracking-wider">AAROGYA • HEALTH & WELLNESS</span>
+            <h2 class="text-xl md:text-2xl font-black text-white mt-1">Medical Checkups & Daily Vitals</h2>
+            <p class="text-xs text-emerald-200/90 font-mono mt-0.5">🩺 Preventive Care • Diagnostic Appointments • Daily Supplements</p>
+          </div>
+          <button onclick="openAddAppointmentModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1 shadow">
+            + Schedule Checkup
+          </button>
+        </div>
+      </div>
+
+      <!-- Health Appointments & Habits Grid -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <span>🩺</span> <span>Upcoming Doctor & Medical Appointments</span>
+          </h3>
+          <div id="health-appointments-list" class="space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <span>💊</span> <span>Daily Supplements & Wellness Habits</span>
+          </h3>
+          <div id="health-habits-list" class="space-y-2">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Shopping & Daily Errands Command -->
+    <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
+      <!-- Visual Hero Header -->
+      <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/shopping.jpg');">
+        <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
+          <div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-600 text-white uppercase tracking-wider">SMART ERRANDS</span>
+            <h2 class="text-xl md:text-2xl font-black text-white mt-1">Shopping & Supply Checklist</h2>
+            <p class="text-xs text-purple-200/90 font-mono mt-0.5">🛒 Groceries • Gym Supplements • Garba Outfits • Wellness Items</p>
+          </div>
+          <button onclick="openAddShoppingModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold transition flex items-center gap-1 shadow">
+            + Add Shopping Item
+          </button>
+        </div>
+      </div>
+
+      <!-- Shopping Filter & Items Grid -->
+      <div class="p-6">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <button onclick="filterShopping('All')" id="btn-shop-all" class="text-xs px-3 py-1 rounded-lg bg-gray-700 text-white font-medium">All</button>
+          <button onclick="filterShopping('Gym')" id="btn-shop-gym" class="text-xs px-3 py-1 rounded-lg text-gray-400 hover:text-white">🏋️‍♂️ Gym</button>
+          <button onclick="filterShopping('Garba')" id="btn-shop-garba" class="text-xs px-3 py-1 rounded-lg text-gray-400 hover:text-white">💃 Garba</button>
+          <button onclick="filterShopping('Health')" id="btn-shop-health" class="text-xs px-3 py-1 rounded-lg text-gray-400 hover:text-white">🩺 Health</button>
+          <button onclick="filterShopping('Groceries')" id="btn-shop-groceries" class="text-xs px-3 py-1 rounded-lg text-gray-400 hover:text-white">🥦 Groceries</button>
+        </div>
+
+        <div id="shopping-items-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal: Add Exercise -->
+  <div id="exercise-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Add Gym Exercise</h3>
+        <button onclick="closeAddExerciseModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Exercise Name & Target</label>
+          <input id="input-exercise-name" type="text" placeholder="e.g. Incline Dumbbell Press (3x12)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddExerciseModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewExercise()" class="text-xs px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded font-medium">Add Exercise</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add Garba Step -->
+  <div id="garba-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Add Garba Step / Prep Task</h3>
+        <button onclick="closeAddGarbaStepModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Type</label>
+          <select id="input-garba-type" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
+            <option value="step">Choreography / Step Move</option>
+            <option value="prep">Attire / Dandiya Prep</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Description</label>
+          <input id="input-garba-title" type="text" placeholder="e.g. 4-step spin or Buy traditional Kurta" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddGarbaStepModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewGarbaItem()" class="text-xs px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded font-medium">Save Item</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add Medical Checkup Appointment -->
+  <div id="appointment-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Schedule Medical Checkup</h3>
+        <button onclick="closeAddAppointmentModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Checkup Purpose</label>
+          <input id="input-app-title" type="text" placeholder="e.g. Annual Blood Work & Lipid Panel" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Doctor / Clinic</label>
+          <input id="input-app-doctor" type="text" placeholder="e.g. Dr. A. Verma (Apollo Clinic)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-gray-400 mb-1">Date</label>
+            <input id="input-app-date" type="date" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+          </div>
+          <div>
+            <label class="block text-gray-400 mb-1">Time</label>
+            <input id="input-app-time" type="text" placeholder="09:30 AM" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Location / Center Address</label>
+          <input id="input-app-location" type="text" placeholder="e.g. Apollo Diagnostic Center, Indiranagar" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddAppointmentModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewAppointment()" class="text-xs px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-medium">Save Checkup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add Shopping Item -->
+  <div id="shopping-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Add Shopping Item</h3>
+        <button onclick="closeAddShoppingModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Item Name</label>
+          <input id="input-shop-item" type="text" placeholder="e.g. Whey Protein Isolate or Dandiya Sticks" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Category</label>
+          <select id="input-shop-cat" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
+            <option value="Gym">🏋️‍♂️ Gym / Supplements</option>
+            <option value="Garba">💃 Garba / Festive Attire</option>
+            <option value="Health">🩺 Health / Pharmacy</option>
+            <option value="Groceries">🥦 Groceries / Nutrition</option>
+            <option value="General">📦 General Household</option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddShoppingModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewShoppingItem()" class="text-xs px-4 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded font-medium">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="max-w-7xl mx-auto mt-12 text-center text-xs text-gray-500 border-t border-gray-900 pt-6">
+    Personal Life & Routine Command Center • Powered by Antigravity
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'ai_daily_life_hub_v1';
+    const THEME_KEY = 'ai_cert_theme_choice';
+
+    const defaultData = {
+      profile: {
+        gymStreakDays: 6,
+        waterIntakeGlasses: 5,
+        waterTargetGlasses: 8,
+        proteinGrams: 85,
+        proteinTargetGrams: 140
+      },
+      gym: {
+        todayFocus: "Push Day: Chest, Shoulders & Triceps",
+        scheduledTime: "07:00 AM - 08:30 AM",
+        exercises: [
+          { id: "g-1", name: "Flat Barbell Bench Press (4 sets x 8-10 reps)", done: true },
+          { id: "g-2", name: "Incline Dumbbell Press (3 sets x 12 reps)", done: true },
+          { id: "g-3", name: "Seated Dumbbell Overhead Shoulder Press (3 sets x 10 reps)", done: false },
+          { id: "g-4", name: "Lateral Dumbbell Raises (4 sets x 15 reps)", done: false },
+          { id: "g-5", name: "Triceps Rope Pushdowns + Overhead Extensions (4 sets)", done: false }
+        ]
+      },
+      garba: {
+        eventName: "Navratri Mahotsav & Weekend Dandiya Practice",
+        practiceVenue: "Community Cultural Grounds / Dance Hall",
+        practiceTime: "08:30 PM - 10:30 PM",
+        countdownEventDate: "2026-10-10",
+        stepsMastery: [
+          { id: "gb-1", title: "2-Taali (Classic 2-clap rhythm & footwork)", done: true },
+          { id: "gb-2", title: "3-Taali (Traditional 3-clap spin sequence)", done: true },
+          { id: "gb-3", title: "Dodhiya (12-step advanced continuous loop)", done: false },
+          { id: "gb-4", title: "Sanedo & Hinch speed transition", done: false },
+          { id: "gb-5", title: "Dandiya Raas double-strike pairing sequence", done: false }
+        ],
+        prepItems: [
+          { id: "gp-1", item: "Traditional Kurta & Dupatta set", done: true },
+          { id: "gp-2", item: "Wooden Dandiya pair with grip tape", done: false },
+          { id: "gp-3", item: "Garba practice music playlist synced", done: true }
+        ]
+      },
+      health: {
+        appointments: [
+          {
+            id: "h-1",
+            title: "Comprehensive Health & Routine Blood Checkup",
+            doctor: "Dr. A. Verma (Apollo Clinic)",
+            date: "2026-09-12",
+            time: "09:30 AM",
+            location: "Apollo Diagnostic Center, Indiranagar",
+            status: "Confirmed"
+          },
+          {
+            id: "h-2",
+            title: "Dental Cleaning & Routine Checkup",
+            doctor: "Dr. R. Mehta (DentCare)",
+            date: "2026-09-22",
+            time: "05:00 PM",
+            location: "City Dental Clinic",
+            status: "Target Date"
+          }
+        ],
+        dailyHabits: [
+          { id: "dh-1", title: "Morning Vitamin D3 + Omega-3", done: true },
+          { id: "dh-2", title: "Post-workout Whey Protein + Creatine", done: true },
+          { id: "dh-3", title: "Electrolytes & Hydration (3L target)", done: false },
+          { id: "dh-4", title: "15 min night posture & spine stretching", done: false }
+        ]
+      },
+      shopping: [
+        { id: "s-1", item: "Whey Protein Isolate (Chocolate 2kg)", category: "Gym", done: true },
+        { id: "s-2", item: "Dandiya Sticks (Carved Sheesham pair)", category: "Garba", done: false },
+        { id: "s-3", item: "Multivitamins & Omega-3 Softgels", category: "Health", done: false },
+        { id: "s-4", item: "Almonds, Chia Seeds & Greek Yogurt", category: "Groceries", done: true },
+        { id: "s-5", item: "Gym Grip Straps & Shaker Bottle", category: "Gym", done: false },
+        { id: "s-6", item: "Traditional Mojari / Footwear for Navratri", category: "Garba", done: false }
+      ]
+    };
+
+    let lifeData = loadData();
+    let currentTheme = localStorage.getItem(THEME_KEY) || 'mahabharat';
+    let isEditMode = false;
+    let isToolboxOpen = false;
+    let currentShoppingFilter = 'All';
+
+    function loadData() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? JSON.parse(stored) : defaultData;
+      } catch (e) {
+        return defaultData;
+      }
+    }
+
+    function persistData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(lifeData));
+      renderAll();
+    }
+
+    function toggleToolbox() {
+      isToolboxOpen = !isToolboxOpen;
+      const panel = document.getElementById('toolbox-panel');
+      const chevron = document.getElementById('toolbox-chevron');
+      if (isToolboxOpen) {
+        panel.classList.remove('hidden');
+        chevron.textContent = '▴';
+      } else {
+        panel.classList.add('hidden');
+        chevron.textContent = '▾';
+      }
+    }
+
+    function toggleEditMode() {
+      isEditMode = !isEditMode;
+      const btn = document.getElementById('btn-edit-toggle');
+      const text = document.getElementById('edit-text');
+      const icon = document.getElementById('edit-icon');
+
+      if (isEditMode) {
+        btn.className = 'text-xs px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1.5 shadow animate-pulse';
+        text.textContent = 'Done Editing';
+        icon.textContent = '✅';
+      } else {
+        btn.className = 'text-xs px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow';
+        text.textContent = 'Edit Mode';
+        icon.textContent = '✏️';
+      }
+      renderAll();
+    }
+
+    // Dynamic Theme Engine
+    function applyTheme(themeName) {
+      currentTheme = themeName;
+      localStorage.setItem(THEME_KEY, themeName);
+      const body = document.getElementById('body-root');
+      const tag = document.getElementById('theme-tag');
+      const titleText = document.getElementById('header-title-text');
+      const symbol = document.getElementById('header-symbol');
+
+      body.classList.remove('theme-default', 'theme-avengers', 'theme-nebula', 'theme-mahabharat');
+
+      const btnMahabharat = document.getElementById('btn-theme-mahabharat');
+      const btnAvengers = document.getElementById('btn-theme-avengers');
+      const btnNebula = document.getElementById('btn-theme-nebula');
+      const btnDefault = document.getElementById('btn-theme-default');
+
+      [btnMahabharat, btnAvengers, btnNebula, btnDefault].forEach(btn => {
+        if (btn) btn.className = 'px-3 py-1 rounded text-xs font-semibold text-gray-400 hover:text-white transition';
+      });
+
+      if (themeName === 'mahabharat') {
+        body.classList.add('theme-mahabharat');
+        symbol.textContent = '☸';
+        titleText.className = 'header-brand-badge';
+        tag.textContent = '🏹 DHARMA & JEEVAN OS';
+        tag.className = 'text-[10px] font-mono font-black px-2.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/60 shadow-[0_0_15px_rgba(245,158,11,0.4)]';
+        if (btnMahabharat) btnMahabharat.className = 'px-3 py-1 rounded text-xs font-bold bg-amber-600 text-white shadow';
+      } else if (themeName === 'avengers') {
+        body.classList.add('theme-avengers');
+        symbol.textContent = '⎊';
+        titleText.className = 'bg-gradient-to-r from-red-500 via-sky-400 to-cyan-300 bg-clip-text text-transparent font-black';
+        tag.textContent = 'STARK LIFE PROTOCOL';
+        tag.className = 'text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-red-950 text-cyan-300 border border-cyan-400/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]';
+        if (btnAvengers) btnAvengers.className = 'px-3 py-1 rounded text-xs font-bold bg-red-700 text-cyan-200 border border-cyan-400 shadow';
+      } else if (themeName === 'nebula') {
+        body.classList.add('theme-nebula');
+        symbol.textContent = '✨';
+        titleText.className = 'bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent font-black';
+        tag.textContent = 'QUANTUM LIFE OS';
+        tag.className = 'text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-purple-950 text-pink-300 border border-pink-500/40 shadow';
+        if (btnNebula) btnNebula.className = 'px-3 py-1 rounded text-xs font-bold bg-purple-700 text-white border border-pink-500 shadow';
+      } else {
+        body.classList.add('theme-default');
+        symbol.textContent = '⚡';
+        titleText.className = 'text-white font-bold';
+        tag.textContent = 'STEALTH LIFE OS';
+        tag.className = 'text-[10px] font-mono font-medium px-2.5 py-0.5 rounded bg-gray-800 text-gray-300 border border-gray-700';
+        if (btnDefault) btnDefault.className = 'px-3 py-1 rounded text-xs font-bold bg-indigo-600 text-white shadow';
+      }
+    }
+
+    // Quick Tap: Water & Protein
+    function incrementWater() {
+      lifeData.profile.waterIntakeGlasses = (lifeData.profile.waterIntakeGlasses || 0) + 1;
+      persistData();
+    }
+
+    function incrementProtein() {
+      lifeData.profile.proteinGrams = (lifeData.profile.proteinGrams || 0) + 25;
+      persistData();
+    }
+
+    // Render 1: Gym
+    function renderGym() {
+      const container = document.getElementById('gym-exercises-list');
+      container.innerHTML = '';
+
+      const exercises = lifeData.gym.exercises || [];
+      const doneCount = exercises.filter(e => e.done).length;
+      const totalCount = exercises.length;
+      const pct = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
+
+      document.getElementById('gym-focus-title').textContent = lifeData.gym.todayFocus || 'Full Body Workout';
+      document.getElementById('gym-progress-text').textContent = `${doneCount} / ${totalCount} Completed (${pct}%)`;
+      document.getElementById('gym-progress-bar').style.width = `${pct}%`;
+
+      exercises.forEach(ex => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2.5 rounded-lg bg-gray-950/70 border border-gray-800 text-xs hover:border-gray-700 transition';
+        item.innerHTML = `
+          <label class="flex items-center gap-2.5 cursor-pointer flex-1">
+            <input type="checkbox" ${ex.done ? 'checked' : ''} onchange="toggleExercise('${ex.id}')" class="w-4 h-4 rounded text-red-600 bg-gray-800 border-gray-700 focus:ring-red-500 cursor-pointer" />
+            <span class="${ex.done ? 'line-through text-gray-500' : 'text-gray-200 font-medium'}">${ex.name}</span>
+          </label>
+          ${isEditMode ? `<button onclick="deleteExercise('${ex.id}')" class="text-red-400 hover:text-red-300 text-xs ml-2 font-bold">✕</button>` : ''}
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function toggleExercise(id) {
+      const ex = lifeData.gym.exercises.find(e => e.id === id);
+      if (ex) { ex.done = !ex.done; persistData(); }
+    }
+
+    function deleteExercise(id) {
+      lifeData.gym.exercises = lifeData.gym.exercises.filter(e => e.id !== id);
+      persistData();
+    }
+
+    // Modal Gym
+    function openAddExerciseModal() {
+      document.getElementById('input-exercise-name').value = '';
+      document.getElementById('exercise-modal').classList.remove('hidden');
+    }
+    function closeAddExerciseModal() { document.getElementById('exercise-modal').classList.add('hidden'); }
+    function saveNewExercise() {
+      const name = document.getElementById('input-exercise-name').value.trim();
+      if (!name) return;
+      lifeData.gym.exercises.push({ id: `g-${Date.now()}`, name, done: false });
+      closeAddExerciseModal();
+      persistData();
+    }
+
+    // Render 2: Garba
+    function renderGarba() {
+      const stepsList = document.getElementById('garba-steps-list');
+      const prepList = document.getElementById('garba-prep-list');
+      stepsList.innerHTML = '';
+      prepList.innerHTML = '';
+
+      // Steps
+      (lifeData.garba.stepsMastery || []).forEach(step => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-950/70 border border-gray-800 text-xs';
+        item.innerHTML = `
+          <label class="flex items-center gap-2 cursor-pointer flex-1">
+            <input type="checkbox" ${step.done ? 'checked' : ''} onchange="toggleGarbaStep('${step.id}')" class="w-3.5 h-3.5 rounded text-amber-500 bg-gray-800 border-gray-700 cursor-pointer" />
+            <span class="${step.done ? 'line-through text-gray-500' : 'text-gray-200'}">${step.title}</span>
+          </label>
+          ${isEditMode ? `<button onclick="deleteGarbaStep('${step.id}')" class="text-red-400 hover:text-red-300 text-xs">✕</button>` : ''}
+        `;
+        stepsList.appendChild(item);
+      });
+
+      // Prep Items
+      (lifeData.garba.prepItems || []).forEach(prep => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-950/70 border border-gray-800 text-xs';
+        item.innerHTML = `
+          <label class="flex items-center gap-2 cursor-pointer flex-1">
+            <input type="checkbox" ${prep.done ? 'checked' : ''} onchange="toggleGarbaPrep('${prep.id}')" class="w-3.5 h-3.5 rounded text-amber-500 bg-gray-800 border-gray-700 cursor-pointer" />
+            <span class="${prep.done ? 'line-through text-gray-500' : 'text-gray-200'}">${prep.item}</span>
+          </label>
+          ${isEditMode ? `<button onclick="deleteGarbaPrep('${prep.id}')" class="text-red-400 hover:text-red-300 text-xs">✕</button>` : ''}
+        `;
+        prepList.appendChild(item);
+      });
+    }
+
+    function toggleGarbaStep(id) {
+      const s = lifeData.garba.stepsMastery.find(item => item.id === id);
+      if (s) { s.done = !s.done; persistData(); }
+    }
+    function deleteGarbaStep(id) {
+      lifeData.garba.stepsMastery = lifeData.garba.stepsMastery.filter(item => item.id !== id);
+      persistData();
+    }
+    function toggleGarbaPrep(id) {
+      const p = lifeData.garba.prepItems.find(item => item.id === id);
+      if (p) { p.done = !p.done; persistData(); }
+    }
+    function deleteGarbaPrep(id) {
+      lifeData.garba.prepItems = lifeData.garba.prepItems.filter(item => item.id !== id);
+      persistData();
+    }
+
+    // Modal Garba
+    function openAddGarbaStepModal() {
+      document.getElementById('input-garba-title').value = '';
+      document.getElementById('garba-modal').classList.remove('hidden');
+    }
+    function closeAddGarbaStepModal() { document.getElementById('garba-modal').classList.add('hidden'); }
+    function saveNewGarbaItem() {
+      const type = document.getElementById('input-garba-type').value;
+      const title = document.getElementById('input-garba-title').value.trim();
+      if (!title) return;
+
+      if (type === 'step') {
+        lifeData.garba.stepsMastery.push({ id: `gb-${Date.now()}`, title, done: false });
+      } else {
+        lifeData.garba.prepItems.push({ id: `gp-${Date.now()}`, item: title, done: false });
+      }
+      closeAddGarbaStepModal();
+      persistData();
+    }
+
+    // Render 3: Health
+    function renderHealth() {
+      const appList = document.getElementById('health-appointments-list');
+      const habitsList = document.getElementById('health-habits-list');
+      appList.innerHTML = '';
+      habitsList.innerHTML = '';
+
+      (lifeData.health.appointments || []).forEach(app => {
+        const item = document.createElement('div');
+        item.className = 'p-3 rounded-xl bg-gray-950/80 border border-gray-800 text-xs flex flex-col justify-between';
+        item.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start mb-1">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">${app.status || 'Scheduled'}</span>
+              <span class="text-gray-400 font-mono text-[11px] font-bold">${app.date} • ${app.time}</span>
+            </div>
+            <h4 class="text-sm font-bold text-white mt-1">${app.title}</h4>
+            <p class="text-gray-400 text-[11px] mt-0.5">${app.doctor}</p>
+            <p class="text-emerald-400 text-[11px] mt-1 font-mono">📍 ${app.location}</p>
+          </div>
+          ${isEditMode ? `
+            <div class="mt-2 pt-2 border-t border-gray-800 flex justify-end">
+              <button onclick="deleteAppointment('${app.id}')" class="text-red-400 text-[11px]">✕ Remove</button>
+            </div>
+          ` : ''}
+        `;
+        appList.appendChild(item);
+      });
+
+      (lifeData.health.dailyHabits || []).forEach(habit => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-950/70 border border-gray-800 text-xs';
+        item.innerHTML = `
+          <label class="flex items-center gap-2 cursor-pointer flex-1">
+            <input type="checkbox" ${habit.done ? 'checked' : ''} onchange="toggleHabit('${habit.id}')" class="w-3.5 h-3.5 rounded text-emerald-500 bg-gray-800 border-gray-700 cursor-pointer" />
+            <span class="${habit.done ? 'line-through text-gray-500' : 'text-gray-200'}">${habit.title}</span>
+          </label>
+        `;
+        habitsList.appendChild(item);
+      });
+    }
+
+    function toggleHabit(id) {
+      const h = lifeData.health.dailyHabits.find(item => item.id === id);
+      if (h) { h.done = !h.done; persistData(); }
+    }
+    function deleteAppointment(id) {
+      lifeData.health.appointments = lifeData.health.appointments.filter(item => item.id !== id);
+      persistData();
+    }
+
+    // Modal Health
+    function openAddAppointmentModal() {
+      document.getElementById('input-app-title').value = '';
+      document.getElementById('input-app-doctor').value = '';
+      document.getElementById('input-app-date').value = '';
+      document.getElementById('input-app-time').value = '10:00 AM';
+      document.getElementById('input-app-location').value = '';
+      document.getElementById('appointment-modal').classList.remove('hidden');
+    }
+    function closeAddAppointmentModal() { document.getElementById('appointment-modal').classList.add('hidden'); }
+    function saveNewAppointment() {
+      const title = document.getElementById('input-app-title').value.trim();
+      const doctor = document.getElementById('input-app-doctor').value.trim();
+      const date = document.getElementById('input-app-date').value;
+      const time = document.getElementById('input-app-time').value.trim() || '10:00 AM';
+      const location = document.getElementById('input-app-location').value.trim() || 'Diagnostic Center';
+
+      if (!title || !date) return alert('Please enter checkup purpose and date.');
+
+      lifeData.health.appointments.push({
+        id: `h-${Date.now()}`,
+        title,
+        doctor,
+        date,
+        time,
+        location,
+        status: "Confirmed"
+      });
+      closeAddAppointmentModal();
+      persistData();
+    }
+
+    // Render 4: Shopping
+    function renderShopping() {
+      const grid = document.getElementById('shopping-items-grid');
+      grid.innerHTML = '';
+
+      const items = (lifeData.shopping || []).filter(item => currentShoppingFilter === 'All' || item.category === currentShoppingFilter);
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-6 text-center text-gray-500 text-xs">No items in this category. Click "+ Add Shopping Item".</div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'flex items-center justify-between p-3 rounded-xl bg-gray-950/80 border border-gray-800 text-xs hover:border-gray-700 transition';
+        card.innerHTML = `
+          <div class="flex items-center gap-2.5 flex-1">
+            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleShoppingItem('${item.id}')" class="w-4 h-4 rounded text-purple-600 bg-gray-800 border-gray-700 cursor-pointer" />
+            <div>
+              <span class="${item.done ? 'line-through text-gray-500' : 'text-gray-200 font-medium'}">${item.item}</span>
+              <span class="block text-[9px] text-gray-500 uppercase font-mono mt-0.5">${item.category}</span>
+            </div>
+          </div>
+          ${isEditMode ? `<button onclick="deleteShoppingItem('${item.id}')" class="text-red-400 hover:text-red-300 text-xs ml-2 font-bold">✕</button>` : ''}
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleShoppingItem(id) {
+      const item = lifeData.shopping.find(i => i.id === id);
+      if (item) { item.done = !item.done; persistData(); }
+    }
+    function deleteShoppingItem(id) {
+      lifeData.shopping = lifeData.shopping.filter(i => i.id !== id);
+      persistData();
+    }
+
+    function filterShopping(cat) {
+      currentShoppingFilter = cat;
+      ['All', 'Gym', 'Garba', 'Health', 'Groceries'].forEach(c => {
+        const btn = document.getElementById(`btn-shop-${c.toLowerCase()}`);
+        if (btn) {
+          btn.className = (c === cat) ? 'text-xs px-3 py-1 rounded-lg bg-gray-700 text-white font-medium' : 'text-xs px-3 py-1 rounded-lg text-gray-400 hover:text-white';
+        }
+      });
+      renderShopping();
+    }
+
+    // Modal Shopping
+    function openAddShoppingModal() {
+      document.getElementById('input-shop-item').value = '';
+      document.getElementById('shopping-modal').classList.remove('hidden');
+    }
+    function closeAddShoppingModal() { document.getElementById('shopping-modal').classList.add('hidden'); }
+    function saveNewShoppingItem() {
+      const item = document.getElementById('input-shop-item').value.trim();
+      const category = document.getElementById('input-shop-cat').value;
+      if (!item) return;
+
+      lifeData.shopping.push({
+        id: `s-${Date.now()}`,
+        item,
+        category,
+        done: false
+      });
+      closeAddShoppingModal();
+      persistData();
+    }
+
+    // Update Pulse Bar
+    function updateKPIs() {
+      document.getElementById('water-display').textContent = `${lifeData.profile.waterIntakeGlasses || 0}/8 Glasses`;
+      document.getElementById('protein-display').textContent = `${lifeData.profile.proteinGrams || 0}/140g Protein`;
+
+      document.getElementById('stat-gym-streak').textContent = `${lifeData.profile.gymStreakDays || 6} Days`;
+
+      // Garba Countdown
+      const targetDate = new Date(lifeData.garba.countdownEventDate + 'T19:00:00');
+      const now = new Date();
+      const days = Math.max(0, Math.ceil((targetDate - now) / (1000 * 60 * 60 * 24)));
+      document.getElementById('stat-garba-countdown').textContent = `${days} Days`;
+
+      // Next Checkup
+      if (lifeData.health.appointments && lifeData.health.appointments.length > 0) {
+        document.getElementById('stat-health-checkup').textContent = lifeData.health.appointments[0].date.substring(5);
+      } else {
+        document.getElementById('stat-health-checkup').textContent = "None";
+      }
+
+      // Pending Shopping
+      const pendingCount = (lifeData.shopping || []).filter(i => !i.done).length;
+      document.getElementById('stat-shopping-pending').textContent = `${pendingCount} Items`;
+    }
+
+    // File Persistence
+    async function saveToLocalFile() {
+      const jsonStr = JSON.stringify(lifeData, null, 2);
+
+      if ('showSaveFilePicker' in window) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: 'daily_life_data.json',
+            types: [{ description: 'JSON File', accept: { 'application/json': ['.json'] } }]
+          });
+          const writable = await handle.createWritable();
+          await writable.write(jsonStr);
+          await writable.close();
+          alert('Saved directly to data/daily_life_data.json!');
+          return;
+        } catch (err) {
+          if (err.name === 'AbortError') return;
+        }
+      }
+
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'daily_life_data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      alert('Downloaded daily_life_data.json. Save it in data/daily_life_data.json to persist to git.');
+    }
+
+    function importLocalJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          lifeData = JSON.parse(evt.target.result);
+          persistData();
+          alert('Daily life data loaded successfully!');
+        } catch (err) {
+          alert('Error reading JSON file.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(lifeData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `daily-life-backup-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function resetToDefault() {
+      if (confirm('Reset daily life data to initial defaults?')) {
+        lifeData = JSON.parse(JSON.stringify(defaultData));
+        persistData();
+      }
+    }
+
+    function renderAll() {
+      renderGym();
+      renderGarba();
+      renderHealth();
+      renderShopping();
+      updateKPIs();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTheme(currentTheme);
+      renderAll();
+    });
+  </script>
+</body>
+</html>

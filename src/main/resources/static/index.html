@@ -165,6 +165,28 @@
 </head>
 <body class="p-4 md:p-8 theme-mahabharat" id="body-root">
 
+  <!-- Top Global App Switcher Navigation Bar -->
+  <nav class="max-w-7xl mx-auto mb-5 flex flex-wrap justify-between items-center gap-3 bg-gray-950/80 p-2 rounded-xl border border-gray-800/80 shadow-lg">
+    <div class="flex items-center gap-2">
+      <a href="dashboard.html" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600/30 text-amber-300 border border-amber-500/50 font-bold flex items-center gap-2 shadow-[0_0_10px_rgba(245,158,11,0.3)]">
+        <span>🎯</span> <span>AI Certifications Hub</span>
+      </a>
+      <a href="life.html" class="text-xs px-3.5 py-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition flex items-center gap-2">
+        <span>⚡</span> <span class="font-medium">Daily Life & Wellness OS</span>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="btn-edit-toggle" onclick="toggleEditMode()" class="text-xs px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow">
+        <span id="edit-icon">✏️</span> <span id="edit-text">Edit Mode</span>
+      </button>
+
+      <button onclick="toggleToolbox()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-medium transition flex items-center gap-1.5">
+        <span>🛠️</span> <span>Toolbox</span> <span id="toolbox-chevron" class="text-[10px] text-gray-400">▾</span>
+      </button>
+    </div>
+  </nav>
+
   <!-- Minimalist Executive Header -->
   <header class="max-w-7xl mx-auto mb-6 border-b border-gray-800 pb-5">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
