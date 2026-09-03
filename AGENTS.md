@@ -20,3 +20,7 @@
 - Spring Data JPA with PostgreSQL
 - Anthropic SDK & Google Gemini API integrations
 - JUnit 5 & Mockito
+
+## AGY Chat Commands
+- `certs` / `/certs`: When the user types `certs` in AGY chat, immediately open `dashboard.html` in their browser and render the active countdowns and milestone status directly in the conversation.
+
