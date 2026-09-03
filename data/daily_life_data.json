@@ -25,17 +25,35 @@
       { "id": "g-5", "name": "Triceps Rope Pushdowns + Overhead Extensions (4 sets)", "done": false }
     ]
   },
+  "customRoutines": [
+    {
+      "id": "routine-skincare",
+      "title": "Daily Skincare & Grooming Ritual",
+      "badge": "SKINCARE & DERMA CARE",
+      "schedule": "AM: 07:30 AM • PM: 10:30 PM",
+      "image": "assets/skincare.jpg",
+      "borderColor": "border-pink-500/40",
+      "items": [
+        { "id": "sc-1", "title": "AM: Gentle hydrating cleanser & cool water splash", "done": true },
+        { "id": "sc-2", "title": "AM: Vitamin C 10% antioxidant glow serum", "done": true },
+        { "id": "sc-3", "title": "AM: Light barrier moisturizer + SPF 50 Broad Spectrum sunscreen", "done": false },
+        { "id": "sc-4", "title": "PM: Double cleanse (oil-based balm + gentle amino wash)", "done": false },
+        { "id": "sc-5", "title": "PM: Niacinamide & gentle Retinol 0.2% cellular repair", "done": false },
+        { "id": "sc-6", "title": "PM: Deep ceramide peptide night recovery barrier cream", "done": false }
+      ]
+    }
+  ],
   "garba": {
     "eventName": "Navratri Mahotsav & Weekend Dandiya Practice",
     "practiceVenue": "Community Cultural Grounds / Dance Hall",
     "practiceTime": "08:30 PM - 10:30 PM",
     "countdownEventDate": "2026-10-10",
     "stepsMastery": [
-      { "id": "gb-1", title: "2-Taali (Classic 2-clap rhythm & footwork)", "done": true },
-      { "id": "gb-2", title: "3-Taali (Traditional 3-clap spin sequence)", "done": true },
-      { "id": "gb-3", title: "Dodhiya (12-step advanced continuous loop)", "done": false },
-      { "id": "gb-4", title: "Sanedo & Hinch speed transition", "done": false },
-      { "id": "gb-5", title: "Dandiya Raas double-strike pairing sequence", "done": false }
+      { "id": "gb-1", "title": "2-Taali (Classic 2-clap rhythm & footwork)", "done": true },
+      { "id": "gb-2", "title": "3-Taali (Traditional 3-clap spin sequence)", "done": true },
+      { "id": "gb-3", "title": "Dodhiya (12-step advanced continuous loop)", "done": false },
+      { "id": "gb-4", "title": "Sanedo & Hinch speed transition", "done": false },
+      { "id": "gb-5", "title": "Dandiya Raas double-strike pairing sequence", "done": false }
     ],
     "prepItems": [
       { "id": "gp-1", "item": "Traditional Kurta & Dupatta set", "done": true },

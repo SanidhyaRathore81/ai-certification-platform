@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Life & Wellness Command Center • Fitness, Garba, Health & Errands</title>
+  <title>Daily Life & Wellness Command Center • Fitness, Garba, Skincare, Health & Errands</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* THEME 1: DHARMAYUDDHA */
@@ -192,7 +192,6 @@
   <!-- Expandable Toolbox Panel (Themes + File Sync) -->
   <div id="toolbox-panel" class="hidden max-w-7xl mx-auto mb-6 p-4 rounded-xl bg-gray-900/95 border border-gray-700/80 shadow-2xl transition-all">
     <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-      <!-- Theme Selector -->
       <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-xs">
         <span class="text-gray-300 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
           <span>🎨</span> Themes:
@@ -213,7 +212,6 @@
         </div>
       </div>
 
-      <!-- File Persistence Actions -->
       <div class="flex flex-wrap items-center gap-2">
         <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition flex items-center gap-1 shadow">
           <span>💾</span> Save Local File
@@ -246,11 +244,10 @@
           </h1>
         </div>
         <p class="text-xs text-gray-400 mt-1" id="header-subtitle">
-          Daily Quick Tasks • Gym Routine • Garba Practice • Medical Checkups • Shopping & Errands
+          Daily Quick Tasks • Gym Routine • Skincare & Grooming • Garba Practice • Medical Checkups • Errands
         </p>
       </div>
 
-      <!-- Quick Quick Log Pills: Water & Protein -->
       <div class="flex flex-wrap items-center gap-2 bg-gray-950/90 p-2 rounded-xl border border-gray-800">
         <button onclick="incrementWater()" class="px-3 py-1.5 rounded-lg bg-blue-900/40 hover:bg-blue-900/60 border border-blue-700/60 text-blue-300 text-xs font-semibold flex items-center gap-1.5 transition">
           <span>💧</span> <span id="water-display">5/8 Glasses</span> <span class="text-[10px] bg-blue-600 text-white px-1 rounded font-bold">+1</span>
@@ -284,7 +281,7 @@
       </div>
     </section>
 
-    <!-- NEW: Today's Dynamic Quick Tasks & Ad-hoc To-Dos (Add, Remove & Edit Anytime) -->
+    <!-- 1. Today's Dynamic Quick Tasks & Ad-hoc To-Dos -->
     <section class="glass-card rounded-2xl p-6 border-amber-500/40">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
         <div>
@@ -303,7 +300,6 @@
         </div>
       </div>
 
-      <!-- Quick Add Task Input Box -->
       <div class="flex flex-col sm:flex-row gap-2 mb-4">
         <input 
           id="input-quick-task-text" 
@@ -322,13 +318,31 @@
         </button>
       </div>
 
-      <!-- Daily Tasks List -->
       <div id="daily-tasks-list" class="space-y-2">
         <!-- Injected via JS -->
       </div>
     </section>
 
-    <!-- 1. Fitness & Gym Command (Iron Sanctuary) -->
+    <!-- 2. Major Lifestyle Routines (Includes Skincare & User-Defined Big Routines) -->
+    <section>
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+            <span>✨</span> MAJOR LIFESTYLE & WELLNESS ROUTINES
+          </h2>
+          <p class="text-xs text-gray-400">Custom major daily blocks like Skincare, Evening Wind-down, Reading, or Meditation.</p>
+        </div>
+        <button onclick="openCreateRoutineModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-pink-600 hover:bg-pink-500 text-white font-bold transition flex items-center gap-1.5 shadow-[0_0_12px_rgba(236,72,153,0.4)]">
+          <span>+</span> Create New Routine Block
+        </button>
+      </div>
+
+      <div id="custom-routines-container" class="space-y-6">
+        <!-- Dynamically renders Skincare Routine + any user-created major routine -->
+      </div>
+    </section>
+
+    <!-- 3. Fitness & Gym Command (Iron Sanctuary) -->
     <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/gym.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
@@ -363,7 +377,7 @@
       </div>
     </section>
 
-    <!-- 2. Garba & Cultural Dance Practice (Dandiya Raas Hub) -->
+    <!-- 4. Garba & Cultural Dance Practice (Dandiya Raas Hub) -->
     <section class="glass-card rounded-2xl overflow-hidden border-amber-500/30">
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/garba.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
@@ -404,7 +418,7 @@
       </div>
     </section>
 
-    <!-- 3. Health, Vitals & Medical Checkups (Aarogya Hub) -->
+    <!-- 5. Health, Vitals & Medical Checkups (Aarogya Hub) -->
     <section class="glass-card rounded-2xl overflow-hidden border-emerald-500/30">
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/health.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
@@ -440,7 +454,7 @@
       </div>
     </section>
 
-    <!-- 4. Shopping & Daily Errands Command -->
+    <!-- 6. Shopping & Daily Errands Command -->
     <section class="glass-card rounded-2xl overflow-hidden border-purple-500/30">
       <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('assets/shopping.jpg');">
         <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
@@ -473,6 +487,70 @@
   </main>
 
   <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal: Create / Edit Custom Major Routine Block -->
+  <div id="custom-routine-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 id="routine-modal-heading" class="text-base font-bold text-white">Create New Routine Block</h3>
+        <button onclick="closeCreateRoutineModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <input type="hidden" id="input-routine-id" />
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Routine Title</label>
+          <input id="input-routine-title" type="text" placeholder="e.g. Daily Skincare & Derma Care or Meditation Routine" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Category Badge</label>
+          <input id="input-routine-badge" type="text" placeholder="e.g. SKINCARE & GROOMING or WELLNESS" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Schedule / Timing</label>
+          <input id="input-routine-schedule" type="text" placeholder="e.g. AM: 07:30 AM & PM: 10:30 PM" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Hero Photo Preset</label>
+          <select id="input-routine-image" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
+            <option value="assets/skincare.jpg">✨ Skincare & Grooming</option>
+            <option value="assets/gym.jpg">🏋️‍♂️ Fitness & Strength</option>
+            <option value="assets/health.jpg">🩺 Health & Wellness</option>
+            <option value="assets/garba.jpg">💃 Dance & Culture</option>
+            <option value="assets/shopping.jpg">🛒 Shopping & Errands</option>
+          </select>
+        </div>
+        <div id="routine-steps-input-box">
+          <label class="block text-gray-400 mb-1">Initial Checklist Steps (One per line)</label>
+          <textarea id="input-routine-steps" rows="3" placeholder="Cleanser & wash&#10;Vitamin C serum&#10;SPF 50 Sunscreen" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white"></textarea>
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeCreateRoutineModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveCustomRoutine()" class="text-xs px-4 py-1.5 bg-pink-600 hover:bg-pink-500 text-white rounded font-medium">Save Routine Block</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add Step to a Specific Custom Routine -->
+  <div id="add-step-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 class="text-base font-bold text-white">Add Step to Routine</h3>
+        <button onclick="closeAddStepModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <input type="hidden" id="input-step-routine-id" />
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Step / Protocol Description</label>
+          <input id="input-step-title" type="text" placeholder="e.g. Apply Hyaluronic Acid serum" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeAddStepModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveNewRoutineStep()" class="text-xs px-4 py-1.5 bg-pink-600 hover:bg-pink-500 text-white rounded font-medium">Add Step</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal: Edit Gym Focus & Time -->
   <div id="edit-gym-focus-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
@@ -649,7 +727,7 @@
   </footer>
 
   <script>
-    const STORAGE_KEY = 'ai_daily_life_hub_v2';
+    const STORAGE_KEY = 'ai_daily_life_hub_v3';
     const THEME_KEY = 'ai_cert_theme_choice';
 
     const defaultData = {
@@ -665,6 +743,23 @@
         { id: "dt-2", title: "Call Apollo clinic to confirm morning blood work slot", priority: "Normal", done: true },
         { id: "dt-3", title: "Pay home broadband & electricity bills", priority: "Normal", done: false },
         { id: "dt-4", title: "Order replacement Dandiya grip tape online", priority: "Low", done: false }
+      ],
+      customRoutines: [
+        {
+          id: "routine-skincare",
+          title: "Daily Skincare & Derma Care Ritual",
+          badge: "SKINCARE & DERMA CARE",
+          schedule: "AM: 07:30 AM • PM: 10:30 PM",
+          image: "assets/skincare.jpg",
+          items: [
+            { id: "sc-1", title: "AM: Gentle hydrating cleanser & cool water splash", done: true },
+            { id: "sc-2", title: "AM: Vitamin C 10% antioxidant glow serum", done: true },
+            { id: "sc-3", title: "AM: Light barrier moisturizer + SPF 50 Broad Spectrum sunscreen", done: false },
+            { id: "sc-4", title: "PM: Double cleanse (oil balm + gentle amino wash)", done: false },
+            { id: "sc-5", title: "PM: Niacinamide & Retinol 0.2% cellular repair serum", done: false },
+            { id: "sc-6", title: "PM: Deep ceramide peptide barrier recovery cream", done: false }
+          ]
+        }
       ],
       gym: {
         todayFocus: "Push Day: Chest, Shoulders & Triceps",
@@ -846,7 +941,7 @@
     }
 
     // ==========================================
-    // RENDER 0: DAILY QUICK AD-HOC TASKS (NEW!)
+    // RENDER 0: DAILY QUICK TASKS
     // ==========================================
     function renderDailyTasks() {
       const container = document.getElementById('daily-tasks-list');
@@ -929,7 +1024,225 @@
     }
 
     // ==========================================
-    // RENDER 1: GYM COMMAND
+    // RENDER 2: DYNAMIC MAJOR ROUTINE BLOCKS (SKINCARE, ETC.)
+    // ==========================================
+    function renderCustomRoutines() {
+      const container = document.getElementById('custom-routines-container');
+      container.innerHTML = '';
+
+      const routines = lifeData.customRoutines || [];
+
+      if (routines.length === 0) {
+        container.innerHTML = `<div class="glass-card rounded-2xl p-6 text-center text-xs text-gray-500">No major routines created. Click "+ Create New Routine Block" to add Skincare, Meditation, etc.</div>`;
+        return;
+      }
+
+      routines.forEach(routine => {
+        const items = routine.items || [];
+        const doneCount = items.filter(i => i.done).length;
+        const totalCount = items.length;
+        const pct = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
+
+        const card = document.createElement('section');
+        card.className = 'glass-card rounded-2xl overflow-hidden border-pink-500/40 transition hover:border-pink-500/60';
+
+        let itemsHtml = '';
+        items.forEach(item => {
+          itemsHtml += `
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-gray-950/70 border border-gray-800 text-xs hover:border-gray-700 transition">
+              <label class="flex items-center gap-2.5 cursor-pointer flex-1">
+                <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleRoutineItem('${routine.id}', '${item.id}')" class="w-4 h-4 rounded text-pink-500 bg-gray-800 border-gray-700 focus:ring-pink-500 cursor-pointer" />
+                <span class="${item.done ? 'line-through text-gray-500' : 'text-gray-200 font-medium'}">${item.title}</span>
+              </label>
+              <div class="flex items-center gap-1.5 ml-2">
+                <button onclick="promptEditRoutineItem('${routine.id}', '${item.id}')" class="text-amber-400 hover:text-amber-300">✏️</button>
+                <button onclick="deleteRoutineItem('${routine.id}', '${item.id}')" class="text-red-400 hover:text-red-300 font-bold">✕</button>
+              </div>
+            </div>
+          `;
+        });
+
+        const imageSrc = routine.image || 'assets/skincare.jpg';
+
+        card.innerHTML = `
+          <div class="h-44 hero-banner p-6 flex flex-col justify-end" style="background-image: url('${imageSrc}');">
+            <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
+              <div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-pink-600 text-white uppercase tracking-wider">${routine.badge || 'ROUTINE'}</span>
+                <div class="flex items-center gap-2 mt-1">
+                  <h2 class="text-xl md:text-2xl font-black text-white">${routine.title}</h2>
+                  <button onclick="openEditRoutineModal('${routine.id}')" title="Edit Routine Title & Timing" class="text-xs text-amber-300 hover:text-white p-1 rounded bg-black/40 border border-amber-500/40">
+                    ✏️ Edit
+                  </button>
+                  <button onclick="deleteEntireRoutine('${routine.id}')" title="Remove Entire Routine" class="text-xs text-red-400 hover:text-red-300 p-1 rounded bg-black/40 border border-red-500/40">
+                    ✕ Remove
+                  </button>
+                </div>
+                <p class="text-xs text-pink-200/90 font-mono mt-0.5">⏰ ${routine.schedule || 'Daily Protocol'}</p>
+              </div>
+              <button onclick="openAddStepModal('${routine.id}')" class="text-xs px-3.5 py-1.5 rounded-lg bg-pink-600 hover:bg-pink-500 text-white font-bold transition flex items-center gap-1 shadow">
+                + Add Step
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Protocol Checklist</span>
+              <span class="text-xs font-bold text-pink-400">${doneCount} / ${totalCount} Completed (${pct}%)</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-1.5 mb-4">
+              <div class="h-1.5 rounded-full bg-pink-500 transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              ${itemsHtml}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function toggleRoutineItem(routineId, itemId) {
+      const r = lifeData.customRoutines.find(item => item.id === routineId);
+      if (!r) return;
+      const i = r.items.find(step => step.id === itemId);
+      if (i) { i.done = !i.done; persistData(); }
+    }
+
+    function promptEditRoutineItem(routineId, itemId) {
+      const r = lifeData.customRoutines.find(item => item.id === routineId);
+      if (!r) return;
+      const i = r.items.find(step => step.id === itemId);
+      if (!i) return;
+      const newTitle = prompt('Edit routine step:', i.title);
+      if (newTitle && newTitle.trim()) {
+        i.title = newTitle.trim();
+        persistData();
+      }
+    }
+
+    function deleteRoutineItem(routineId, itemId) {
+      const r = lifeData.customRoutines.find(item => item.id === routineId);
+      if (!r) return;
+      r.items = r.items.filter(step => step.id !== itemId);
+      persistData();
+    }
+
+    function deleteEntireRoutine(routineId) {
+      if (confirm('Delete this entire major routine block?')) {
+        lifeData.customRoutines = lifeData.customRoutines.filter(r => r.id !== routineId);
+        persistData();
+      }
+    }
+
+    function openCreateRoutineModal() {
+      document.getElementById('routine-modal-heading').textContent = 'Create New Routine Block';
+      document.getElementById('input-routine-id').value = '';
+      document.getElementById('input-routine-title').value = '';
+      document.getElementById('input-routine-badge').value = 'SKINCARE & GROOMING';
+      document.getElementById('input-routine-schedule').value = 'AM: 07:30 AM • PM: 10:30 PM';
+      document.getElementById('input-routine-image').value = 'assets/skincare.jpg';
+      document.getElementById('input-routine-steps').value = '';
+      document.getElementById('routine-steps-input-box').classList.remove('hidden');
+      document.getElementById('custom-routine-modal').classList.remove('hidden');
+    }
+
+    function openEditRoutineModal(routineId) {
+      const r = lifeData.customRoutines.find(item => item.id === routineId);
+      if (!r) return;
+
+      document.getElementById('routine-modal-heading').textContent = 'Edit Routine Details';
+      document.getElementById('input-routine-id').value = r.id;
+      document.getElementById('input-routine-title').value = r.title;
+      document.getElementById('input-routine-badge').value = r.badge || 'ROUTINE';
+      document.getElementById('input-routine-schedule').value = r.schedule || '';
+      document.getElementById('input-routine-image').value = r.image || 'assets/skincare.jpg';
+      document.getElementById('routine-steps-input-box').classList.add('hidden'); // Edit steps inline
+      document.getElementById('custom-routine-modal').classList.remove('hidden');
+    }
+
+    function closeCreateRoutineModal() {
+      document.getElementById('custom-routine-modal').classList.add('hidden');
+    }
+
+    function saveCustomRoutine() {
+      const id = document.getElementById('input-routine-id').value;
+      const title = document.getElementById('input-routine-title').value.trim();
+      const badge = document.getElementById('input-routine-badge').value.trim() || 'ROUTINE';
+      const schedule = document.getElementById('input-routine-schedule').value.trim() || 'Daily Protocol';
+      const image = document.getElementById('input-routine-image').value;
+      const rawSteps = document.getElementById('input-routine-steps').value.trim();
+
+      if (!title) return alert('Please enter a routine title');
+
+      if (!lifeData.customRoutines) lifeData.customRoutines = [];
+
+      if (id) {
+        const r = lifeData.customRoutines.find(item => item.id === id);
+        if (r) {
+          r.title = title;
+          r.badge = badge;
+          r.schedule = schedule;
+          r.image = image;
+        }
+      } else {
+        let itemsList = [];
+        if (rawSteps) {
+          itemsList = rawSteps.split('\n')
+            .map(l => l.trim())
+            .filter(l => l.length > 0)
+            .map((stepTitle, idx) => ({ id: `step-${Date.now()}-${idx}`, title: stepTitle, done: false }));
+        }
+        if (itemsList.length === 0) {
+          itemsList = [
+            { id: `step-${Date.now()}-1`, title: 'Morning hydration & cleanse', done: false },
+            { id: `step-${Date.now()}-2`, title: 'Treatment & active serum', done: false },
+            { id: `step-${Date.now()}-3`, title: 'Barrier protection & moisture', done: false }
+          ];
+        }
+
+        lifeData.customRoutines.push({
+          id: `routine-${Date.now()}`,
+          title,
+          badge,
+          schedule,
+          image,
+          items: itemsList
+        });
+      }
+
+      closeCreateRoutineModal();
+      persistData();
+    }
+
+    function openAddStepModal(routineId) {
+      document.getElementById('input-step-routine-id').value = routineId;
+      document.getElementById('input-step-title').value = '';
+      document.getElementById('add-step-modal').classList.remove('hidden');
+    }
+
+    function closeAddStepModal() {
+      document.getElementById('add-step-modal').classList.add('hidden');
+    }
+
+    function saveNewRoutineStep() {
+      const routineId = document.getElementById('input-step-routine-id').value;
+      const title = document.getElementById('input-step-title').value.trim();
+      if (!title) return;
+
+      const r = lifeData.customRoutines.find(item => item.id === routineId);
+      if (r) {
+        if (!r.items) r.items = [];
+        r.items.push({ id: `step-${Date.now()}`, title, done: false });
+        persistData();
+      }
+      closeAddStepModal();
+    }
+
+    // ==========================================
+    // RENDER 3: GYM COMMAND
     // ==========================================
     function renderGym() {
       const container = document.getElementById('gym-exercises-list');
@@ -1022,7 +1335,7 @@
     }
 
     // ==========================================
-    // RENDER 2: GARBA PRACTICE
+    // RENDER 4: GARBA PRACTICE
     // ==========================================
     function renderGarba() {
       const stepsList = document.getElementById('garba-steps-list');
@@ -1115,7 +1428,7 @@
     }
 
     // ==========================================
-    // RENDER 3: HEALTH COMMAND
+    // RENDER 5: HEALTH COMMAND
     // ==========================================
     function renderHealth() {
       const appList = document.getElementById('health-appointments-list');
@@ -1234,7 +1547,7 @@
     }
 
     // ==========================================
-    // RENDER 4: SHOPPING COMMAND
+    // RENDER 6: SHOPPING COMMAND
     // ==========================================
     function renderShopping() {
       const grid = document.getElementById('shopping-items-grid');
@@ -1417,6 +1730,7 @@
 
     function renderAll() {
       renderDailyTasks();
+      renderCustomRoutines();
       renderGym();
       renderGarba();
       renderHealth();
