@@ -1,46 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Certification Command Center & Learning Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            darkbg: '#090D16',
-            darkcard: '#111827',
-            darkborder: '#1F2937'
-          }
-        }
-      }
-    };
-  </script>
   <style>
+    /* Theme Definitions */
+    :root {
+      --bg-color: #090D16;
+      --card-bg: rgba(17, 24, 39, 0.85);
+      --card-border: rgba(55, 65, 81, 0.6);
+      --accent-primary: #6366f1;
+      --accent-text: #818cf8;
+      --accent-badge: rgba(99, 102, 241, 0.2);
+      --accent-badge-text: #a5b4fc;
+      --accent-badge-border: rgba(99, 102, 241, 0.4);
+    }
+
+    /* Avengers / Stark Arc Reactor Theme */
+    body.theme-avengers {
+      --bg-color: #0C0507;
+      --card-bg: rgba(26, 12, 16, 0.85);
+      --card-border: rgba(153, 27, 27, 0.5);
+      --accent-primary: #00F0FF;
+      --accent-text: #38BDF8;
+      --accent-badge: rgba(220, 38, 38, 0.25);
+      --accent-badge-text: #FCA5A5;
+      --accent-badge-border: rgba(220, 38, 38, 0.5);
+    }
+
+    /* Coach's Choice: Anthropic Obsidian & Amber Theme */
+    body.theme-amber {
+      --bg-color: #0C0A09;
+      --card-bg: rgba(28, 25, 23, 0.88);
+      --card-border: rgba(120, 53, 15, 0.5);
+      --accent-primary: #D97706;
+      --accent-text: #FBBF24;
+      --accent-badge: rgba(217, 119, 6, 0.25);
+      --accent-badge-text: #FDE68A;
+      --accent-badge-border: rgba(217, 119, 6, 0.5);
+    }
+
     body {
-      background-color: #090D16;
+      background-color: var(--bg-color);
       color: #E2E8F0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
+
     .glass-card {
-      background: rgba(17, 24, 39, 0.85);
-      border: 1px solid rgba(55, 65, 81, 0.6);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
     }
+
     .modal-backdrop {
       background-color: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(4px);
     }
+
     .edit-mode-active {
       outline: 2px dashed rgba(245, 158, 11, 0.6);
       outline-offset: 4px;
     }
   </style>
 </head>
-<body class="min-h-screen p-4 md:p-8">
+<body class="min-h-screen p-4 md:p-8 theme-default" id="body-root">
 
   <!-- Minimalist Executive Header -->
   <header class="max-w-7xl mx-auto mb-6 border-b border-gray-800 pb-5">
@@ -48,10 +75,13 @@
       <div>
         <div class="flex items-center gap-3">
           <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <h1 class="text-2xl font-bold tracking-tight text-white">AI Certification Command Center</h1>
+          <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+            AI Certification Command Center
+            <span id="theme-tag" class="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Cyber Dark</span>
+          </h1>
         </div>
         <p class="text-xs text-gray-400 mt-1">
-          Upcoming Exams & Vouchers • CCDV-F, CCAR-F, CCAR-P • Udemy Learning Hub
+          Scheduled Exams Pipeline • Udemy Learning Hub • Exam Vouchers
         </p>
       </div>
 
@@ -67,16 +97,27 @@
       </div>
     </div>
 
-    <!-- Expandable Toolbox Panel -->
+    <!-- Expandable Toolbox Panel (Includes Theme Selector) -->
     <div id="toolbox-panel" class="hidden mt-4 p-4 rounded-xl bg-gray-900/95 border border-gray-700/80 shadow-xl transition-all">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-        <div class="flex items-center gap-2 text-xs text-gray-300">
-          <span class="px-2 py-0.5 rounded bg-gray-800 border border-gray-700 text-indigo-300 font-mono text-[11px]">
-            data/cert_dashboard_data.json
-          </span>
-          <span class="text-gray-400">Workspace data file</span>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        
+        <!-- Theme Selector -->
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-gray-400 font-semibold flex items-center gap-1">🎨 <span>Theme:</span></span>
+          <div class="flex gap-1.5 bg-gray-950 p-1 rounded-lg border border-gray-800">
+            <button onclick="applyTheme('default')" id="btn-theme-default" class="px-2.5 py-1 rounded text-xs font-medium bg-indigo-600 text-white transition">
+              Cyber Dark
+            </button>
+            <button onclick="applyTheme('avengers')" id="btn-theme-avengers" class="px-2.5 py-1 rounded text-xs font-medium text-gray-400 hover:text-red-400 transition flex items-center gap-1">
+              <span>🛡️</span> Avengers (Arc Reactor)
+            </button>
+            <button onclick="applyTheme('amber')" id="btn-theme-amber" class="px-2.5 py-1 rounded text-xs font-medium text-gray-400 hover:text-amber-400 transition flex items-center gap-1">
+              <span>🔥</span> Coach's Choice (Obsidian & Amber)
+            </button>
+          </div>
         </div>
 
+        <!-- File Persistence & Export Actions -->
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition flex items-center gap-1">
             <span>💾</span> Save Local File
@@ -99,7 +140,7 @@
     <div id="edit-mode-banner" class="hidden mt-4 p-3 rounded-lg bg-amber-950/40 border border-amber-500/50 text-amber-300 text-xs flex justify-between items-center">
       <div class="flex items-center gap-2">
         <span class="text-base">⚠️</span>
-        <span><b>Edit Mode Active:</b> You can modify exam voucher strategies, scheduling statuses, milestones, and courses. Click <b>Done Editing</b> when finished.</span>
+        <span><b>Edit Mode Active:</b> Modify exam schedules, test center locations, milestones, and courses. Click <b>Done Editing</b> when finished.</span>
       </div>
       <button onclick="toggleEditMode()" class="px-3 py-1 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs">
         Done Editing
@@ -113,7 +154,7 @@
     <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black text-indigo-400" id="stat-active-certs">3</span>
-        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Active Targets</span>
+        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Scheduled Exams</span>
       </div>
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black text-emerald-400" id="stat-udemy-total">0</span>
@@ -129,12 +170,12 @@
       </div>
     </section>
 
-    <!-- 1. Target Certification Pipeline (Upcoming: Schedule & Voucher Status Included) -->
+    <!-- 1. Scheduled Exam Pipeline (Upcoming Target Certifications) -->
     <section>
       <div class="flex justify-between items-center mb-4">
         <div>
-          <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400">1. Target Certification Pipeline (Upcoming)</h2>
-          <p class="text-xs text-gray-400">Upcoming exam countdowns, scheduling status, and linked voucher acquisition plans.</p>
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400">1. Scheduled Exam Pipeline (Confirmed Upcoming)</h2>
+          <p class="text-xs text-gray-400">Exam countdowns, confirmed time, test location, and interactive preparation milestones.</p>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="certs-pipeline-grid">
@@ -180,7 +221,7 @@
             <span class="text-amber-400 text-base">🎟️</span>
             <h2 class="text-lg font-bold text-white">Upcoming Certification Vouchers & Discounts</h2>
           </div>
-          <p class="text-xs text-gray-400 mt-0.5">How to get exam vouchers, eligibility steps, and booking schedule links.</p>
+          <p class="text-xs text-gray-400 mt-0.5">Track upcoming voucher opportunities, discount acquisition steps, and promo links.</p>
         </div>
         <button onclick="openVoucherModal()" class="text-xs px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-medium rounded-lg transition">
           + Add Voucher Plan
@@ -216,12 +257,41 @@
 
   <!-- ==================== MODALS ==================== -->
 
+  <!-- Modal: Update Time & Location for Scheduled Exam -->
+  <div id="time-loc-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
+        <h3 id="time-loc-heading" class="text-base font-bold text-white">Update Exam Schedule & Location</h3>
+        <button onclick="closeTimeLocModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <input type="hidden" id="input-tl-cert-id" />
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-gray-400 mb-1">Exam Date (YYYY-MM-DD)</label>
+          <input id="input-tl-date" type="date" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Exam Time</label>
+          <input id="input-tl-time" type="text" placeholder="e.g. 10:00 AM IST or 02:30 PM UTC" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-gray-400 mb-1">Location / Testing Mode</label>
+          <input id="input-tl-loc" type="text" placeholder="e.g. Online Proctored (Pearson VUE) or Test Center Name" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
+        </div>
+      </div>
+      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
+        <button onclick="closeTimeLocModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
+        <button onclick="saveTimeLocData()" class="text-xs px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-medium">Save Schedule</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Voucher Plan Popup Modal (From Voucher Hub) -->
   <div id="plan-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
       <div class="flex justify-between items-start mb-4 border-b border-gray-800 pb-3">
         <div>
-          <span id="modal-voucher-badge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/60 text-amber-300 border border-amber-700/60">VOUCHER PLAN</span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/60 text-amber-300 border border-amber-700/60">VOUCHER PLAN</span>
           <h3 id="modal-voucher-title" class="text-lg font-bold text-white mt-1">Exam Name</h3>
           <p id="modal-voucher-provider" class="text-xs text-gray-400">Provider & Value</p>
         </div>
@@ -232,7 +302,7 @@
         <div>
           <h4 class="text-xs font-semibold uppercase text-indigo-400 mb-1">Acquisition Strategy: How to Get the Voucher</h4>
           <div id="modal-voucher-steps" class="text-xs text-gray-300 bg-gray-950 p-3.5 rounded-lg border border-gray-800 whitespace-pre-wrap leading-relaxed">
-            <!-- Steps go here -->
+            <!-- Steps -->
           </div>
         </div>
 
@@ -242,14 +312,14 @@
             <span id="modal-voucher-status" class="font-bold text-amber-300">In Progress</span>
           </div>
           <div class="bg-gray-950 p-2.5 rounded-lg border border-gray-800">
-            <span class="text-gray-500 block text-[10px] uppercase">Target Exam Schedule</span>
+            <span class="text-gray-500 block text-[10px] uppercase">Deadline / Expiry</span>
             <span id="modal-voucher-expiry" class="font-bold text-gray-300">None</span>
           </div>
         </div>
 
         <div id="modal-voucher-link-container" class="hidden text-xs pt-1">
           <a id="modal-voucher-link" href="#" target="_blank" class="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 underline font-medium">
-            <span>Open Scheduling / Voucher Portal</span>
+            <span>Open Voucher Portal</span>
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </a>
         </div>
@@ -257,88 +327,6 @@
 
       <div class="mt-6 pt-3 border-t border-gray-800 flex justify-end gap-2">
         <button onclick="closePlanModal()" class="text-xs px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Upcoming Exam Voucher & Scheduling Modal -->
-  <div id="upcoming-guide-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
-    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
-      <div class="flex justify-between items-start mb-4 border-b border-gray-800 pb-3">
-        <div>
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 border border-indigo-700/60">UPCOMING EXAM GUIDE</span>
-          <h3 id="up-modal-title" class="text-lg font-bold text-white mt-1">Exam Title</h3>
-          <p id="up-modal-date" class="text-xs text-gray-400">Exam Target Date</p>
-        </div>
-        <button onclick="closeUpcomingGuideModal()" class="text-gray-400 hover:text-white text-lg">✕</button>
-      </div>
-
-      <div class="space-y-4 text-xs">
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-gray-950 p-3 rounded-lg border border-gray-800">
-            <span class="text-gray-500 block text-[10px] uppercase mb-0.5">Scheduling Status</span>
-            <span id="up-modal-sched" class="font-bold text-indigo-300">Target Date</span>
-          </div>
-          <div class="bg-gray-950 p-3 rounded-lg border border-gray-800">
-            <span class="text-gray-500 block text-[10px] uppercase mb-0.5">Voucher Status</span>
-            <span id="up-modal-voucher" class="font-bold text-amber-300">Applied</span>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="text-xs font-semibold uppercase text-indigo-400 mb-1">How to Get the Voucher & Schedule</h4>
-          <div id="up-modal-plan" class="text-xs text-gray-300 bg-gray-950 p-3.5 rounded-lg border border-gray-800 whitespace-pre-wrap leading-relaxed">
-            <!-- Steps -->
-          </div>
-        </div>
-
-        <div id="up-modal-link-box" class="hidden pt-1">
-          <a id="up-modal-link" href="#" target="_blank" class="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 underline font-medium">
-            <span>Open PearsonVUE / Booking Portal</span>
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="mt-6 pt-3 border-t border-gray-800 flex justify-end gap-2">
-        <button onclick="closeUpcomingGuideModal()" class="text-xs px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit Upcoming Exam Modal -->
-  <div id="edit-upcoming-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
-    <div class="glass-card bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6 shadow-2xl">
-      <div class="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-        <h3 class="text-base font-bold text-white">Edit Upcoming Exam & Voucher Info</h3>
-        <button onclick="closeEditUpcomingModal()" class="text-gray-400 hover:text-white">✕</button>
-      </div>
-      <input type="hidden" id="input-up-id" />
-      <div class="space-y-3 text-xs">
-        <div>
-          <label class="block text-gray-400 mb-1">Exam Date (YYYY-MM-DD)</label>
-          <input id="input-up-date" type="date" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-gray-400 mb-1">Scheduling Status</label>
-          <input id="input-up-sched" type="text" placeholder="e.g. Confirmed on PearsonVUE / Target Slot" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-gray-400 mb-1">Voucher Status</label>
-          <input id="input-up-voucher" type="text" placeholder="e.g. Voucher Applied / Ready (50% Off)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-gray-400 mb-1">How to Get Voucher & Schedule Steps</label>
-          <textarea id="input-up-plan" rows="4" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white"></textarea>
-        </div>
-        <div>
-          <label class="block text-gray-400 mb-1">Booking Portal Link (Optional)</label>
-          <input id="input-up-url" type="text" placeholder="https://home.pearsonvue.com" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
-        </div>
-      </div>
-      <div class="mt-5 pt-3 border-t border-gray-800 flex justify-end gap-2">
-        <button onclick="closeEditUpcomingModal()" class="text-xs px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded">Cancel</button>
-        <button onclick="saveUpcomingData()" class="text-xs px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-medium">Save Changes</button>
       </div>
     </div>
   </div>
@@ -429,15 +417,11 @@
           </select>
         </div>
         <div>
-          <label class="block text-gray-400 mb-1">Exam Scheduling Status</label>
-          <input id="input-voucher-scheduled" type="text" placeholder="e.g. Target: Sep 29, 2026 or Booked" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
-        </div>
-        <div>
           <label class="block text-gray-400 mb-1">Action Plan: Steps Needed to Get It</label>
           <textarea id="input-voucher-steps" rows="4" placeholder="1. Complete challenge&#10;2. Submit badge&#10;3. Redeem promo code" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white"></textarea>
         </div>
         <div>
-          <label class="block text-gray-400 mb-1">Voucher / Scheduling Portal Link (Optional)</label>
+          <label class="block text-gray-400 mb-1">Voucher Portal Link (Optional)</label>
           <input id="input-voucher-url" type="text" placeholder="https://... (leave blank if none)" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white" />
         </div>
       </div>
@@ -486,9 +470,10 @@
   </footer>
 
   <script>
-    const STORAGE_KEY = 'ai_cert_dashboard_v5';
+    const STORAGE_KEY = 'ai_cert_dashboard_v6';
+    const THEME_KEY = 'ai_cert_theme_choice';
 
-    // Seed Data with scheduling status and voucher plan linkages
+    // Seed Data: upcoming certs have confirmed examTime & examLocation
     const defaultData = {
       activeCerts: [
         {
@@ -497,11 +482,9 @@
           name: "Claude Certified Developer",
           level: "Foundations",
           examDate: "2026-09-29",
-          scheduleStatus: "Target Slot (Booking Open)",
-          voucherStatus: "Voucher Applied (Early Access)",
-          voucherPlan: "1. Check Anthropic Partner / Developer Console credits.\n2. Submit certification intake form with verified developer account.\n3. Receive official CCDV-F voucher token via email.\n4. Book exam on PearsonVUE / online proctoring portal and apply voucher token at payment screen.",
-          bookingUrl: "https://home.pearsonvue.com",
-          notes: "Focus on Tool Use, Prompt Caching, and SDK integration",
+          examTime: "10:00 AM IST",
+          examLocation: "Online Proctored (Pearson VUE)",
+          notes: "Tool Use, Prompt Caching & SDK integration",
           milestones: [
             { id: "ccdv-1", title: "Tool Use: JSON schema & tool_use/tool_result flow", done: true },
             { id: "ccdv-2", title: "Prompt Caching: 1024-token threshold, breakpoints & 5m TTL", done: true },
@@ -517,10 +500,8 @@
           name: "Claude Certified Architect",
           level: "Foundations",
           examDate: "2026-10-19",
-          scheduleStatus: "Target Date (Prep Phase)",
-          voucherStatus: "Researching (50% Promo Plan)",
-          voucherPlan: "1. Complete Cloud/LLM Architecture challenge.\n2. Request architect voucher code via community sponsorship track.\n3. Redeem code on scheduling portal.",
-          bookingUrl: "https://home.pearsonvue.com",
+          examTime: "02:30 PM IST",
+          examLocation: "Online Proctored (Pearson VUE)",
           notes: "Context Window Architecture and Cost Optimization",
           milestones: [
             { id: "ccarf-1", title: "200K Context Window architecture & RAG tradeoffs", done: false },
@@ -536,10 +517,8 @@
           name: "Claude Certified Architect",
           level: "Professional",
           examDate: "2026-10-26",
-          scheduleStatus: "Target Date (Final Stage)",
-          voucherStatus: "Voucher Needed",
-          voucherPlan: "1. Pass CCAR-F prerequisite exam.\n2. Unlock professional track voucher benefit.\n3. Schedule final proctored session.",
-          bookingUrl: "https://home.pearsonvue.com",
+          examTime: "11:00 AM IST",
+          examLocation: "Pearson VUE Testing Center",
           notes: "Autonomous Agent Loops, Guardrails & Evaluation",
           milestones: [
             { id: "ccarp-1", title: "Autonomous Agent loops & Human-in-the-Loop policies", done: false },
@@ -565,7 +544,6 @@
           discount: "50% Off ($75 savings)",
           status: "Researching",
           expiry: "2026-11-30",
-          scheduledDate: "Target: Nov 30, 2026",
           url: "https://aws.amazon.com/training/",
           steps: "1. Complete AWS Cloud Quest: Cloud Practitioner role.\n2. Earn the digital badge on Credly.\n3. Join AWS Emerging Talent Community and redeem 50% discount voucher code.\n4. Apply promo code at Pearson VUE checkout to schedule exam."
         },
@@ -576,7 +554,6 @@
           discount: "Early Access / Promo Credit",
           status: "Applied",
           expiry: "2026-09-29",
-          scheduledDate: "Target: Sep 29, 2026",
           url: "https://console.anthropic.com",
           steps: "1. Review Anthropic Developer Console partner credits.\n2. Verify eligible email domain with certification intake form.\n3. Confirm exam voucher token and schedule Pearson / online proctor session."
         }
@@ -588,6 +565,7 @@
     };
 
     let hubData = loadData();
+    let currentTheme = localStorage.getItem(THEME_KEY) || 'default';
     let isEditMode = false;
     let isToolboxOpen = false;
     let openMilestoneDrawers = { 'ccdv-f': true };
@@ -605,6 +583,41 @@
     function persistData() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(hubData));
       renderAll();
+    }
+
+    // Theme Switcher Logic
+    function applyTheme(themeName) {
+      currentTheme = themeName;
+      localStorage.setItem(THEME_KEY, themeName);
+      const body = document.getElementById('body-root');
+      const tag = document.getElementById('theme-tag');
+
+      body.classList.remove('theme-default', 'theme-avengers', 'theme-amber');
+
+      const btnDefault = document.getElementById('btn-theme-default');
+      const btnAvengers = document.getElementById('btn-theme-avengers');
+      const btnAmber = document.getElementById('btn-theme-amber');
+
+      [btnDefault, btnAvengers, btnAmber].forEach(btn => {
+        if (btn) btn.className = 'px-2.5 py-1 rounded text-xs font-medium text-gray-400 hover:text-white transition';
+      });
+
+      if (themeName === 'avengers') {
+        body.classList.add('theme-avengers');
+        tag.textContent = 'Avengers: Stark Arc';
+        tag.className = 'text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-red-950 text-cyan-300 border border-red-800';
+        if (btnAvengers) btnAvengers.className = 'px-2.5 py-1 rounded text-xs font-bold bg-red-700 text-cyan-300 border border-cyan-400/50 shadow';
+      } else if (themeName === 'amber') {
+        body.classList.add('theme-amber');
+        tag.textContent = "Coach's Choice: Obsidian & Amber";
+        tag.className = 'text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800';
+        if (btnAmber) btnAmber.className = 'px-2.5 py-1 rounded text-xs font-bold bg-amber-700 text-white border border-amber-500 shadow';
+      } else {
+        body.classList.add('theme-default');
+        tag.textContent = 'Cyber Dark';
+        tag.className = 'text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700';
+        if (btnDefault) btnDefault.className = 'px-2.5 py-1 rounded text-xs font-bold bg-indigo-600 text-white shadow';
+      }
     }
 
     function toggleToolbox() {
@@ -642,7 +655,7 @@
       renderAll();
     }
 
-    // 1. Pipeline & Upcoming Exam Cards (With Voucher & Scheduling Integration)
+    // 1. Render Scheduled Exam Cards (Time & Location, No Voucher Clutter)
     function renderActivePipeline() {
       const container = document.getElementById('certs-pipeline-grid');
       container.innerHTML = '';
@@ -691,15 +704,15 @@
               </div>
             </div>
 
-            <!-- Scheduling & Voucher Status Chips -->
+            <!-- Scheduled Time & Test Location Box -->
             <div class="space-y-1.5 mb-3 bg-gray-950/60 p-2.5 rounded-lg border border-gray-800/80 text-[11px]">
               <div class="flex items-center justify-between">
-                <span class="text-gray-400 flex items-center gap-1">📅 <span>Schedule:</span></span>
-                <span class="font-semibold text-gray-200">${cert.scheduleStatus || 'Target: ' + cert.examDate}</span>
+                <span class="text-gray-400 flex items-center gap-1">📅 <span>Date & Time:</span></span>
+                <span class="font-semibold text-gray-200">${cert.examDate} • ${cert.examTime || 'Time TBD'}</span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-gray-400 flex items-center gap-1">🎟️ <span>Voucher:</span></span>
-                <span class="font-semibold text-amber-300">${cert.voucherStatus || 'Voucher Needed'}</span>
+                <span class="text-gray-400 flex items-center gap-1">📍 <span>Location:</span></span>
+                <span class="font-semibold text-indigo-300">${cert.examLocation || 'Online Proctored'}</span>
               </div>
             </div>
 
@@ -709,24 +722,24 @@
             </div>
 
             <div class="flex justify-between items-center text-xs text-gray-400 mb-3">
-              <span><b>${clearedCount} / ${totalCount}</b> Milestones</span>
+              <span><b>${clearedCount} / ${totalCount}</b> Milestones Cleared</span>
               <span class="font-bold text-indigo-300">${pct}%</span>
             </div>
           </div>
 
-          <!-- Bottom Action Buttons: Voucher Plan + Milestones Drawer -->
+          <!-- Actions: Update Time & Location Button + Milestones Drawer -->
           <div class="border-t border-gray-800 pt-2.5 space-y-2">
             <div class="flex justify-between items-center">
-              <button onclick="openUpcomingGuideModal('${cert.id}')" class="text-[11px] px-2.5 py-1 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1 transition">
-                <span>🎟️</span> How to Get Voucher & Book
+              <button onclick="openTimeLocModal('${cert.id}')" class="text-[11px] px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 flex items-center gap-1 transition">
+                <span>✏️</span> Update Time & Location
               </button>
 
               ${isEditMode ? `
-                <button onclick="openEditUpcomingModal('${cert.id}')" class="text-xs text-amber-400 hover:text-amber-300 px-1 font-bold">✏️ Edit</button>
+                <span class="text-[10px] text-amber-400 font-bold">Editing</span>
               ` : ''}
             </div>
 
-            <!-- Milestones Toggle -->
+            <!-- Milestones Toggle Drawer -->
             <div>
               <button onclick="toggleMilestonesDrawer('${cert.id}')" class="w-full flex justify-between items-center text-[11px] font-medium text-indigo-400 hover:text-indigo-300 py-1">
                 <span>${isDrawerOpen ? 'Hide Milestones' : 'View Milestones (' + clearedCount + '/' + totalCount + ')'}</span>
@@ -786,62 +799,38 @@
       persistData();
     }
 
-    function openUpcomingGuideModal(certId) {
+    // Modal: Time & Location Handlers
+    function openTimeLocModal(certId) {
       const cert = hubData.activeCerts.find(c => c.id === certId);
       if (!cert) return;
 
-      document.getElementById('up-modal-title').textContent = `${cert.code}: ${cert.name}`;
-      document.getElementById('up-modal-date').textContent = `Target Exam Date: ${cert.examDate}`;
-      document.getElementById('up-modal-sched').textContent = cert.scheduleStatus || 'Target Slot';
-      document.getElementById('up-modal-voucher').textContent = cert.voucherStatus || 'Voucher Needed';
-      document.getElementById('up-modal-plan').textContent = cert.voucherPlan || 'No voucher acquisition plan written yet. Turn on Edit Mode to add steps.';
+      document.getElementById('input-tl-cert-id').value = cert.id;
+      document.getElementById('time-loc-heading').textContent = `Update Schedule: ${cert.code}`;
+      document.getElementById('input-tl-date').value = cert.examDate || '';
+      document.getElementById('input-tl-time').value = cert.examTime || '';
+      document.getElementById('input-tl-loc').value = cert.examLocation || '';
 
-      const linkBox = document.getElementById('up-modal-link-box');
-      const link = document.getElementById('up-modal-link');
-      if (cert.bookingUrl && cert.bookingUrl.trim() !== '') {
-        linkBox.classList.remove('hidden');
-        link.href = cert.bookingUrl;
-      } else {
-        linkBox.classList.add('hidden');
-      }
-
-      document.getElementById('upcoming-guide-modal').classList.remove('hidden');
+      document.getElementById('time-loc-modal').classList.remove('hidden');
     }
 
-    function closeUpcomingGuideModal() {
-      document.getElementById('upcoming-guide-modal').classList.add('hidden');
+    function closeTimeLocModal() {
+      document.getElementById('time-loc-modal').classList.add('hidden');
     }
 
-    function openEditUpcomingModal(certId) {
+    function saveTimeLocData() {
+      const certId = document.getElementById('input-tl-cert-id').value;
       const cert = hubData.activeCerts.find(c => c.id === certId);
       if (!cert) return;
 
-      document.getElementById('input-up-id').value = cert.id;
-      document.getElementById('input-up-date').value = cert.examDate;
-      document.getElementById('input-up-sched').value = cert.scheduleStatus || '';
-      document.getElementById('input-up-voucher').value = cert.voucherStatus || '';
-      document.getElementById('input-up-plan').value = cert.voucherPlan || '';
-      document.getElementById('input-up-url').value = cert.bookingUrl || '';
+      const date = document.getElementById('input-tl-date').value;
+      const time = document.getElementById('input-tl-time').value.trim();
+      const loc = document.getElementById('input-tl-loc').value.trim();
 
-      document.getElementById('edit-upcoming-modal').classList.remove('hidden');
-    }
+      if (date) cert.examDate = date;
+      cert.examTime = time || '10:00 AM IST';
+      cert.examLocation = loc || 'Online Proctored (Pearson VUE)';
 
-    function closeEditUpcomingModal() {
-      document.getElementById('edit-upcoming-modal').classList.add('hidden');
-    }
-
-    function saveUpcomingData() {
-      const id = document.getElementById('input-up-id').value;
-      const cert = hubData.activeCerts.find(c => c.id === id);
-      if (!cert) return;
-
-      cert.examDate = document.getElementById('input-up-date').value;
-      cert.scheduleStatus = document.getElementById('input-up-sched').value.trim();
-      cert.voucherStatus = document.getElementById('input-up-voucher').value.trim();
-      cert.voucherPlan = document.getElementById('input-up-plan').value.trim();
-      cert.bookingUrl = document.getElementById('input-up-url').value.trim();
-
-      closeEditUpcomingModal();
+      closeTimeLocModal();
       persistData();
     }
 
@@ -952,7 +941,7 @@
       }
     }
 
-    // 3. Render Vouchers Hub with Icon Link & Scheduling Status
+    // 3. Render Vouchers Hub with Icon Link
     function renderVouchers() {
       const grid = document.getElementById('vouchers-grid');
       grid.innerHTML = '';
@@ -984,8 +973,7 @@
               </div>
             </div>
             <h4 class="text-sm font-bold text-white mb-1">${v.certName}</h4>
-            <p class="text-[11px] text-gray-400 mb-2">${v.provider}</p>
-            <p class="text-[11px] text-indigo-300 mb-3 font-mono">📅 ${v.scheduledDate || 'Not Scheduled'}</p>
+            <p class="text-[11px] text-gray-400 mb-3">${v.provider}</p>
           </div>
 
           <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs">
@@ -1013,7 +1001,7 @@
       document.getElementById('modal-voucher-provider').textContent = `${v.provider} • ${v.discount}`;
       document.getElementById('modal-voucher-steps').textContent = v.steps || 'No steps outlined yet.';
       document.getElementById('modal-voucher-status').textContent = v.status;
-      document.getElementById('modal-voucher-expiry').textContent = v.scheduledDate || v.expiry || 'Open';
+      document.getElementById('modal-voucher-expiry').textContent = v.expiry || 'Open';
 
       const linkContainer = document.getElementById('modal-voucher-link-container');
       const linkElem = document.getElementById('modal-voucher-link');
@@ -1178,7 +1166,6 @@
       const provider = document.getElementById('input-voucher-provider');
       const discount = document.getElementById('input-voucher-discount');
       const status = document.getElementById('input-voucher-status');
-      const scheduled = document.getElementById('input-voucher-scheduled');
       const steps = document.getElementById('input-voucher-steps');
       const url = document.getElementById('input-voucher-url');
 
@@ -1191,7 +1178,6 @@
         provider.value = item.provider;
         discount.value = item.discount;
         status.value = item.status;
-        scheduled.value = item.scheduledDate || '';
         steps.value = item.steps || '';
         url.value = item.url || '';
       } else {
@@ -1201,7 +1187,6 @@
         provider.value = '';
         discount.value = '';
         status.value = 'Researching';
-        scheduled.value = '';
         steps.value = '';
         url.value = '';
       }
@@ -1218,7 +1203,6 @@
       const provider = document.getElementById('input-voucher-provider').value.trim();
       const discount = document.getElementById('input-voucher-discount').value.trim();
       const status = document.getElementById('input-voucher-status').value;
-      const scheduledDate = document.getElementById('input-voucher-scheduled').value.trim();
       const steps = document.getElementById('input-voucher-steps').value.trim();
       const url = document.getElementById('input-voucher-url').value.trim();
 
@@ -1229,7 +1213,6 @@
           item.provider = provider;
           item.discount = discount;
           item.status = status;
-          item.scheduledDate = scheduledDate;
           item.steps = steps;
           item.url = url;
         }
@@ -1240,7 +1223,6 @@
           provider,
           discount,
           status,
-          scheduledDate,
           steps,
           url
         });
@@ -1390,6 +1372,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      applyTheme(currentTheme);
       renderAll();
       setInterval(renderActivePipeline, 60000);
     });

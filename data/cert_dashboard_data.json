@@ -6,10 +6,8 @@
       "name": "Claude Certified Developer",
       "level": "Foundations",
       "examDate": "2026-09-29",
-      "scheduleStatus": "Target Slot (Booking Window Open)",
-      "voucherStatus": "Voucher Applied (Early Access)",
-      "voucherPlan": "1. Check Anthropic Partner / Developer Console credits.\n2. Submit certification intake form with verified developer account.\n3. Receive official CCDV-F voucher token via email.\n4. Book exam on PearsonVUE / online proctoring portal and apply voucher token at payment screen.",
-      "bookingUrl": "https://home.pearsonvue.com",
+      "examTime": "10:00 AM IST",
+      "examLocation": "Online Proctored (Pearson VUE)",
       "notes": "Focus on Tool Use, Prompt Caching, and SDK integration",
       "milestones": [
         { "id": "ccdv-1", "title": "Tool Use: JSON schema & tool_use/tool_result flow", "done": true },
@@ -26,10 +24,8 @@
       "name": "Claude Certified Architect",
       "level": "Foundations",
       "examDate": "2026-10-19",
-      "scheduleStatus": "Target Date (Prep Phase)",
-      "voucherStatus": "Researching (50% Promo Plan)",
-      "voucherPlan": "1. Complete Cloud/LLM Architecture challenge.\n2. Request architect voucher code via community sponsorship track.\n3. Redeem code on scheduling portal.",
-      "bookingUrl": "https://home.pearsonvue.com",
+      "examTime": "02:30 PM IST",
+      "examLocation": "Online Proctored (Pearson VUE)",
       "notes": "Context Window Architecture and Cost Optimization",
       "milestones": [
         { "id": "ccarf-1", "title": "200K Context Window architecture & RAG tradeoffs", "done": false },
@@ -45,10 +41,8 @@
       "name": "Claude Certified Architect",
       "level": "Professional",
       "examDate": "2026-10-26",
-      "scheduleStatus": "Target Date (Final Stage)",
-      "voucherStatus": "Voucher Needed",
-      "voucherPlan": "1. Pass CCAR-F prerequisite exam.\n2. Unlock professional track voucher benefit.\n3. Schedule final proctored session.",
-      "bookingUrl": "https://home.pearsonvue.com",
+      "examTime": "11:00 AM IST",
+      "examLocation": "Pearson VUE Testing Center",
       "notes": "Autonomous Agent Loops, Guardrails & Evaluation",
       "milestones": [
         { "id": "ccarp-1", "title": "Autonomous Agent loops & Human-in-the-Loop policies", "done": false },
@@ -74,7 +68,6 @@
       "discount": "50% Off ($75 savings)",
       "status": "Researching",
       "expiry": "2026-11-30",
-      "scheduledDate": "Not Scheduled",
       "url": "https://aws.amazon.com/training/",
       "steps": "1. Complete AWS Cloud Quest: Cloud Practitioner role.\n2. Earn the digital badge on Credly.\n3. Join AWS Emerging Talent Community and redeem 50% discount voucher code.\n4. Apply promo code at Pearson VUE checkout to schedule exam."
     },
@@ -85,7 +78,6 @@
       "discount": "Early Access / Promo Credit",
       "status": "Applied",
       "expiry": "2026-09-29",
-      "scheduledDate": "Target: Sep 29, 2026",
       "url": "https://console.anthropic.com",
       "steps": "1. Review Anthropic Developer Console partner credits.\n2. Verify eligible email domain with certification intake form.\n3. Confirm exam voucher token and schedule Pearson / online proctor session."
     }
