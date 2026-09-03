@@ -1,0 +1,129 @@
+{
+  "activeCerts": [
+    {
+      "id": "ccdv-f",
+      "code": "CCDV-F",
+      "name": "Claude Certified Developer",
+      "level": "Foundations",
+      "examDate": "2026-09-29",
+      "totalMilestones": 6,
+      "clearedMilestones": 2,
+      "notes": "Focus on Tool Use and Prompt Caching"
+    },
+    {
+      "id": "ccar-f",
+      "code": "CCAR-F",
+      "name": "Claude Certified Architect",
+      "level": "Foundations",
+      "examDate": "2026-10-19",
+      "totalMilestones": 5,
+      "clearedMilestones": 0,
+      "notes": "Context Window and Cost Optimization"
+    },
+    {
+      "id": "ccar-p",
+      "code": "CCAR-P",
+      "name": "Claude Certified Architect",
+      "level": "Professional",
+      "examDate": "2026-10-26",
+      "totalMilestones": 5,
+      "clearedMilestones": 0,
+      "notes": "Multi-Agent Systems and Safety"
+    }
+  ],
+  "udemyCourses": [
+    {
+      "id": 1,
+      "title": "Claude 3.5 & 3.7 Developer Bootcamp: Tool Use & API Integration",
+      "category": "cert",
+      "targetCert": "CCDV-F",
+      "unitType": "Lectures",
+      "totalUnits": 68,
+      "completedUnits": 24,
+      "instructor": "AI Architecture Institute",
+      "url": "https://www.udemy.com"
+    },
+    {
+      "id": 2,
+      "title": "Prompt Caching & LLM Latency Optimization in Production",
+      "category": "cert",
+      "targetCert": "CCDV-F",
+      "unitType": "Sections",
+      "totalUnits": 12,
+      "completedUnits": 8,
+      "instructor": "Prompt Engineering Academy",
+      "url": ""
+    },
+    {
+      "id": 3,
+      "title": "Spring Boot 3, Spring Security 6 & Microservices Architecture",
+      "category": "learning",
+      "targetCert": "Skill Mastery",
+      "unitType": "Lectures",
+      "totalUnits": 140,
+      "completedUnits": 115,
+      "instructor": "Senior Cloud Architect",
+      "url": "https://www.udemy.com"
+    },
+    {
+      "id": 4,
+      "title": "CCDV-F Practice Exams: 6 Full Realistic Mock Papers",
+      "category": "mock",
+      "targetCert": "CCDV-F",
+      "unitType": "Papers",
+      "totalUnits": 6,
+      "completedUnits": 2,
+      "instructor": "Cert Prep Pro",
+      "url": ""
+    },
+    {
+      "id": 5,
+      "title": "LLM Agent Systems: Memory, Tool Calling & Multi-Agent Design",
+      "category": "learning",
+      "targetCert": "CCAR-P",
+      "unitType": "Lectures",
+      "totalUnits": 55,
+      "completedUnits": 18,
+      "instructor": "Autonomous Agents Lab",
+      "url": ""
+    }
+  ],
+  "vouchers": [
+    {
+      "id": 1,
+      "certName": "AWS Certified Solutions Architect Associate (SAA-C03)",
+      "provider": "AWS Emerging Talent Community / Cloud Quest",
+      "discount": "50% Off ($75 savings)",
+      "status": "Researching",
+      "expiry": "2026-11-30",
+      "url": "https://aws.amazon.com/training/",
+      "steps": "1. Complete AWS Cloud Quest: Cloud Practitioner role.\n2. Earn the digital badge on Credly.\n3. Join AWS Emerging Talent Community and redeem 50% discount voucher code.\n4. Apply promo code at Pearson VUE checkout."
+    },
+    {
+      "id": 2,
+      "certName": "Claude Certified Developer - Foundations (CCDV-F)",
+      "provider": "Anthropic Partner / Community Beta Access",
+      "discount": "Early Access / Promo Credit",
+      "status": "Applied",
+      "expiry": "2026-09-29",
+      "url": "https://console.anthropic.com",
+      "steps": "1. Review Anthropic Developer Console partner credits.\n2. Verify eligible email domain with certification intake form.\n3. Confirm exam voucher token and schedule Pearson / online proctor session."
+    }
+  ],
+  "completed": [
+    {
+      "id": 1,
+      "title": "Java 21 Professional Developer Certification",
+      "date": "2025-11-15",
+      "score": "92%",
+      "url": "https://example.com/cert/java21"
+    },
+    {
+      "id": 2,
+      "title": "Spring Boot 3 Enterprise Microservices Masterclass",
+      "date": "2026-02-10",
+      "score": "Completed",
+      "url": ""
+    }
+  ]
+}
