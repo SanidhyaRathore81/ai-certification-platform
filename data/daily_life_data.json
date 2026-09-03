@@ -41,6 +41,21 @@
         { "id": "bk-3", "title": "Log 1 actionable takeaway into personal knowledge vault", "done": false },
         { "id": "bk-4", "title": "15 min reflective philosophy reading before sleep", "done": false }
       ]
+    },
+    {
+      "id": "routine-travel",
+      "title": "Travel & Expeditions Command (Wanderlust Planner)",
+      "badge": "EXPEDITIONS & TRAVEL LOGISTICS",
+      "schedule": "Upcoming Trip Preparation & On-the-Road Essentials",
+      "image": "assets/travel.jpg",
+      "items": [
+        { "id": "tr-1", "title": "Flight / Train tickets & Hotel confirmation vouchers saved offline", "done": true },
+        { "id": "tr-2", "title": "Govt ID card, Passport, & Visa softcopy backup on cloud drive", "done": true },
+        { "id": "tr-3", "title": "Universal travel adapter, high-capacity power bank & cables packed", "done": false },
+        { "id": "tr-4", "title": "Travel health kit (antacids, band-aids, motion sickness, electrolytes)", "done": false },
+        { "id": "tr-5", "title": "Noise-canceling headphones & downloaded offline playlists / audiobooks", "done": false },
+        { "id": "tr-6", "title": "Destination weather check & weather-appropriate capsule wardrobe packed", "done": false }
+      ]
     }
   ],
   "gym": {
@@ -68,9 +83,9 @@
       { "id": "gb-5", "title": "Dandiya Raas double-strike pairing sequence", "done": false }
     ],
     "prepItems": [
-      { "id": "gp-1", "item": "Traditional Kurta & Dupatta set", done: true },
-      { "id": "gp-2", "item": "Wooden Dandiya pair with grip tape", done: false },
-      { "id": "gp-3", "item": "Garba practice music playlist synced", done: true }
+      { "id": "gp-1", "item": "Traditional Kurta & Dupatta set", "done": true },
+      { "id": "gp-2", "item": "Wooden Dandiya pair with grip tape", "done": false },
+      { "id": "gp-3", "item": "Garba practice music playlist synced", "done": true }
     ]
   },
   "health": {
@@ -95,10 +110,10 @@
       }
     ],
     "dailyHabits": [
-      { "id": "dh-1", "title": "Morning Vitamin D3 + Omega-3", done: true },
-      { "id": "dh-2", "title": "Post-workout Whey Protein + Creatine", done: true },
-      { "id": "dh-3", "title": "Electrolytes & Hydration (3L target)", done: false },
-      { "id": "dh-4", "title": "15 min night posture & spine stretching", done: false }
+      { "id": "dh-1", "title": "Morning Vitamin D3 + Omega-3", "done": true },
+      { "id": "dh-2", "title": "Post-workout Whey Protein + Creatine", "done": true },
+      { "id": "dh-3", "title": "Electrolytes & Hydration (3L target)", "done": false },
+      { "id": "dh-4", "title": "15 min night posture & spine stretching", "done": false }
     ]
   },
   "shopping": [
