@@ -3,46 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Certification Command Center & Learning Hub</title>
+  <title>Dharmayuddha AI Certification Command Center</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* ==========================================================================
-       THEME 1: MAHABHARAT (DHARMA YUDDHA / GANDIVA & ROYAL KESARI GOLD)
+       THEME 1: DHARMAYUDDHA (यतो धर्मस्ततो जयः • GANDIVA & ROYAL KESARI AGNI)
        ========================================================================== */
     body.theme-mahabharat {
-      --bg: radial-gradient(circle at 50% 0%, #2A1205 0%, #150903 50%, #080301 100%);
-      --card-bg: rgba(26, 14, 8, 0.92);
-      --card-border: rgba(245, 158, 11, 0.5);
-      --card-glow: 0 0 25px rgba(217, 119, 6, 0.22), inset 0 0 15px rgba(234, 88, 12, 0.1);
+      --bg: radial-gradient(circle at 50% -10%, #451A07 0%, #240C04 40%, #0D0401 90%, #050201 100%);
+      --card-bg: rgba(28, 14, 7, 0.94);
+      --card-border: rgba(245, 158, 11, 0.55);
+      --card-glow: 0 0 30px rgba(217, 119, 6, 0.25), inset 0 0 15px rgba(234, 88, 12, 0.12);
       --accent: #F59E0B;
-      --accent-glow: 0 0 14px rgba(245, 158, 11, 0.8);
-      --countdown-color: #FDE047;
-      --countdown-shadow: 0 0 16px rgba(245, 158, 11, 0.75), 0 0 30px rgba(234, 88, 12, 0.4);
-      --btn-bg: linear-gradient(135deg, #D97706 0%, #B45309 100%);
-      --btn-hover: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      --brand-pill-bg: rgba(245, 158, 11, 0.2);
+      --accent-glow: 0 0 16px rgba(245, 158, 11, 0.85);
+      --countdown-color: #FEF08A;
+      --countdown-shadow: 0 0 18px rgba(245, 158, 11, 0.8), 0 0 35px rgba(234, 88, 12, 0.5);
+      --btn-bg: linear-gradient(135deg, #B45309 0%, #D97706 50%, #DC2626 100%);
+      --btn-hover: linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #EF4444 100%);
+      --brand-pill-bg: rgba(245, 158, 11, 0.22);
       --brand-pill-text: #FDE68A;
-      --brand-pill-border: rgba(245, 158, 11, 0.6);
+      --brand-pill-border: rgba(245, 158, 11, 0.65);
       background-attachment: fixed;
     }
 
     body.theme-mahabharat .glass-card {
       border: 1px solid var(--card-border);
       box-shadow: var(--card-glow);
+      backdrop-filter: blur(16px);
     }
 
     body.theme-mahabharat .countdown-number {
       color: var(--countdown-color);
       text-shadow: var(--countdown-shadow);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 900;
     }
 
     body.theme-mahabharat .header-brand-badge {
-      background: linear-gradient(90deg, #F59E0B, #EF4444, #FCD34D);
+      background: linear-gradient(90deg, #F59E0B 0%, #F87171 40%, #FDE047 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 900;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+    }
+
+    body.theme-mahabharat .shloka-banner {
+      display: inline-flex;
     }
 
     /* ==========================================================================
@@ -81,7 +87,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 900;
-      letter-spacing: 0.05em;
     }
 
     /* ==========================================================================
@@ -133,7 +138,7 @@
       --brand-pill-border: rgba(99, 102, 241, 0.4);
     }
 
-    /* Base Styling */
+    /* Common Base Styles */
     body {
       background: var(--bg);
       color: #E2E8F0;
@@ -162,19 +167,21 @@
 </head>
 <body class="p-4 md:p-8 theme-mahabharat" id="body-root">
 
-  <!-- Minimalist Executive Header -->
-  <header class="max-w-7xl mx-auto mb-6 border-b border-gray-800/80 pb-5">
+  <!-- Executive Dharmayuddha Header -->
+  <header class="max-w-7xl mx-auto mb-6 border-b border-amber-500/30 pb-5">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div>
         <div class="flex items-center gap-3">
-          <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+          <span class="text-xl text-amber-400 animate-pulse">☸</span>
           <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2.5">
             <span id="header-title-text" class="header-brand-badge">AI Certification Command Center</span>
-            <span id="theme-tag" class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.3)]">DHARMA YUDDHA</span>
+            <span id="theme-tag" class="text-[10px] font-mono font-black px-2.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/60 shadow-[0_0_15px_rgba(245,158,11,0.4)]">
+              🏹 यतो धर्मस्ततो जयः
+            </span>
           </h1>
         </div>
-        <p class="text-xs text-gray-400 mt-1" id="header-subtitle">
-          Upcoming Scheduled Exams • Voucher Direct Scheduling • Udemy Learning Hub
+        <p class="text-xs text-amber-300/80 mt-1 flex items-center gap-2 font-medium" id="header-subtitle">
+          <span>रणभूमि (Exam Pipeline)</span> • <span>अभ्यास (Learning Hub)</span> • <span>दिव्यास्त्र (Vouchers)</span>
         </p>
       </div>
 
@@ -190,18 +197,18 @@
       </div>
     </div>
 
-    <!-- Expandable Toolbox Panel (With Mahabharat, Avengers & Nebula Themes) -->
+    <!-- Expandable Toolbox Panel -->
     <div id="toolbox-panel" class="hidden mt-4 p-4 rounded-xl bg-gray-900/95 border border-gray-700/80 shadow-2xl transition-all">
       <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         
-        <!-- Immersive Theme Selector -->
+        <!-- Theme Selector -->
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-xs">
           <span class="text-gray-300 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
             <span>🎨</span> Themes:
           </span>
           <div class="flex flex-wrap gap-1.5 bg-gray-950 p-1.5 rounded-lg border border-gray-800">
             <button onclick="applyTheme('mahabharat')" id="btn-theme-mahabharat" class="px-3 py-1 rounded text-xs font-bold bg-amber-600 text-white shadow flex items-center gap-1.5">
-              <span>🏹</span> Mahabharat (Dharma Yuddha)
+              <span>🏹</span> Dharmayuddha
             </button>
             <button onclick="applyTheme('avengers')" id="btn-theme-avengers" class="px-3 py-1 rounded text-xs font-semibold text-gray-300 hover:text-cyan-300 transition flex items-center gap-1.5">
               <span>🛡️</span> Avengers HUD
@@ -215,7 +222,7 @@
           </div>
         </div>
 
-        <!-- File Persistence Actions -->
+        <!-- File Sync Actions -->
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition flex items-center gap-1 shadow">
             <span>💾</span> Save Local File
@@ -252,30 +259,32 @@
     <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-active-certs">3</span>
-        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Scheduled Exams</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-certs">रणभूमि • Scheduled</span>
       </div>
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-udemy-total">0</span>
-        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Udemy Courses</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-udemy">अभ्यास • Udemy Hub</span>
       </div>
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-vouchers-active">0</span>
-        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Pending Vouchers</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-vouchers">दिव्यास्त्र • Vouchers</span>
       </div>
       <div class="glass-card rounded-xl p-4 text-center">
         <span class="block text-2xl font-black countdown-number" id="stat-completed-certs">0</span>
-        <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Completed</span>
+        <span class="text-[11px] uppercase tracking-wider text-amber-400/90 font-bold" id="kpi-label-completed">विजय • Completed</span>
       </div>
     </section>
 
-    <!-- 1. Scheduled Exam Pipeline -->
+    <!-- 1. Scheduled Exam Pipeline (रणभूमि) -->
     <section>
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
         <div>
-          <h2 class="text-xs font-semibold uppercase tracking-wider text-amber-400">1. Scheduled Exam Pipeline (Confirmed Upcoming)</h2>
-          <p class="text-xs text-gray-400">Live test countdowns, confirmed date & time, test center / proctor location, and milestones.</p>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5" id="sec-title-pipeline">
+            <span>🏹</span> 1. रणभूमि • SCHEDULED EXAM PIPELINE (CONFIRMED)
+          </h2>
+          <p class="text-xs text-gray-400">Live countdown clocks, confirmed appointment date & time, proctor mode, and syllabus milestones.</p>
         </div>
-        <button onclick="openAddScheduledExamModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition flex items-center gap-1.5 shadow">
+        <button onclick="openAddScheduledExamModal()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold transition flex items-center gap-1.5 shadow-[0_0_12px_rgba(245,158,11,0.4)]">
           <span>+</span> Schedule New Exam
         </button>
       </div>
@@ -285,13 +294,13 @@
       </div>
     </section>
 
-    <!-- 2. Udemy Courses Hub -->
+    <!-- 2. Udemy Courses Hub (अभ्यास व साधना) -->
     <section class="glass-card rounded-xl p-6">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-red-500 font-black text-base">▶</span>
-            <h2 class="text-lg font-bold text-white">Udemy Learning & Practice Hub</h2>
+            <span class="text-amber-500 font-black text-base">▶</span>
+            <h2 class="text-lg font-bold text-white" id="sec-title-udemy">2. अभ्यास व साधना • Udemy Learning Hub</h2>
           </div>
           <p class="text-xs text-gray-400 mt-0.5">Track progress by completed units (lectures/sections). Click ✏️ to update.</p>
         </div>
@@ -314,15 +323,15 @@
       </div>
     </section>
 
-    <!-- 3. Exam Vouchers Hub (With Direct 'Move to Scheduled' Action) -->
+    <!-- 3. Exam Vouchers Hub (दिव्यास्त्र व अनुदान) -->
     <section class="glass-card rounded-xl p-6 border-amber-500/30">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
           <div class="flex items-center gap-2">
             <span class="text-amber-400 text-base">🎟️</span>
-            <h2 class="text-lg font-bold text-white">Upcoming Certification Vouchers & Discounts</h2>
+            <h2 class="text-lg font-bold text-white" id="sec-title-vouchers">3. दिव्यास्त्र व अनुदान • Upcoming Exam Vouchers</h2>
           </div>
-          <p class="text-xs text-gray-400 mt-0.5">Track voucher opportunities. Click <b>"🚀 Move to Scheduled"</b> once you book the exam slot!</p>
+          <p class="text-xs text-gray-400 mt-0.5">Track discount opportunities. Click <b>"🚀 Schedule Exam"</b> — once booked, it moves to the pipeline and is removed from vouchers!</p>
         </div>
         <button onclick="openVoucherModal()" class="text-xs px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-medium rounded-lg transition">
           + Add Voucher Plan
@@ -334,15 +343,15 @@
       </div>
     </section>
 
-    <!-- 4. Completed Certifications & Courses (Hall of Fame) -->
+    <!-- 4. Completed Certifications & Courses (विजय स्तम्भ) -->
     <section class="glass-card rounded-xl p-6">
       <div class="flex justify-between items-center mb-4">
         <div>
           <div class="flex items-center gap-2">
             <span class="text-emerald-400 text-base">🏆</span>
-            <h2 class="text-lg font-bold text-white">Completed Certifications & Courses</h2>
+            <h2 class="text-lg font-bold text-white" id="sec-title-completed">4. विजय स्तम्भ • Completed Hall of Fame</h2>
           </div>
-          <p class="text-xs text-gray-400 mt-0.5">Your permanent record of finished certificates and badges.</p>
+          <p class="text-xs text-gray-400 mt-0.5">Your permanent record of finished certificates, badges, and scores.</p>
         </div>
         <button onclick="openCompletedModal()" class="text-xs px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg transition">
           + Log Completed
@@ -566,7 +575,6 @@
             <option value="Researching">Researching / Plan Formed</option>
             <option value="Applied">Application Submitted</option>
             <option value="Approved">Voucher Code Received</option>
-            <option value="Scheduled">Scheduled into Pipeline</option>
             <option value="Expired">Expired</option>
           </select>
         </div>
@@ -619,12 +627,12 @@
     </div>
   </div>
 
-  <footer class="max-w-7xl mx-auto mt-12 text-center text-xs text-gray-500 border-t border-gray-900 pt-6">
-    AI Certification Platform • Powered by Antigravity Coach
+  <footer class="max-w-7xl mx-auto mt-12 text-center text-xs text-amber-500/70 border-t border-amber-900/40 pt-6">
+    ☸ Dharmayuddha AI Certification Command Center • Powered by Antigravity Coach
   </footer>
 
   <script>
-    const STORAGE_KEY = 'ai_cert_dashboard_v8';
+    const STORAGE_KEY = 'ai_cert_dashboard_v9';
     const THEME_KEY = 'ai_cert_theme_choice';
 
     const defaultData = {
@@ -715,7 +723,7 @@
     };
 
     let hubData = loadData();
-    let currentTheme = localStorage.getItem(THEME_KEY) || 'mahabharat'; // Default to Mahabharat as requested
+    let currentTheme = localStorage.getItem(THEME_KEY) || 'mahabharat';
     let isEditMode = false;
     let isToolboxOpen = false;
     let openMilestoneDrawers = { 'ccdv-f': true };
@@ -742,6 +750,7 @@
       const body = document.getElementById('body-root');
       const tag = document.getElementById('theme-tag');
       const titleText = document.getElementById('header-title-text');
+      const subtitle = document.getElementById('header-subtitle');
 
       body.classList.remove('theme-default', 'theme-avengers', 'theme-nebula', 'theme-mahabharat');
 
@@ -756,27 +765,31 @@
 
       if (themeName === 'mahabharat') {
         body.classList.add('theme-mahabharat');
-        tag.textContent = '🏹 DHARMA YUDDHA';
-        tag.className = 'text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-500/50 shadow-[0_0_12px_rgba(245,158,11,0.4)]';
+        tag.textContent = '🏹 यतो धर्मस्ततो जयः';
+        tag.className = 'text-[10px] font-mono font-black px-2.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-500/60 shadow-[0_0_15px_rgba(245,158,11,0.4)]';
         titleText.className = 'header-brand-badge';
-        if (btnMahabharat) btnMahabharat.className = 'px-3 py-1 rounded text-xs font-bold bg-amber-600 text-white shadow-[0_0_12px_rgba(245,158,11,0.5)]';
+        subtitle.innerHTML = '<span>रणभूमि (Exam Pipeline)</span> • <span>अभ्यास (Learning Hub)</span> • <span>दिव्यास्त्र (Vouchers)</span>';
+        if (btnMahabharat) btnMahabharat.className = 'px-3 py-1 rounded text-xs font-bold bg-amber-600 text-white shadow-[0_0_15px_rgba(245,158,11,0.5)]';
       } else if (themeName === 'avengers') {
         body.classList.add('theme-avengers');
         tag.textContent = '🛡️ STARK TACTICAL HUD';
         tag.className = 'text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-red-950 text-cyan-300 border border-cyan-400/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]';
         titleText.className = 'bg-gradient-to-r from-red-500 via-sky-400 to-cyan-300 bg-clip-text text-transparent font-black';
+        subtitle.innerHTML = '<span>Scheduled Pipeline</span> • <span>Udemy Learning Hub</span> • <span>Vouchers Hub</span>';
         if (btnAvengers) btnAvengers.className = 'px-3 py-1 rounded text-xs font-bold bg-red-700 text-cyan-200 border border-cyan-400 shadow-[0_0_12px_rgba(0,240,255,0.4)]';
       } else if (themeName === 'nebula') {
         body.classList.add('theme-nebula');
         tag.textContent = '🌌 QUANTUM NEBULA';
         tag.className = 'text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-purple-950 text-pink-300 border border-pink-500/40 shadow-[0_0_10px_rgba(236,72,153,0.3)]';
         titleText.className = 'bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent font-black';
+        subtitle.innerHTML = '<span>Scheduled Pipeline</span> • <span>Udemy Learning Hub</span> • <span>Vouchers Hub</span>';
         if (btnNebula) btnNebula.className = 'px-3 py-1 rounded text-xs font-bold bg-purple-700 text-white border border-pink-500 shadow-[0_0_12px_rgba(168,85,247,0.5)]';
       } else {
         body.classList.add('theme-default');
         tag.textContent = 'STEALTH DARK';
         tag.className = 'text-[10px] font-mono font-medium px-2.5 py-0.5 rounded bg-gray-800 text-gray-300 border border-gray-700';
         titleText.className = 'text-white font-bold';
+        subtitle.innerHTML = '<span>Scheduled Pipeline</span> • <span>Udemy Learning Hub</span> • <span>Vouchers Hub</span>';
         if (btnDefault) btnDefault.className = 'px-3 py-1 rounded text-xs font-bold bg-indigo-600 text-white shadow';
       }
     }
@@ -839,7 +852,7 @@
         let milestonesListHtml = '';
         milestones.forEach(m => {
           milestonesListHtml += `
-            <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-gray-800/40 text-xs transition">
+            <div class="flex items-center justify-between py-1 px-2 rounded hover:bg-amber-950/40 text-xs transition">
               <label class="flex items-center gap-2 cursor-pointer flex-1">
                 <input type="checkbox" ${m.done ? 'checked' : ''} onchange="toggleMilestoneCheck('${cert.id}', '${m.id}')" class="w-3.5 h-3.5 rounded text-amber-500 bg-gray-800 border-gray-600 focus:ring-amber-500 cursor-pointer" />
                 <span class="${m.done ? 'line-through text-gray-500' : 'text-gray-200'}">${m.title}</span>
@@ -861,12 +874,12 @@
               </div>
               <div class="text-right">
                 <span class="text-3xl font-black countdown-number">${diffDays}</span>
-                <span class="block text-[9px] uppercase text-gray-400 font-bold tracking-wider">Days Left</span>
+                <span class="block text-[9px] uppercase text-amber-300/80 font-bold tracking-wider">दिवस शेष • DAYS</span>
               </div>
             </div>
 
             <!-- Scheduled Time & Test Location Box -->
-            <div class="space-y-1.5 mb-3 bg-gray-950/70 p-2.5 rounded-lg border border-gray-800 text-[11px]">
+            <div class="space-y-1.5 mb-3 bg-gray-950/80 p-2.5 rounded-lg border border-amber-900/40 text-[11px]">
               <div class="flex items-center justify-between">
                 <span class="text-gray-400 flex items-center gap-1">📅 <span>Date & Time:</span></span>
                 <span class="font-semibold text-gray-200">${cert.examDate} • ${cert.examTime || '10:00 AM IST'}</span>
@@ -889,9 +902,9 @@
           </div>
 
           <!-- Bottom Actions: Update Time & Location + Milestones Drawer -->
-          <div class="border-t border-gray-800/80 pt-2.5 space-y-2">
+          <div class="border-t border-amber-900/40 pt-2.5 space-y-2">
             <div class="flex justify-between items-center">
-              <button onclick="openTimeLocModal('${cert.id}')" class="text-[11px] px-2.5 py-1 rounded bg-gray-800/80 hover:bg-gray-700 text-gray-200 border border-gray-700 flex items-center gap-1 transition">
+              <button onclick="openTimeLocModal('${cert.id}')" class="text-[11px] px-2.5 py-1 rounded bg-amber-950/60 hover:bg-amber-900/80 text-amber-200 border border-amber-700/50 flex items-center gap-1 transition">
                 <span>✏️</span> Update Time & Location
               </button>
 
@@ -907,7 +920,7 @@
                 <span>${isDrawerOpen ? '▴' : '▾'}</span>
               </button>
 
-              <div id="drawer-${cert.id}" class="${isDrawerOpen ? '' : 'hidden'} mt-1.5 space-y-1 bg-gray-950/70 p-2 rounded-lg border border-gray-800">
+              <div id="drawer-${cert.id}" class="${isDrawerOpen ? '' : 'hidden'} mt-1.5 space-y-1 bg-gray-950/80 p-2 rounded-lg border border-amber-900/40">
                 ${milestonesListHtml}
                 ${isEditMode ? `
                   <div class="pt-2 mt-1 border-t border-gray-800/80 flex gap-1">
@@ -960,7 +973,7 @@
       persistData();
     }
 
-    // Modal: Schedule New Exam Handlers (Supports Direct Scheduling from Vouchers)
+    // Modal: Schedule New Exam Handlers (Removes from Voucher on Scheduling!)
     function openAddScheduledExamModal(prefill = null) {
       document.getElementById('input-from-voucher-id').value = (prefill && prefill.fromVoucherId) ? prefill.fromVoucherId : '';
       document.getElementById('input-new-exam-code').value = prefill ? prefill.code : '';
@@ -1007,6 +1020,7 @@
         ];
       }
 
+      // Add to active pipeline
       hubData.activeCerts.push({
         id: code.toLowerCase().replace(/[^a-z0-9]/g, '-'),
         code,
@@ -1018,10 +1032,9 @@
         milestones: milestonesList
       });
 
-      // If scheduled directly from a voucher, update the voucher status to 'Scheduled'
+      // KEY ENHANCEMENT: If scheduled from voucher, remove voucher completely!
       if (fromVoucherId) {
-        const v = hubData.vouchers.find(item => item.id === parseInt(fromVoucherId));
-        if (v) v.status = 'Scheduled';
+        hubData.vouchers = hubData.vouchers.filter(item => item.id !== parseInt(fromVoucherId));
       }
 
       closeAddScheduledExamModal();
@@ -1084,7 +1097,7 @@
 
       filtered.forEach(course => {
         const card = document.createElement('div');
-        card.className = `glass-card rounded-xl p-4 flex flex-col justify-between transition ${isEditMode ? 'edit-mode-active' : 'hover:border-gray-600'}`;
+        card.className = `glass-card rounded-xl p-4 flex flex-col justify-between transition ${isEditMode ? 'edit-mode-active' : 'hover:border-amber-700/50'}`;
 
         let badge = '';
         if (course.category === 'cert') {
@@ -1175,21 +1188,21 @@
       }
     }
 
-    // 3. Render Vouchers Hub (With Direct 'Move to Scheduled' Action)
+    // 3. Render Vouchers Hub (Direct 'Schedule Exam' that removes voucher on booking)
     function renderVouchers() {
       const grid = document.getElementById('vouchers-grid');
       grid.innerHTML = '';
 
       if (hubData.vouchers.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-8 text-center text-gray-500 text-xs">No vouchers configured. Click "+ Add Voucher Plan" to add one.</div>`;
+        grid.innerHTML = `<div class="col-span-full py-8 text-center text-gray-400 text-xs bg-amber-950/20 rounded-xl border border-amber-900/30 p-6">
+          <span>✨ All vouchers scheduled into the active pipeline! Click "+ Add Voucher Plan" if you discover a new opportunity.</span>
+        </div>`;
         return;
       }
 
       hubData.vouchers.forEach(v => {
         const card = document.createElement('div');
         card.className = `glass-card rounded-xl p-4 flex flex-col justify-between transition ${isEditMode ? 'edit-mode-active' : ''}`;
-
-        const isScheduled = v.status === 'Scheduled';
 
         const linkIconHtml = (v.url && v.url.trim() !== '') ? `
           <a href="${v.url}" target="_blank" title="Open Portal" class="p-1 rounded-md bg-gray-800/80 hover:bg-gray-700 text-gray-400 hover:text-white transition flex items-center justify-center">
@@ -1204,7 +1217,7 @@
             <div class="flex justify-between items-start mb-2">
               <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-900/40 text-amber-300 border border-amber-700/50">${v.discount}</span>
               <div class="flex items-center gap-1.5">
-                <span class="text-[11px] font-medium px-2 py-0.5 rounded ${isScheduled ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-gray-800 text-gray-300'}">${v.status}</span>
+                <span class="text-[11px] font-medium px-2 py-0.5 rounded bg-gray-800 text-gray-300">${v.status}</span>
                 ${linkIconHtml}
               </div>
             </div>
@@ -1212,13 +1225,13 @@
             <p class="text-[11px] text-gray-400 mb-2">${v.provider}</p>
           </div>
 
-          <div class="pt-3 border-t border-gray-800/80 flex justify-between items-center text-xs">
+          <div class="pt-3 border-t border-amber-900/40 flex justify-between items-center text-xs">
             <div class="flex items-center gap-1.5">
               <button onclick="openPlanModal(${v.id})" class="px-2.5 py-1.5 bg-gray-800/80 hover:bg-gray-700 text-gray-200 border border-gray-700 rounded-lg font-medium transition flex items-center gap-1">
                 <span>📋</span> Plan
               </button>
 
-              <button onclick="moveVoucherToScheduled(${v.id})" class="px-2.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-lg transition flex items-center gap-1 shadow">
+              <button onclick="moveVoucherToScheduled(${v.id})" class="px-2.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-lg transition flex items-center gap-1 shadow-[0_0_10px_rgba(245,158,11,0.3)]">
                 <span>🚀</span> Schedule Exam
               </button>
             </div>
@@ -1240,7 +1253,6 @@
       const v = hubData.vouchers.find(item => item.id === voucherId);
       if (!v) return;
 
-      // Guess a code from title
       let suggestedCode = "CERT";
       if (v.certName.includes("AWS")) suggestedCode = "AWS-SAA";
       else if (v.certName.includes("Google") || v.certName.includes("PCA")) suggestedCode = "GCP-PCA";
