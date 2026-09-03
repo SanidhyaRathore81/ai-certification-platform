@@ -512,6 +512,7 @@
         <div>
           <label class="block text-gray-400 mb-1">Hero Photo Preset</label>
           <select id="input-routine-image" class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-white">
+            <option value="assets/books.jpg">📚 Books & Reading</option>
             <option value="assets/skincare.jpg">✨ Skincare & Grooming</option>
             <option value="assets/gym.jpg">🏋️‍♂️ Fitness & Strength</option>
             <option value="assets/health.jpg">🩺 Health & Wellness</option>
@@ -727,7 +728,7 @@
   </footer>
 
   <script>
-    const STORAGE_KEY = 'ai_daily_life_hub_v3';
+    const STORAGE_KEY = 'ai_daily_life_hub_v4';
     const THEME_KEY = 'ai_cert_theme_choice';
 
     const defaultData = {
@@ -758,6 +759,19 @@
             { id: "sc-4", title: "PM: Double cleanse (oil balm + gentle amino wash)", done: false },
             { id: "sc-5", title: "PM: Niacinamide & Retinol 0.2% cellular repair serum", done: false },
             { id: "sc-6", title: "PM: Deep ceramide peptide barrier recovery cream", done: false }
+          ]
+        },
+        {
+          id: "routine-books",
+          title: "Daily Book Reading & Mind Sanctuary",
+          badge: "BOOKS & INTELLECTUAL SANCTUARY",
+          schedule: "Night: 10:45 PM - 11:30 PM • 30+ Pages Daily",
+          image: "assets/books.jpg",
+          items: [
+            { id: "bk-1", title: "Read 25-30 pages of active architecture / non-fiction book", done: true },
+            { id: "bk-2", title: "Highlight key mental models & annotate chapter insights", done: false },
+            { id: "bk-3", title: "Log 1 actionable takeaway into personal knowledge vault", done: false },
+            { id: "bk-4", title: "15 min reflective philosophy reading before sleep", done: false }
           ]
         }
       ],

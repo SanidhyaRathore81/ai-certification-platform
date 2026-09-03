@@ -13,6 +13,36 @@
     { "id": "dt-3", "title": "Pay home broadband & electricity bills", "priority": "Normal", "done": false },
     { "id": "dt-4", "title": "Order replacement Dandiya grip tape online", "priority": "Low", "done": false }
   ],
+  "customRoutines": [
+    {
+      "id": "routine-skincare",
+      "title": "Daily Skincare & Derma Care Ritual",
+      "badge": "SKINCARE & DERMA CARE",
+      "schedule": "AM: 07:30 AM • PM: 10:30 PM",
+      "image": "assets/skincare.jpg",
+      "items": [
+        { "id": "sc-1", "title": "AM: Gentle hydrating cleanser & cool water splash", "done": true },
+        { "id": "sc-2", "title": "AM: Vitamin C 10% antioxidant glow serum", "done": true },
+        { "id": "sc-3", "title": "AM: Light barrier moisturizer + SPF 50 Broad Spectrum sunscreen", "done": false },
+        { "id": "sc-4", "title": "PM: Double cleanse (oil balm + gentle amino wash)", "done": false },
+        { "id": "sc-5", "title": "PM: Niacinamide & Retinol 0.2% cellular repair serum", "done": false },
+        { "id": "sc-6", "title": "PM: Deep ceramide peptide barrier recovery cream", "done": false }
+      ]
+    },
+    {
+      "id": "routine-books",
+      "title": "Daily Book Reading & Mind Sanctuary",
+      "badge": "BOOKS & INTELLECTUAL SANCTUARY",
+      "schedule": "Night: 10:45 PM - 11:30 PM • 30+ Pages Daily",
+      "image": "assets/books.jpg",
+      "items": [
+        { "id": "bk-1", "title": "Read 25-30 pages of active architecture / non-fiction book", "done": true },
+        { "id": "bk-2", "title": "Highlight key mental models & annotate chapter insights", "done": false },
+        { "id": "bk-3", "title": "Log 1 actionable takeaway into personal knowledge vault", "done": false },
+        { "id": "bk-4", "title": "15 min reflective philosophy reading before sleep", "done": false }
+      ]
+    }
+  ],
   "gym": {
     "todayFocus": "Push Day: Chest, Shoulders & Triceps",
     "scheduledTime": "07:00 AM - 08:30 AM",
@@ -25,24 +55,6 @@
       { "id": "g-5", "name": "Triceps Rope Pushdowns + Overhead Extensions (4 sets)", "done": false }
     ]
   },
-  "customRoutines": [
-    {
-      "id": "routine-skincare",
-      "title": "Daily Skincare & Grooming Ritual",
-      "badge": "SKINCARE & DERMA CARE",
-      "schedule": "AM: 07:30 AM • PM: 10:30 PM",
-      "image": "assets/skincare.jpg",
-      "borderColor": "border-pink-500/40",
-      "items": [
-        { "id": "sc-1", "title": "AM: Gentle hydrating cleanser & cool water splash", "done": true },
-        { "id": "sc-2", "title": "AM: Vitamin C 10% antioxidant glow serum", "done": true },
-        { "id": "sc-3", "title": "AM: Light barrier moisturizer + SPF 50 Broad Spectrum sunscreen", "done": false },
-        { "id": "sc-4", "title": "PM: Double cleanse (oil-based balm + gentle amino wash)", "done": false },
-        { "id": "sc-5", "title": "PM: Niacinamide & gentle Retinol 0.2% cellular repair", "done": false },
-        { "id": "sc-6", "title": "PM: Deep ceramide peptide night recovery barrier cream", "done": false }
-      ]
-    }
-  ],
   "garba": {
     "eventName": "Navratri Mahotsav & Weekend Dandiya Practice",
     "practiceVenue": "Community Cultural Grounds / Dance Hall",
@@ -56,9 +68,9 @@
       { "id": "gb-5", "title": "Dandiya Raas double-strike pairing sequence", "done": false }
     ],
     "prepItems": [
-      { "id": "gp-1", "item": "Traditional Kurta & Dupatta set", "done": true },
-      { "id": "gp-2", "item": "Wooden Dandiya pair with grip tape", "done": false },
-      { "id": "gp-3", "item": "Garba practice music playlist synced", "done": true }
+      { "id": "gp-1", "item": "Traditional Kurta & Dupatta set", done: true },
+      { "id": "gp-2", "item": "Wooden Dandiya pair with grip tape", done: false },
+      { "id": "gp-3", "item": "Garba practice music playlist synced", done: true }
     ]
   },
   "health": {
@@ -83,18 +95,18 @@
       }
     ],
     "dailyHabits": [
-      { "id": "dh-1", "title": "Morning Vitamin D3 + Omega-3", "done": true },
-      { "id": "dh-2", "title": "Post-workout Whey Protein + Creatine", "done": true },
-      { "id": "dh-3", "title": "Electrolytes & Hydration (3L target)", "done": false },
-      { "id": "dh-4", "title": "15 min night posture & spine stretching", "done": false }
+      { "id": "dh-1", "title": "Morning Vitamin D3 + Omega-3", done: true },
+      { "id": "dh-2", "title": "Post-workout Whey Protein + Creatine", done: true },
+      { "id": "dh-3", "title": "Electrolytes & Hydration (3L target)", done: false },
+      { "id": "dh-4", "title": "15 min night posture & spine stretching", done: false }
     ]
   },
   "shopping": [
-    { "id": "s-1", "item": "Whey Protein Isolate (Chocolate 2kg)", "category": "Gym", "done": true },
-    { "id": "s-2", "item": "Dandiya Sticks (Carved Sheesham pair)", "category": "Garba", "done": false },
-    { "id": "s-3", "item": "Multivitamins & Omega-3 Softgels", "category": "Health", "done": false },
-    { "id": "s-4", "item": "Almonds, Chia Seeds & Greek Yogurt", "category": "Groceries", "done": true },
-    { "id": "s-5", "item": "Gym Grip Straps & Shaker Bottle", "category": "Gym", "done": false },
-    { "id": "s-6", "item": "Traditional Mojari / Footwear for Navratri", "category": "Garba", "done": false }
+    { "id": "s-1", "item": "Whey Protein Isolate (Chocolate 2kg)", category: "Gym", done: true },
+    { "id": "s-2", "item": "Dandiya Sticks (Carved Sheesham pair)", category: "Garba", done: false },
+    { "id": "s-3", "item": "Multivitamins & Omega-3 Softgels", category: "Health", done: false },
+    { "id": "s-4", "item": "Almonds, Chia Seeds & Greek Yogurt", category: "Groceries", done: true },
+    { "id": "s-5", "item": "Gym Grip Straps & Shaker Bottle", category: "Gym", done: false },
+    { "id": "s-6", "item": "Traditional Mojari / Footwear for Navratri", category: "Garba", done: false }
   ]
 }
