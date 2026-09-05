@@ -177,18 +177,73 @@
     </div>
 
     <div class="flex items-center gap-2">
-      <button id="btn-edit-toggle" onclick="toggleEditMode()" class="text-xs px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow">
+      <button id="btn-edit-toggle" onclick="toggleEditMode()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow">
         <span id="edit-icon">✏️</span> <span id="edit-text">Edit Mode</span>
       </button>
 
-      <button onclick="toggleToolbox()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-medium transition flex items-center gap-1.5">
+      <button onclick="toggleToolbox()" class="text-xs px-3.5 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-medium transition flex items-center gap-1.5 shadow">
         <span>🛠️</span> <span>Toolbox</span> <span id="toolbox-chevron" class="text-[10px] text-gray-400">▾</span>
       </button>
     </div>
   </nav>
 
+  <!-- Expandable Toolbox Panel (Themes + File Sync) -->
+  <div id="toolbox-panel" class="hidden max-w-7xl mx-auto mb-6 p-4 rounded-xl bg-gray-900/95 border border-gray-700/80 shadow-2xl transition-all">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+      
+      <!-- Theme Selector -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-xs">
+        <span class="text-gray-300 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+          <span>🎨</span> Themes:
+        </span>
+        <div class="flex flex-wrap gap-1.5 bg-gray-950 p-1.5 rounded-lg border border-gray-800">
+          <button onclick="applyTheme('mahabharat')" id="btn-theme-mahabharat" class="px-3 py-1 rounded text-xs font-bold bg-amber-600 text-white shadow flex items-center gap-1.5">
+            <span>🏹</span> Dharmayuddha
+          </button>
+          <button onclick="applyTheme('avengers')" id="btn-theme-avengers" class="px-3 py-1 rounded text-xs font-semibold text-gray-300 hover:text-cyan-300 transition flex items-center gap-1.5">
+            <span>🛡️</span> Avengers HUD
+          </button>
+          <button onclick="applyTheme('nebula')" id="btn-theme-nebula" class="px-3 py-1 rounded text-xs font-semibold text-gray-300 hover:text-pink-300 transition flex items-center gap-1.5">
+            <span>🌌</span> Quantum Nebula
+          </button>
+          <button onclick="applyTheme('default')" id="btn-theme-default" class="px-3 py-1 rounded text-xs font-semibold text-gray-400 hover:text-white transition">
+            Stealth Dark
+          </button>
+        </div>
+      </div>
+
+      <!-- File Sync Actions -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition flex items-center gap-1 shadow">
+          <span>💾</span> Save Local File
+        </button>
+        <button onclick="document.getElementById('import-file').click()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
+          <span>📥</span> Load Local JSON
+        </button>
+        <button onclick="exportData()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
+          <span>📤</span> Export Backup
+        </button>
+        <button onclick="resetToDefault()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-red-950/60 border border-gray-700 text-red-400 hover:text-red-300 transition">
+          Reset
+        </button>
+        <input type="file" id="import-file" class="hidden" onchange="importLocalJSON(event)" accept=".json" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Mode Active Notification Banner -->
+  <div id="edit-mode-banner" class="hidden max-w-7xl mx-auto mb-6 p-3 rounded-lg bg-amber-950/40 border border-amber-500/50 text-amber-300 text-xs flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <span class="text-base">⚠️</span>
+      <span><b>Edit Mode Active:</b> You can modify exam schedules, test locations, milestones, and move vouchers to scheduled. Click <b>Done Editing</b> when finished.</span>
+    </div>
+    <button onclick="toggleEditMode()" class="px-3 py-1 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs">
+      Done Editing
+    </button>
+  </div>
+
   <!-- Minimalist Executive Header -->
-  <header class="max-w-7xl mx-auto mb-6 border-b border-gray-800 pb-5">
+  <header class="max-w-7xl mx-auto mb-8 border-b border-gray-800 pb-5">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div>
         <div class="flex items-center gap-3">
@@ -204,72 +259,6 @@
           Upcoming Scheduled Exams • Udemy Learning Hub • Exam Vouchers
         </p>
       </div>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-2">
-        <button id="btn-edit-toggle" onclick="toggleEditMode()" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow">
-          <span id="edit-icon">✏️</span> <span id="edit-text">Edit Mode</span>
-        </button>
-
-        <button onclick="toggleToolbox()" class="text-xs px-3.5 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-medium transition flex items-center gap-1.5 shadow">
-          <span>🛠️</span> <span>Toolbox</span> <span id="toolbox-chevron" class="text-[10px] text-gray-400">▾</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Expandable Toolbox Panel -->
-    <div id="toolbox-panel" class="hidden mt-4 p-4 rounded-xl bg-gray-900/95 border border-gray-700/80 shadow-2xl transition-all">
-      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-        
-        <!-- Theme Selector -->
-        <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-xs">
-          <span class="text-gray-300 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-            <span>🎨</span> Themes:
-          </span>
-          <div class="flex flex-wrap gap-1.5 bg-gray-950 p-1.5 rounded-lg border border-gray-800">
-            <button onclick="applyTheme('mahabharat')" id="btn-theme-mahabharat" class="px-3 py-1 rounded text-xs font-bold bg-amber-600 text-white shadow flex items-center gap-1.5">
-              <span>🏹</span> Dharmayuddha
-            </button>
-            <button onclick="applyTheme('avengers')" id="btn-theme-avengers" class="px-3 py-1 rounded text-xs font-semibold text-gray-300 hover:text-cyan-300 transition flex items-center gap-1.5">
-              <span>🛡️</span> Avengers HUD
-            </button>
-            <button onclick="applyTheme('nebula')" id="btn-theme-nebula" class="px-3 py-1 rounded text-xs font-semibold text-gray-300 hover:text-pink-300 transition flex items-center gap-1.5">
-              <span>🌌</span> Quantum Nebula
-            </button>
-            <button onclick="applyTheme('default')" id="btn-theme-default" class="px-3 py-1 rounded text-xs font-semibold text-gray-400 hover:text-white transition">
-              Stealth Dark
-            </button>
-          </div>
-        </div>
-
-        <!-- File Sync Actions -->
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="saveToLocalFile()" class="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition flex items-center gap-1 shadow">
-            <span>💾</span> Save Local File
-          </button>
-          <button onclick="document.getElementById('import-file').click()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
-            <span>📥</span> Load Local JSON
-          </button>
-          <button onclick="exportData()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 transition flex items-center gap-1">
-            <span>📤</span> Export Backup
-          </button>
-          <button onclick="resetToDefault()" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-red-950/60 border border-gray-700 text-red-400 hover:text-red-300 transition">
-            Reset
-          </button>
-          <input type="file" id="import-file" class="hidden" onchange="importLocalJSON(event)" accept=".json" />
-        </div>
-      </div>
-    </div>
-
-    <!-- Edit Mode Active Notification Banner -->
-    <div id="edit-mode-banner" class="hidden mt-4 p-3 rounded-lg bg-amber-950/40 border border-amber-500/50 text-amber-300 text-xs flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <span class="text-base">⚠️</span>
-        <span><b>Edit Mode Active:</b> You can modify exam schedules, test locations, milestones, and move vouchers to scheduled. Click <b>Done Editing</b> when finished.</span>
-      </div>
-      <button onclick="toggleEditMode()" class="px-3 py-1 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs">
-        Done Editing
-      </button>
     </div>
   </header>
 
